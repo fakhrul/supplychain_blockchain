@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SpeciesController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +15,7 @@ use App\Http\Controllers\ProductController;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 /*
 200: OK. The standard success code and default option.
@@ -26,16 +28,22 @@ use App\Http\Controllers\ProductController;
 404: Not found. This will be returned automatically by Laravel when the resource is not found.
 500: Internal server error. Ideally you're not going to be explicitly returning this, but if something unexpected breaks, this is what your user is going to receive.
 503: Service unavailable. Pretty self explanatory, but also another code that is not going to be returned explicitly by the application.
-*/
+ */
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 // Products API
 // Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('/products', [ProductController::class, 'index']);
-    Route::get('/products/{id}', [ProductController::class, 'show']);
-    Route::post('/products', [ProductController::class,'store']);
-    Route::put('/products/{id}', [ProductController::class,'update']);
-    Route::delete('/products/{id}', [ProductController::class,'delete']);
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::post('/products', [ProductController::class, 'store']);
+Route::put('/products/{id}', [ProductController::class, 'update']);
+Route::delete('/products/{id}', [ProductController::class, 'delete']);
+
+Route::get('/species', [SpeciesController::class, 'index']);
+Route::get('/species/{id}', [SpeciesController::class, 'show']);
+Route::post('/species', [SpeciesController::class, 'store']);
+Route::put('/species/{id}', [SpeciesController::class, 'update']);
+Route::delete('/species/{id}', [SpeciesController::class, 'delete']);
 // });
