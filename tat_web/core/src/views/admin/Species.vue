@@ -69,14 +69,7 @@ export default {
     }
   },
   methods: {
-    // create() {
-    //   var self = this;
-    //   this.api.createSpecies(self.obj).then((response) => {
-    //     self.obj = {};
-    //     self.$router.push({ path: "/admin/specieslist" });
-    //     // self.$router.push("/specieslist");
-    //   });
-    // },
+
     onSubmit(evt) {
       evt.preventDefault();
       var self = this;

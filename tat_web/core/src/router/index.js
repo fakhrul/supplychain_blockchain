@@ -69,6 +69,10 @@ const Species = () => import('@/views/admin/Species')
 const SpeciesList = () => import('@/views/admin/SpeciesList')
 
 const Product = () => import('@/views/track/Product')
+const ProductList = () => import('@/views/track/ProductList')
+
+
+const TrackList = () => import('@/views/track/TrackList')
 const TrackUpdate = () => import('@/views/track/TrackUpdate')
 const TrackHistory = () => import('@/views/track/TrackHistory')
 
@@ -149,7 +153,7 @@ function configRoutes() {
         },
         {
           path: 'track',
-          redirect: '/track/product',
+          redirect: '/track/productlist',
           name: 'Track',
           component: {
             render(c) { return c('router-view') }
@@ -159,6 +163,21 @@ function configRoutes() {
               path: 'product',
               name: 'Product',
               component: Product
+            },
+            {
+              path: 'product/:id',
+              name: 'Product',
+              component: Product
+            },
+            {
+              path: 'productlist',
+              name: 'ProductList',
+              component: ProductList
+            },
+            {
+              path: 'tracklist',
+              name: 'TrackList',
+              component: TrackList
             },
             {
               path: 'trackupdate',

@@ -63,7 +63,13 @@ export default [
       {
         _name: 'CSidebarNavItem',
         name: 'Product',
-        to: '/track/product',
+        to: '/track/productlist',
+        icon: 'cil-drop'
+      },
+      {
+        _name: 'CSidebarNavItem',
+        name: 'Track List',
+        to: '/track/tracklist',
         icon: 'cil-drop'
       },
       {
