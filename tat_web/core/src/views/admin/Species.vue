@@ -59,13 +59,14 @@ export default {
     };
   },
   methods: {
+
     create() {
-      alert("hi")
-      var self = this
-      this.api.createSpecies(self.obj).then((response) =>{
-          alert(response)
-      })
-      alert("done")
+      var self = this;
+      this.api.createSpecies(self.obj).then((response) => {
+        self.obj = {};
+        self.$router.push({ path: "/admin/specieslist" });
+        // self.$router.push("/specieslist");
+      });
     },
   },
 };

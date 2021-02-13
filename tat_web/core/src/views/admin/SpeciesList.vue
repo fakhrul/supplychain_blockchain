@@ -10,18 +10,19 @@
             column-filter
             table-filter
             items-per-page-select
-            :items-per-page="5"
+            :items-per-page="10"
             hover
             sorter
             pagination
           >
-            <template #status="{item}">
+            <!-- <template #status="{item}">
               <td>
                 <CBadge :color="getBadge(item.status)">
                   {{ item.status }}
                 </CBadge>
               </td>
             </template>
+            -->
             <template #show_details="{item, index}">
               <td class="py-2">
                 <CButton
@@ -43,13 +44,21 @@
                 <CCardBody>
                   <CMedia :aside-image-props="{ height: 102 }">
                     <h4>
-                      {{ item.username }}
+                      {{ item.code }}
                     </h4>
-                    <p class="text-muted">User since: {{ item.registered }}</p>
+                    <p class="text-muted">Name: {{ item.name }}</p>
+                    <p class="text-muted">
+                      Description: {{ item.description }}
+                    </p>
                     <CButton size="sm" color="info" class="">
-                      User Settings
+                      Edit
                     </CButton>
-                    <CButton size="sm" color="danger" class="ml-1">
+                    <CButton
+                      size="sm"
+                      color="danger"
+                      class="ml-1"
+                      @click="showDeleteConfirmation(item)"
+                    >
                       Delete
                     </CButton>
                   </CMedia>
@@ -64,169 +73,27 @@
           >
         </CCardFooter>
       </CCard>
+      <CModal
+        title="Confirm Delete"
+        color="warning"
+        :show.sync="warningModal"
+        @update:show="onDeleteConfirmation"
+      >
+        Are you sure you want to delete this {{ itemToDelete.code }} ? 
+      </CModal>
     </CCol>
   </CRow>
 </template>
 
 <script>
-const items = [
-  {
-    code: "Samppa Nori",
-    name: "2012/01/01",
-    description: "Member",
-  },
-  {
-    code: "Estavan Lykos",
-    name: "2012/02/01",
-    description: "Staff",
-  },
-  {
-    code: "Chetan Mohamed",
-    name: "2012/02/01",
-    description: "Admin",
-   },
-  {
-    username: "Derick Maximinus",
-    registered: "2012/03/01",
-    role: "Member",
-    status: "Pending",
-  },
-  {
-    username: "Friderik Dávid",
-    registered: "2012/01/21",
-    role: "Staff",
-    status: "Active",
-  },
-  {
-    username: "Yiorgos Avraamu",
-    registered: "2012/01/01",
-    role: "Member",
-    status: "Active",
-  },
-  {
-    username: "Avram Tarasios",
-    registered: "2012/02/01",
-    role: "Staff",
-    status: "Banned",
-    _classes: "table-success",
-  },
-  {
-    username: "Quintin Ed",
-    registered: "2012/02/01",
-    role: "Admin",
-    status: "Inactive",
-  },
-  {
-    username: "Enéas Kwadwo",
-    registered: "2012/03/01",
-    role: "Member",
-    status: "Pending",
-  },
-  {
-    username: "Agapetus Tadeáš",
-    registered: "2012/01/21",
-    role: "Staff",
-    status: "Active",
-  },
-  {
-    username: "Carwyn Fachtna",
-    registered: "2012/01/01",
-    role: "Member",
-    status: "Active",
-    _classes: "table-info",
-  },
-  {
-    username: "Nehemiah Tatius",
-    registered: "2012/02/01",
-    role: "Staff",
-    status: "Banned",
-  },
-  {
-    username: "Ebbe Gemariah",
-    registered: "2012/02/01",
-    role: "Admin",
-    status: "Inactive",
-  },
-  {
-    username: "Eustorgios Amulius",
-    registered: "2012/03/01",
-    role: "Member",
-    status: "Pending",
-  },
-  {
-    username: "Leopold Gáspár",
-    registered: "2012/01/21",
-    role: "Staff",
-    status: "Active",
-  },
-  {
-    username: "Pompeius René",
-    registered: "2012/01/01",
-    role: "Member",
-    status: "Active",
-  },
-  {
-    username: "Paĉjo Jadon",
-    registered: "2012/02/01",
-    role: "Staff",
-    status: "Banned",
-  },
-  {
-    username: "Micheal Mercurius",
-    registered: "2012/02/01",
-    role: "Admin",
-    status: "Inactive",
-  },
-  {
-    username: "Ganesha Dubhghall",
-    registered: "2012/03/01",
-    role: "Member",
-    status: "Pending",
-  },
-  {
-    username: "Hiroto Šimun",
-    registered: "2012/01/21",
-    role: "Staff",
-    status: "Active",
-  },
-  {
-    username: "Vishnu Serghei",
-    registered: "2012/01/01",
-    role: "Member",
-    status: "Active",
-  },
-  {
-    username: "Zbyněk Phoibos",
-    registered: "2012/02/01",
-    role: "Staff",
-    status: "Banned",
-  },
-  {
-    username: "Einar Randall",
-    registered: "2012/02/01",
-    role: "Admin",
-    status: "Inactive",
-    _classes: "table-danger",
-  },
-  {
-    username: "Félix Troels",
-    registered: "2012/03/21",
-    role: "Staff",
-    status: "Active",
-  },
-  {
-    username: "Aulus Agmundr",
-    registered: "2012/01/01",
-    role: "Member",
-    status: "Pending",
-  },
-];
+import TatApi from "../../lib/tatapi";
+
+const items = [];
 
 const fields = [
-  { key: "username", _style: "min-width:200px" },
-  "registered",
-  { key: "role", _style: "min-width:100px;" },
-  { key: "status", _style: "min-width:100px;" },
+  { key: "id", _style: "min-width:50px" },
+  { key: "code", _style: "min-width:100px;" },
+  { key: "name", _style: "min-width:200px;" },
   {
     key: "show_details",
     label: "",
@@ -246,29 +113,45 @@ export default {
       fields,
       details: [],
       collapseDuration: 0,
+      api: new TatApi(),
+      warningModal: false,
+      itemToDelete: {},
     };
   },
+  mounted() {
+    var self = this;
+    self.refreshTable();
+  },
   methods: {
-    getBadge(status) {
-      switch (status) {
-        case "Active":
-          return "success";
-        case "Inactive":
-          return "secondary";
-        case "Pending":
-          return "warning";
-        case "Banned":
-          return "danger";
-        default:
-          "primary";
-      }
-    },
-    toggleDetails(item) {
-      this.$set(this.items[item.id], "_toggled", !item._toggled);
+    toggleDetails(item, index) {
+      this.$set(this.items[index], "_toggled", !item._toggled);
       this.collapseDuration = 300;
       this.$nextTick(() => {
         this.collapseDuration = 0;
       });
+    },
+    refreshTable(){
+    var self = this;
+    self.api.getSpecies().then((response) => {
+      self.items = response.data;
+    });
+    },
+    onDeleteConfirmation(status, evt, accept) {
+      var self = this;
+      if (accept) {
+        this.api.deleteSpecies(self.itemToDelete.id).then((response) => {
+          self.refreshTable();
+        });
+      }
+      self.itemToDelete = {};
+    },
+    showDeleteConfirmation(item) {
+      var self = this;
+      self.itemToDelete = item;
+      self.warningModal = true;
+    },
+    addNew() {
+      this.$router.push({ path: "/admin/species" });
     },
   },
 };
