@@ -9,7 +9,13 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return Product::all();
+        $data= Product::all();
+        return [
+            'recordsTotal' => count($data),
+            'recordsFiltered' => count($data),
+            'data' => $data,
+        ];
+
     }
 
     public function show($id)
