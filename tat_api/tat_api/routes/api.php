@@ -6,6 +6,8 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TrackHistoryController;
+use App\Http\Controllers\ActivityController;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +58,12 @@ Route::get('/location/{id}', [LocationController::class, 'show']);
 Route::post('/location', [LocationController::class, 'store']);
 Route::put('/location/{id}', [LocationController::class, 'update']);
 Route::delete('/location/{id}', [LocationController::class, 'delete']);
+
+Route::get('/activity', [ActivityController::class, 'index']);
+Route::get('/activity/{id}', [ActivityController::class, 'show']);
+Route::post('/activity', [ActivityController::class, 'store']);
+Route::put('/activity/{id}', [ActivityController::class, 'update']);
+Route::delete('/activity/{id}', [ActivityController::class, 'delete']);
 
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::get('/profile/{id}', [ProfileController::class, 'show']);

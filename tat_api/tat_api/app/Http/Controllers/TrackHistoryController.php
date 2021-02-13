@@ -9,10 +9,17 @@ class TrackHistoryController extends Controller
 {
     public function index()
     {
-        $data = TrackHistory::all();
+        // $data = TrackHistory::all();
 
         $data = TrackHistory::join('products', 'track_histories.product_code', '=', 'products.code')
-            ->get(['track_histories.*', 'products.name as products_name']);
+            ->join('activities', 'track_histories.activity_code', '=', 'activities.code')
+            ->join('profiles', 'track_histories.profile_code', '=', 'profiles.code')
+            ->join('locations', 'track_histories.location_code', '=', 'locations.code')
+            ->get(['track_histories.*',
+                'products.name as product_name', 
+                'activities.name as activity_name',
+                'profiles.name as profile_name',
+                'locations.name as location_name']);
 
         return [
             'recordsTotal' => count($data),
@@ -29,7 +36,7 @@ class TrackHistoryController extends Controller
             ->join('profiles', 'track_histories.profile_code', '=', 'profiles.code')
             ->join('locations', 'track_histories.location_code', '=', 'locations.code')
             ->get(['track_histories.*',
-                'products.name as products_name', 
+                'products.name as product_name', 
                 'activities.name as activity_name',
                 'profiles.name as profile_name',
                 'locations.name as location_name'])
