@@ -84,7 +84,7 @@ export default new Router({
   routes: configRoutes()
 })
 
-function configRoutes () {
+function configRoutes() {
   return [
     {
       path: '/',
@@ -102,7 +102,7 @@ function configRoutes () {
           redirect: '/admin/activity',
           name: 'Admin',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -136,10 +136,15 @@ function configRoutes () {
               component: Species
             },
             {
+              path: 'species/:id',
+              name: 'Species',
+              component: Species
+            },
+            {
               path: 'specieslist',
               name: 'SpeciesList',
               component: SpeciesList
-            }            
+            }
           ]
         },
         {
@@ -147,7 +152,7 @@ function configRoutes () {
           redirect: '/track/product',
           name: 'Track',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -172,7 +177,7 @@ function configRoutes () {
           redirect: '/other/notification',
           name: 'Other',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -187,7 +192,7 @@ function configRoutes () {
           redirect: '/theme/colors',
           name: 'Theme',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -248,7 +253,7 @@ function configRoutes () {
           redirect: '/base/cards',
           name: 'Base',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -338,7 +343,7 @@ function configRoutes () {
           redirect: '/buttons/standard-buttons',
           name: 'Buttons',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -368,7 +373,7 @@ function configRoutes () {
           redirect: '/icons/coreui-icons',
           name: 'CoreUI Icons',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -393,7 +398,7 @@ function configRoutes () {
           redirect: '/notifications/alerts',
           name: 'Notifications',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -420,7 +425,7 @@ function configRoutes () {
       redirect: '/pages/404',
       name: 'Pages',
       component: {
-        render (c) { return c('router-view') }
+        render(c) { return c('router-view') }
       },
       children: [
         {

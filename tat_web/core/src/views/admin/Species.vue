@@ -6,6 +6,7 @@
           <CCardHeader> <strong> Species </strong> Information </CCardHeader>
           <CCardBody>
             <CForm>
+              <CInput label="Id" v-model="obj.id" horizontal plaintext />
               <CInput
                 description="Species Code"
                 label="Code"
@@ -30,10 +31,10 @@
             </CForm>
           </CCardBody>
           <CCardFooter>
-            <CButton type="submit" size="sm" color="primary" @click="create"
+            <CButton type="submit" size="sm" color="primary" @click="onSubmit"
               ><CIcon name="cil-check-circle" /> Submit</CButton
             >
-            <CButton type="reset" size="sm" color="danger"
+            <CButton type="reset" size="sm" color="danger" @click="onReset"
               ><CIcon name="cil-ban" /> Reset</CButton
             >
           </CCardFooter>
@@ -52,21 +53,48 @@ export default {
     return {
       api: new TatApi(),
       obj: {
+        id: "",
         code: "",
         name: "",
         description: "",
       },
     };
   },
-  methods: {
-
-    create() {
-      var self = this;
-      this.api.createSpecies(self.obj).then((response) => {
-        self.obj = {};
-        self.$router.push({ path: "/admin/specieslist" });
-        // self.$router.push("/specieslist");
+  mounted() {
+    var self = this;
+    if (self.$route.params.id) {
+      this.api.getSpecies(self.$route.params.id).then((response) => {
+        self.obj = response;
       });
+    }
+  },
+  methods: {
+    // create() {
+    //   var self = this;
+    //   this.api.createSpecies(self.obj).then((response) => {
+    //     self.obj = {};
+    //     self.$router.push({ path: "/admin/specieslist" });
+    //     // self.$router.push("/specieslist");
+    //   });
+    // },
+    onSubmit(evt) {
+      evt.preventDefault();
+      var self = this;
+      if (self.obj.id == "") {
+        this.api.createSpecies(self.obj).then((response) => {
+          self.obj = {};
+          self.$router.push({ path: "/admin/specieslist" });
+        });
+      } else {
+        this.api.updateSpecies(self.obj).then((response) => {
+          self.obj = {};
+          self.$router.push({ path: "/admin/specieslist" });
+        });
+      }
+    },
+    onReset(evt) {
+      evt.preventDefault();
+      this.obj = {};
     },
   },
 };

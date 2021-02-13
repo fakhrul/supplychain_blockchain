@@ -50,7 +50,7 @@
                     <p class="text-muted">
                       Description: {{ item.description }}
                     </p>
-                    <CButton size="sm" color="info" class="">
+                    <CButton size="sm" color="info" class="" @click="onEdit(item)">
                       Edit
                     </CButton>
                     <CButton
@@ -79,7 +79,7 @@
         :show.sync="warningModal"
         @update:show="onDeleteConfirmation"
       >
-        Are you sure you want to delete this {{ itemToDelete.code }} ? 
+        Are you sure you want to delete this {{ itemToDelete.code }} ?
       </CModal>
     </CCol>
   </CRow>
@@ -130,11 +130,17 @@ export default {
         this.collapseDuration = 0;
       });
     },
-    refreshTable(){
-    var self = this;
-    self.api.getSpecies().then((response) => {
-      self.items = response.data;
-    });
+    refreshTable() {
+      var self = this;
+      self.api.getSpeciesList().then((response) => {
+        self.items = response.data;
+      });
+    },
+    onEdit(item){
+      var self = this;
+      self.$router.push({
+        path: `/admin/species/${item.id}`
+      });
     },
     onDeleteConfirmation(status, evt, accept) {
       var self = this;
