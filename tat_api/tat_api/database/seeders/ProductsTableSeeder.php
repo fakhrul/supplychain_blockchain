@@ -20,10 +20,22 @@ class ProductsTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
         for ($i = 0; $i < 50; $i++){
             Product::create([
-                'code' => $faker->sentence,
-                'name' => $faker->sentence,
-                'species_id' => '1'
+                'code' => $faker->userName,
+                'name' => $faker->name,
+                'species_code' => '1'
             ]);
         }
+        Product::create([
+            'code' => 'AAA',
+            'name' => $faker->name,
+            'species_code' => '1'
+        ]);
+        Product::create([
+            'code' => 'AAB',
+            'name' => $faker->name,
+            'species_code' => '1'
+        ]);
+
+
     }
 }

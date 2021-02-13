@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class TrackHistory extends Model
 {
     use HasFactory;
-    protected $fillable = ['info', 'remarks', 'product_id','activity_id','user_id','location_id','gps'];
+    protected $fillable = ['info', 'remarks', 'product_code','activity_code','profile_code','location_code','gps'];
 }

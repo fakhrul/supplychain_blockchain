@@ -17,10 +17,10 @@ class CreateTrackHistoriesTable extends Migration
             $table->id();
             $table->string('info');
             $table->string('remarks');
-            $table->string('product_id');
-            $table->string('activity_id');
-            $table->string('user_id');
-            $table->string('location_id');
+            $table->string('product_code');
+            $table->string('activity_code');
+            $table->string('profile_code');
+            $table->string('location_code');
             $table->string('gps');
             $table->timestamps();
         });

@@ -17,22 +17,25 @@ class ProfileTableSeeder extends Seeder
         //
         Profile::truncate();
         Profile::create([
+            'code' => 'fakhrulazran@gmail.com',
             'name' => 'Fakhrul Azran',
             'email' => 'fakhrulazran@gmail.com',
             'password' => 'abc123',
-            'role_id' => '1'
+            'role_code' => '1'
         ]);
         Profile::create([
+            'code' => 'ainnur@gmail.com',
             'name' => 'Ainnur',
             'email' => 'ainnur@gmail.com',
             'password' => 'abc123',
-            'role_id' => '2'
+            'role_code' => '2'
         ]);
         Profile::create([
+            'code' => 'ain@gmail.com',
             'name' => 'Ain',
             'email' => 'ain@gmail.com',
             'password' => 'abc123',
-            'role_id' => '3'
+            'role_code' => '3'
         ]);
     }
 }

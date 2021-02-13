@@ -9,7 +9,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $data= Product::all();
+        $data = Product::join('species', 'products.species_code', '=', 'species.code')
+        ->get(['products.*', 'species.name as species_name']);
+
         return [
             'recordsTotal' => count($data),
             'recordsFiltered' => count($data),

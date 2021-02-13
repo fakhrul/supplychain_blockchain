@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SpeciesController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TrackHistoryController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,15 +39,41 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Products API
 // Route::group(['middleware' => 'auth:api'], function() {
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{id}', [ProductController::class, 'show']);
-Route::post('/products', [ProductController::class, 'store']);
-Route::put('/products/{id}', [ProductController::class, 'update']);
-Route::delete('/products/{id}', [ProductController::class, 'delete']);
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product/{id}', [ProductController::class, 'show']);
+Route::post('/product', [ProductController::class, 'store']);
+Route::put('/product/{id}', [ProductController::class, 'update']);
+Route::delete('/product/{id}', [ProductController::class, 'delete']);
 
 Route::get('/species', [SpeciesController::class, 'index']);
 Route::get('/species/{id}', [SpeciesController::class, 'show']);
 Route::post('/species', [SpeciesController::class, 'store']);
 Route::put('/species/{id}', [SpeciesController::class, 'update']);
 Route::delete('/species/{id}', [SpeciesController::class, 'delete']);
+
+Route::get('/location', [LocationController::class, 'index']);
+Route::get('/location/{id}', [LocationController::class, 'show']);
+Route::post('/location', [LocationController::class, 'store']);
+Route::put('/location/{id}', [LocationController::class, 'update']);
+Route::delete('/location/{id}', [LocationController::class, 'delete']);
+
+Route::get('/profile', [ProfileController::class, 'index']);
+Route::get('/profile/{id}', [ProfileController::class, 'show']);
+Route::post('/profile', [ProfileController::class, 'store']);
+Route::put('/profile/{id}', [ProfileController::class, 'update']);
+Route::delete('/profile/{id}', [ProfileController::class, 'delete']);
+
+Route::get('/role', [RoleController::class, 'index']);
+Route::get('/role/{id}', [RoleController::class, 'show']);
+Route::post('/role', [RoleController::class, 'store']);
+Route::put('/role/{id}', [RoleController::class, 'update']);
+Route::delete('/role/{id}', [RoleController::class, 'delete']);
+
+Route::get('/trackhistory', [TrackHistoryController::class, 'index']);
+Route::get('/trackhistory/{id}', [TrackHistoryController::class, 'show']);
+Route::post('/trackhistory', [TrackHistoryController::class, 'store']);
+Route::put('/trackhistory/{id}', [TrackHistoryController::class, 'update']);
+Route::delete('/trackhistory/{id}', [TrackHistoryController::class, 'delete']);
+
+
 // });

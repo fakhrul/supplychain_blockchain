@@ -18,19 +18,19 @@ class TrackHistoryTableSeeder extends Seeder
         TrackHistory::create([
             'info' => 'info',
             'remarks' => 'info',
-            'product_id' => '1',
-            'activity_id' => '1',
-            'user_id' => '1',
-            'location_id' => '1',
+            'product_code' => 'AAA',
+            'activity_code' => '1',
+            'profile_code' => 'ain@gmail.com',
+            'location_code' => 'SHP',
             'gps' => '123,123'
         ]);
         TrackHistory::create([
             'info' => 'info',
             'remarks' => 'info',
-            'product_id' => '1',
-            'activity_id' => '1',
-            'user_id' => '1',
-            'location_id' => '1',
+            'product_code' => 'AAA',
+            'activity_code' => '1',
+            'profile_code' => 'fakhrulazran@gmail.com',
+            'location_code' => 'END',
             'gps' => '123,123'
         ]);
     }    
