@@ -6,8 +6,11 @@ import CoreuiVue from '@coreui/vue'
 import { iconsSet as icons } from './assets/icons/icons.js'
 import store from './store'
 import Api from './lib/api'
+import AuthService from './lib/authservice'
+import axios from 'axios'
 
 window.api = new Api();
+window.auth = new AuthService();
 
 Vue.config.performance = true
 Vue.use(CoreuiVue)
@@ -21,5 +24,7 @@ new Vue({
   template: '<App/>',
   components: {
     App
-  }
+  },
+
+
 })

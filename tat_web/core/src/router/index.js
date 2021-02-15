@@ -81,12 +81,34 @@ const Notification = () => import('@/views/other/Notification')
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'hash', // https://router.vuejs.org/api/#mode
   linkActiveClass: 'active',
   scrollBehavior: () => ({ y: 0 }),
   routes: configRoutes()
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Login' && !auth.check()) next({ name: 'Login' })
+  else next()
+})
+
+
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.middlewareAuth)) {
+//     if (!auth.check()) {
+//       next({
+//         path: '/pages/login',
+//         // query: { redirect: to.fullPath }
+//       });
+
+//       return;
+//     }
+//   }
+//   next()
+// })
+
+export default router
 
 function configRoutes() {
   return [
@@ -94,7 +116,9 @@ function configRoutes() {
       path: '/',
       redirect: '/dashboard',
       name: 'Home',
+      
       component: TheContainer,
+      meta: { middlewareAuth: true },
       children: [
         {
           path: 'dashboard',

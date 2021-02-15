@@ -4,11 +4,18 @@
 
 <script>
 export default {
-  name: 'App'
-}
+  name: "App",
+ 
+  mounted() {
+    if(auth.check())
+    {
+      this.$router.push({ path: '/pages/login' })
+    }
+  },
+};
 </script>
 
 <style lang="scss">
-  // Import Main styles for this application
-  @import 'assets/scss/style';
+// Import Main styles for this application
+@import "assets/scss/style";
 </style>
