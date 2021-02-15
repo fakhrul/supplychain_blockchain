@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,29 +15,38 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-       // Let's clear the users table first
-       User::truncate();
+        // Let's clear the users table first
+        User::truncate();
 
-       $faker = \Faker\Factory::create();
+        $faker = \Faker\Factory::create();
 
-       // Let's make sure everyone has the same password and 
-       // let's hash it before the loop, or else our seeder 
-       // will be too slow.
-       $password = 'password';//Hash::make('toptal');
+        // Let's make sure everyone has the same password and
+        // let's hash it before the loop, or else our seeder
+        // will be too slow.
+        $password = Hash::make('password');
 
-       User::create([
-           'name' => 'Administrator',
-           'email' => 'admin@test.com',
-           'password' => $password,
-       ]);
+        User::create([
+            'name' => 'Administrator',
+            'email' => 'admin@test.com',
+            'password' => $password,
+            'role' => 1
+        ]);
 
-       // And now let's generate a few dozen users for our app:
-       for ($i = 0; $i < 10; $i++) {
-           User::create([
-               'name' => $faker->name,
-               'email' => $faker->email,
-               'password' => $password,
-           ]);
-       }
+        User::create([
+            'name' => 'User',
+            'email' => 'user@test.com',
+            'password' => $password,
+            'role' => 2
+        ]);
+
+
+        // And now let's generate a few dozen users for our app:
+        for ($i = 0; $i < 10; $i++) {
+            User::create([
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'password' => $password,
+            ]);
+        }
     }
 }

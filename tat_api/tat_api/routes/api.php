@@ -7,7 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TrackHistoryController;
 use App\Http\Controllers\ActivityController;
-
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -83,5 +84,21 @@ Route::post('/trackhistory', [TrackHistoryController::class, 'store']);
 Route::put('/trackhistory/{id}', [TrackHistoryController::class, 'update']);
 Route::delete('/trackhistory/{id}', [TrackHistoryController::class, 'delete']);
 
+
+Route::prefix('auth')->group(function () {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::get('refresh', [AuthController::class, 'refresh']);
+    Route::group(['middleware' => 'auth:api'], function(){
+        Route::get('user', [AuthController::class, 'user']);
+        Route::post('logout', [AuthController::class, 'logout']);
+    });
+});
+
+Route::group(['middleware' => 'auth:api'], function(){
+    // Users
+    Route::get('users', [UserController::class, 'index'])->middleware('isAdmin');
+    Route::get('users/{id}', [UserController::class, 'show'])->middleware('isAdminOrSelf');
+});
 
 // });
