@@ -18,6 +18,8 @@ class CreateLocationsTable extends Migration
             $table->string('code')->unique();
             $table->string('name');
             $table->string('type');
+            $table->string('organization_code');
+            
             $table->timestamps();
         });
     }

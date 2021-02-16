@@ -20,6 +20,7 @@ class CreateProfilesTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role_code');
+            $table->string('organization_code');
             $table->timestamps();
         });
     }

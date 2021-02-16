@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFarmsTable extends Migration
+class CreateOrganizationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFarmsTable extends Migration
      */
     public function up()
     {
-        Schema::create('farms', function (Blueprint $table) {
+        Schema::create('organizations', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
             $table->string('name');
@@ -29,6 +29,6 @@ class CreateFarmsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('farms');
+        Schema::dropIfExists('organizations');
     }
 }

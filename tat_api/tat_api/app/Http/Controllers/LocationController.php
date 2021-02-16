@@ -9,7 +9,10 @@ class LocationController extends Controller
 {
     public function index()
     {
-        $data= Location::all();
+        $data = Location::join('organizations', 'locations.organization_code', '=', 'organizations.code')
+        ->get(['locations.*', 'organizations.name as organization_name']);
+
+        // $data= Location::all();
         return [
             'recordsTotal' => count($data),
             'recordsFiltered' => count($data),

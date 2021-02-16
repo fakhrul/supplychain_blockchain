@@ -9,7 +9,14 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $data= Profile::all();
+        $data =  Profile::all();
+
+        $data = Profile::join('organizations', 'profiles.organization_code', '=', 'organizations.code')
+        ->join('roles', 'profiles.role_code', '=', 'roles.code')
+        ->get(['profiles.*',
+            'organizations.name as organization_name', 
+            'roles.name as role_name']);
+
         return [
             'recordsTotal' => count($data),
             'recordsFiltered' => count($data),

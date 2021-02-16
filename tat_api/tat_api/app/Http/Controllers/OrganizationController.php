@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Activity;
+use App\Models\Organization;
 
-class ActivityController extends Controller
+class OrganizationController extends Controller
 {
     public function index()
     {
-        $data = Activity::all();
-
+        $data= Organization::all();
         return [
             'recordsTotal' => count($data),
             'recordsFiltered' => count($data),
@@ -21,28 +20,28 @@ class ActivityController extends Controller
 
     public function show($id)
     {
-        return Activity::find($id);
+        return Organization::find($id);
     }
 
     public function store(Request $request)
     {
-        $product = Activity::create($request->all());
+        $obj = Organization::create($request->all());
 
-        return response()->json($product, 201);
+        return response()->json($obj, 201);
     }
 
     public function update(Request $request, $id)
     {
-        $product = Activity::findOrFail($id);
-        $product->update($request->all());
+        $obj = Organization::findOrFail($id);
+        $obj->update($request->all());
 
-        return response()->json($product, 200);
+        return response()->json($obj, 200);
     }
 
     public function delete(Request $request, $id)
     {
-        $product = Activity::findOrFail($id);
-        $product->delete();
+        $obj = Organization::findOrFail($id);
+        $obj->delete();
         return response()->json(null, 204);
     }
 }
