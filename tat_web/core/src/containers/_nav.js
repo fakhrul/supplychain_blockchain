@@ -7,49 +7,50 @@ export default [
         name: 'Dashboard',
         to: '/dashboard',
         icon: 'cil-speedometer',
-        badge: {
-          color: 'primary',
-          text: 'NEW'
-        }
+        // badge: {
+        //   color: 'primary',
+        //   text: 'NEW'
+        // }
       },
       {
         _name: 'CSidebarNavTitle',
-        _children: ['User']
+        _children: ['Organization']
+      },
+      {
+        _name: 'CSidebarNavItem',
+        name: 'Organization',
+        to: '/admin/organizationlist',
+        icon: 'cil-calculator'
       },
       {
         _name: 'CSidebarNavItem',
         name: 'Profile',
-        to: '/admin/profile',
+        to: '/admin/profilelist',
         icon: 'cil-drop'
       },
       {
         _name: 'CSidebarNavItem',
         name: 'Role',
-        to: '/admin/role',
-        icon: 'cil-drop'
+        to: '/admin/rolelist',
+        icon: 'cil-puzzle'
       },
       {
         _name: 'CSidebarNavTitle',
-        _children: ['Administration']
+        _children: ['General']
       },
       {
         _name: 'CSidebarNavItem',
         name: 'Activity',
-        to: '/admin/activity',
-        icon: 'cil-drop'
+        to: '/admin/activitylist',
+        icon: 'cil-cursor'
       },
       {
         _name: 'CSidebarNavItem',
         name: 'Location',
-        to: '/admin/location',
+        to: '/admin/locationlist',
         icon: 'cil-drop'
       },
-      {
-        _name: 'CSidebarNavItem',
-        name: 'Organization',
-        to: '/admin/organization',
-        icon: 'cil-drop'
-      },
+
       {
         _name: 'CSidebarNavItem',
         name: 'Species',
@@ -92,7 +93,7 @@ export default [
         _name: 'CSidebarNavItem',
         name: 'Notification',
         to: '/other/notification',
-        icon: 'cil-drop'
+        icon: 'cil-bell'
       },
       {
         _name: 'CSidebarNavTitle',
@@ -137,7 +138,7 @@ export default [
           {
             name: 'Carousels',
             to: '/base/carousels'
-          }, 
+          },
           {
             name: 'Collapses',
             to: '/base/collapses'

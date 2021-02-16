@@ -9,7 +9,7 @@
               <CInput label="Id" v-model="obj.id" horizontal plaintext />
               <CInput
                 description="Updater"
-                label="Code"
+                label="Updater"
                 horizontal
                 autocomplete="code"
                 v-model="obj.code"

@@ -25,7 +25,7 @@
                   </CInput>
                   <CRow>
                     <CCol col="6" class="text-left">
-                      <CButton color="primary" class="px-4" @click="login"
+                      <CButton color="primary" class="px-4" @click.prevent="login"
                         >Login</CButton
                       >
                     </CCol>
@@ -93,8 +93,8 @@ export default {
         password: self.obj.password,
       };
       auth.doLogin(data).then((response) => {
-        auth.login(data.token, data.user);
-        // self.$router.push({name : "Dashboard"});
+        auth.recordLogin(response.token, response.user);
+        self.$router.push({path: "/"});
       });
     },
   },

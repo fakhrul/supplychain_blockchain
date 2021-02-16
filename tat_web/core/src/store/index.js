@@ -1,44 +1,43 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
-
 Vue.use(Vuex)
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
+const state = {
+  sidebarShow: 'responsive',
+  sidebarMinimize: false,
+  user: null
+}
 
-export default new Vuex.Store({
-  state: {
-    user: null
+const mutations = {
+  toggleSidebarDesktop(state) {
+    const sidebarOpened = [true, 'responsive'].includes(state.sidebarShow)
+    state.sidebarShow = sidebarOpened ? false : 'responsive'
   },
-
-  mutations: {
-    setUserData (state, userData) {
-      state.user = userData
-      localStorage.setItem('user', JSON.stringify(userData))
-      axios.defaults.headers.common.Authorization = `Bearer ${userData.token}`
-    },
-
-    clearUserData () {
-      localStorage.removeItem('user')
-      location.reload()
-    }
+  toggleSidebarMobile(state) {
+    const sidebarClosed = [false, 'responsive'].includes(state.sidebarShow)
+    state.sidebarShow = sidebarClosed ? true : 'responsive'
   },
-
-  actions: {
-    login ({ commit }, credentials) {
-      return axios
-        .post('/login', credentials)
-        .then(({ data }) => {
-          commit('setUserData', data)
-        })
-    },
-
-    logout ({ commit }) {
-      commit('clearUserData')
-    }
+  set(state, [variable, value]) {
+    state[variable] = value
   },
-
-  getters : {
-    isLogged: state => !!state.user
+  user(state, user) {
+    state.user = user;
   }
+}
+
+const store = new Vuex.Store({
+  state,
+  getters: {
+    user: (state) => {
+      return state.user;
+    }
+  },
+  actions: {
+    user(context, user){
+      context.commit('user', user)
+    }
+  },
+  mutations
 })
+
+export default store;

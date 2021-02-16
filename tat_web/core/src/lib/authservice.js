@@ -9,7 +9,7 @@ class AuthService {
             this.user = userData ? JSON.parse(userData) : null;
             if (this.token !== null) {
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.token;
-                this.getUser();
+                // this.getUser();
             }
         }
         // if (this.token) {
@@ -29,20 +29,19 @@ class AuthService {
         console.log(data);
         var url = apiUrl + 'login';
         return api.call('post', url, data)
-            .then(({ data }) => {
-                return data
+            .then((response) => {
+                console.log(response.data);
+                return response.data
             });
 
     }
 
-    login(token, user) {
+    recordLogin(token, user) {
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('user', JSON.stringify(user));
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         this.token = token;
         this.user = user;
-
-        // EventBus.$emit('userLoggedIn');
     }
 
     logout() {
@@ -50,23 +49,14 @@ class AuthService {
         if (this.token) {
             api.call('post', apiUrl + 'logout')
                 .then(({ data }) => {
-                    window.localStorage.removeItem('token');
-                    window.localStorage.removeItem('user');
-                    this.token = null;
-                    this.user = null;
                     // EventBus.$emit('userLoggedOut');
                 })
-                .catch(({ response }) => {
-                    window.localStorage.removeItem('token');
-                    window.localStorage.removeItem('user');
-                    this.token = null;
-                    this.user = null;
-                    // EventBus.$emit('userLoggedOut');
-                });
-        }
-
-        // location.reload(true);
-
+            // EventBus.$emit('userLoggedOut');
+        };
+        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('user');
+        this.token = null;
+        this.user = null;
     }
 
     check() {

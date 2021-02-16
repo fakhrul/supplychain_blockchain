@@ -61,10 +61,20 @@ const CustomPage = () => import('@/views/theme/CustomPage')
 
 // TAT
 const Activity = () => import('@/views/admin/Activity')
+const ActivityList = () => import('@/views/admin/ActivityList')
+
 const Location = () => import('@/views/admin/Location')
+const LocationList = () => import('@/views/admin/LocationList')
+
 const Organization = () => import('@/views/admin/Organization')
+const OrganizationList = () => import('@/views/admin/OrganizationList')
+
 const Profile = () => import('@/views/admin/Profile')
+const ProfileList = () => import('@/views/admin/ProfileList')
+
 const Role = () => import('@/views/admin/Role')
+const RoleList = () => import('@/views/admin/RoleList')
+
 const Species = () => import('@/views/admin/Species')
 const SpeciesList = () => import('@/views/admin/SpeciesList')
 
@@ -82,15 +92,23 @@ const Notification = () => import('@/views/other/Notification')
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'hash', // https://router.vuejs.org/api/#mode
+  // mode: 'hash', // https://router.vuejs.org/api/#mode
+  mode: 'history',
   linkActiveClass: 'active',
   scrollBehavior: () => ({ y: 0 }),
   routes: configRoutes()
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Login' && !auth.check()) next({ name: 'Login' })
-  else next()
+  var isAuth = auth.check();
+  console.log(isAuth)
+  if (to.name !== 'Login' && !isAuth) {
+    next({ name: 'Login' })
+  }
+  else
+    next();
+  // if (to.name !== 'Login' && !auth.check()) next({ name: 'Login' })
+  // else next()
 })
 
 
@@ -116,7 +134,7 @@ function configRoutes() {
       path: '/',
       redirect: '/dashboard',
       name: 'Home',
-      
+
       component: TheContainer,
       meta: { middlewareAuth: true },
       children: [
@@ -134,9 +152,19 @@ function configRoutes() {
           },
           children: [
             {
+              path: 'activity/:id',
+              name: 'Activity',
+              component: Activity
+            },
+            {
               path: 'activity',
               name: 'Activity',
               component: Activity
+            },
+            {
+              path: 'activitylist',
+              name: 'ActivityList',
+              component: ActivityList
             },
             {
               path: 'location',
@@ -144,7 +172,27 @@ function configRoutes() {
               component: Location
             },
             {
+              path: 'location/:id',
+              name: 'Location',
+              component: Location
+            },
+            {
+              path: 'locationlist',
+              name: 'LocationList',
+              component: LocationList
+            },
+            {
+              path: 'organizationlist',
+              name: 'OrganizationList',
+              component: OrganizationList
+            },
+            {
               path: 'organization',
+              name: 'Organization',
+              component: Organization
+            },
+            {
+              path: 'organization/:id',
               name: 'Organization',
               component: Organization
             },
@@ -154,9 +202,28 @@ function configRoutes() {
               component: Profile
             },
             {
+              path: 'profile/:id',
+              name: 'Profile',
+              component: Profile
+            },
+            {
+              path: 'profilelist',
+              name: 'ProfileList',
+              component: ProfileList
+            },
+            {
               path: 'role',
               name: 'Role',
               component: Role
+            },
+            {
+              path: 'role/:id',
+              name: 'Role',
+              component: Role
+            },   {
+              path: 'rolelist',
+              name: 'RoleList',
+              component: RoleList
             },
             {
               path: 'species',

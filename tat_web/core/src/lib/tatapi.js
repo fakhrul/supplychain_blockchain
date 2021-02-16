@@ -1,7 +1,128 @@
 // let apiUrl = 'http://localhost:8000/api/';
-let apiUrl = 'http://192.168.0.118:8000/api/';
+let apiUrl = 'http://127.0.0.1:8000/api/';
 
 class TatApi {
+
+    getProfile(id) {
+        var url = apiUrl + 'profile/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+   
+    getProfileList () {
+        var url = apiUrl + 'profile';
+        return api.call('get', url)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    deleteProfile(id) {
+        var url = apiUrl + 'profile/';
+        return api.call('delete', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    updateProfile(data) {
+        var url = apiUrl + 'profile/';
+        return api.call('put', url + data.id, data)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    createProfile(data) {
+        var url = apiUrl + 'profile';
+        return api.call('post', url, data)
+            .then(({ data }) => {
+                return data
+            });
+
+    }
+
+    getRole(id) {
+        var url = apiUrl + 'role/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+   
+    getRoleList () {
+        var url = apiUrl + 'role';
+        return api.call('get', url)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    deleteRole(id) {
+        var url = apiUrl + 'role/';
+        return api.call('delete', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    updateRole(data) {
+        var url = apiUrl + 'role/';
+        return api.call('put', url + data.id, data)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    createRole(data) {
+        var url = apiUrl + 'role';
+        return api.call('post', url, data)
+            .then(({ data }) => {
+                return data
+            });
+
+    }
+
+    getOrganization(id) {
+        var url = apiUrl + 'organization/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+   
+    getOrganizationList() {
+        var url = apiUrl + 'organization';
+        return api.call('get', url)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    deleteOrganization(id) {
+        var url = apiUrl + 'organization/';
+        return api.call('delete', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    updateOrganization(data) {
+        var url = apiUrl + 'organization/';
+        return api.call('put', url + data.id, data)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    createOrganization(data) {
+        var url = apiUrl + 'organization';
+        return api.call('post', url, data)
+            .then(({ data }) => {
+                return data
+            });
+
+    }
+
 
     getLocationList() {
         var url = apiUrl + 'location';
@@ -9,6 +130,37 @@ class TatApi {
             .then(({ data }) => {
                 return data
             });
+    }
+    getLocation(id) {
+        var url = apiUrl + 'location/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    deleteLocation(id) {
+        var url = apiUrl + 'location/';
+        return api.call('delete', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    updateLocation(data) {
+        var url = apiUrl + 'location/';
+        return api.call('put', url + data.id, data)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    createLocation(data) {
+        var url = apiUrl + 'location';
+        return api.call('post', url, data)
+            .then(({ data }) => {
+                return data
+            });
+
     }
 
     getActivityList() {
@@ -18,6 +170,39 @@ class TatApi {
                 return data
             });
     }
+
+    getActivity(id) {
+        var url = apiUrl + 'activity/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    deleteActivity(id) {
+        var url = apiUrl + 'activity/';
+        return api.call('delete', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    updateActivity(data) {
+        var url = apiUrl + 'activity/';
+        return api.call('put', url + data.id, data)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    createActivity(data) {
+        var url = apiUrl + 'activity';
+        return api.call('post', url, data)
+            .then(({ data }) => {
+                return data
+            });
+
+    }
+
 
     getTrackList() {
         var url = apiUrl + 'trackhistory';
