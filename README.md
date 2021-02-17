@@ -7,13 +7,17 @@
 mkdir tat_bc
 cd tat_bc
 
-2. download geth file
+2. download latest geth for windows file and extract to working directory
+https://geth.ethereum.org/downloads/
 
-wget https://gethstore.blob.core.windows.net/builds/geth-windows-386-1.9.25-e7872729.zip -O geth_windows.zip
+3. check version by running
+geth version
 
-3. extract geth
+4. genereate genesis json using puppeth
 
-tar -xvf geth_windows.zip
+5 create account
 
+geth account new --datadir accounts/
 
+* for the testing purporse, you can create 3 accounts (3 times) with same password 123456
 
