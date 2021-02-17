@@ -24,6 +24,7 @@ geth account new --datadir accounts/
 6. greate genesis sealer
 
 geth -identity "[genesis_name]" init [genesis_file] --datadir data_tat/node1/chain-data
+
 geth -identity "tat_bc-sealer" init tat_bc.json --datadir data_tat/node1/chain-data
 
 7. copy paste account to keystore
