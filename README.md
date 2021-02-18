@@ -40,3 +40,15 @@ web3.eth.getBlock("latest")
 10. test loadScript
 
 loadScript("myBalance.js")
+
+11. unlock command
+
+// Unlock accounts[0] for 60 seconds for transaction
+web3.personal.unlockAccount(eth.accounts[0], "123456", 60)
+
+// If you want to Unlock One Month for Sealer Node
+web3.personal.unlockAccount(eth.accounts[0], "123456", 2600000)
+
+// Lock accounts[0]
+personal.lockAccount(eth.accounts[0])
+
