@@ -55,3 +55,13 @@ web3.personal.unlockAccount(eth.accounts[0], "123456", 2600000)
 
 personal.lockAccount(eth.accounts[0])
 
+
+// E.g: Send 1 ether from accounts[0] to ETH address, You must unlock accounts[0] before sending transaction
+
+eth.sendTransaction({from:eth.accounts[0], to:"0x0000706e899d0f46c5efe22c4caaeb885af4dcac", value: web3.toWei(1, "ether")})
+
+// E.g: Send 1 ether from "0xf1326b3d4fbe5049fe94ed8a622f227d36a6d5ee" to eth.accounts[1], You must unlock "0xf1326b3d4fbe5049fe94ed8a622f227d36a6d5ee" before sending transaction
+
+eth.sendTransaction({from:"0xf1326b3d4fbe5049fe94ed8a622f227d36a6d5ee", to:eth.accounts[1], value: web3.toWei(1, "ether")})
+
+
