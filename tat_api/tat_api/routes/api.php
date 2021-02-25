@@ -10,6 +10,8 @@ use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\TrackHistoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\EhterueumController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -89,6 +91,9 @@ Route::get('/organization/{id}', [OrganizationController::class, 'show']);
 Route::post('/organization', [OrganizationController::class, 'store']);
 Route::put('/organization/{id}', [OrganizationController::class, 'update']);
 Route::delete('/organization/{id}', [OrganizationController::class, 'delete']);
+
+
+Route::get('/check', [EhterueumController::class, 'check']);
 
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);

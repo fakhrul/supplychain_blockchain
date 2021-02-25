@@ -1,5 +1,5 @@
 import axios from 'axios'
-let apiUrl = 'http://127.0.0.1:8000/api/auth/';
+let apiUrl = 'http://127.0.0.1:5005/api/auth/';
 
 class AuthService {
     constructor() {
@@ -9,6 +9,9 @@ class AuthService {
             this.user = userData ? JSON.parse(userData) : null;
             if (this.token !== null) {
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.token;
+                console.log(this.token)
+                axios.defaults.headers.common['api-token'] = this.token;
+                
                 // this.getUser();
             }
         }
