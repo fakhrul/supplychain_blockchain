@@ -24,6 +24,7 @@ def get_all():
 
     response = custom_response(retObj, 200)
     response.headers.add("Access-Control-Allow-Origin", "*")
+    print('cors-debug')
     return response
 
 

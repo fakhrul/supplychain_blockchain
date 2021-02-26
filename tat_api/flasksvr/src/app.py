@@ -21,6 +21,7 @@ from .views.ProfileView import profile_api as profile_blueprint
 from .views.SpeciesView import species_api as species_blueprint
 from .views.TrackHistoryView import track_history_api as track_history_blueprint
 from .views.ConfigView import config_api as config_blueprint
+from .views.EthereumView import etheruem_api as etheruem_blueprint
 
 
 def create_app(env_name):
@@ -64,6 +65,7 @@ def create_app(env_name):
     app.register_blueprint(species_blueprint, url_prefix='/api/species')
     app.register_blueprint(track_history_blueprint, url_prefix='/api/trackhistory')
     app.register_blueprint(config_blueprint, url_prefix='/api/config')
+    app.register_blueprint(etheruem_blueprint, url_prefix='/api/eth')
 
     @app.route('/')
     def index():

@@ -25,3 +25,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+tat_api/flasksvr/src/__pycache__/app.cpython-38.pyc
+*.pyc
+*.pyc
