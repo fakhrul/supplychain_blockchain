@@ -114,37 +114,32 @@ geth -identity "sirim-sealer" init sirim.json --datadir data/node1/chain-data
 ```
 geth --networkid 1234 --rpc --rpcaddr 0.0.0.0 --port 30303 --rpcport 8545 --rpcapi="admin,debug,net,eth,shh,web3,txpool,personel,db,clique" --rpccorsdomain "*" --rpcvhosts "*" --nodiscover --datadir data/node1/chain-data --wsapi="admin,debug,eth,net,web3,network,debug,txpool,personel,db,clique" --ws --wsaddr 0.0.0.0 --wsport 8546 --wsorigins "*" --syncmode full --gcmode=archive --allow-insecure-unlock --ipcpath "data\node1\geth.ipc" console 
 ```
-9. test the geth
+9. Test the geth
 ```
 web3.eth.getBlock("latest")
 ```
-10. test loadScript
+10. Oter testing can use
 
+```
+# load script
 loadScript("myBalance.js")
 
-11. unlock command
-
-// Unlock accounts[0] for 60 seconds for transaction
-
+# unlock account for 60 s
+web3.personal.unlockAccount(eth.accounts[0], "123456", 60)
 web3.personal.unlockAccount(eth.accounts[1], "123456", 60)
 
-// If you want to Unlock One Month for Sealer Node
+# unlock account for 60 minutes
+web3.personal.unlockAccount(eth.accounts[0], "123456", 60000)
 
-web3.personal.unlockAccount(eth.accounts[0], "123456", 2600000)
-
-// Lock accounts[0]
-
+# lock account
 personal.lockAccount(eth.accounts[0])
 
-
-// E.g: Send 1 ether from accounts[0] to ETH address, You must unlock accounts[0] before sending transaction
-
+# send transaction
 eth.sendTransaction({from:eth.accounts[0], to:"0x0000706e899d0f46c5efe22c4caaeb885af4dcac", value: web3.toWei(1, "ether")})
 
 eth.sendTransaction({from:eth.accounts[1], to:eth.accounts[0], value: web3.toWei(1, "ether")})
 
-// E.g: Send 1 ether from "0xf1326b3d4fbe5049fe94ed8a622f227d36a6d5ee" to eth.accounts[1], You must unlock "0xf1326b3d4fbe5049fe94ed8a622f227d36a6d5ee" before sending transaction
-
 eth.sendTransaction({from:"0xf1326b3d4fbe5049fe94ed8a622f227d36a6d5ee", to:eth.accounts[1], value: web3.toWei(1, "ether")})
+```
 
-
+## Connecting the remix to local Eth
