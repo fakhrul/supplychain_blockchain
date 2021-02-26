@@ -2,6 +2,11 @@
 
 ## Step by step to configure the blockchain on Windows
 
+### Pre requisite
+1. geth.exe > for running the etherum
+2. puppeth.exe > for generating the genesis file
+
+
 1. Create working directory
 
 mkdir tat_bc
@@ -13,13 +18,13 @@ https://geth.ethereum.org/downloads/
 3. check version by running
 geth version
 
-4. genereate genesis json using puppeth. Use filename "tat_bc.json"
-
-5 create account
+4 create account
 
 geth account new --datadir accounts/
 
 * for the testing purporse, you can create 3 accounts (3 times) with same password 123456
+
+5. genereate genesis json using puppeth. Use filename "tat_bc.json"
 
 6. greate genesis sealer
 
