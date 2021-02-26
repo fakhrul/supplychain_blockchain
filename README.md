@@ -70,7 +70,39 @@ Specify your chain/network ID if you want an explicit one (default = random)
 > 1234
 
 ```
-6. greate genesis sealer
+
+Now exporting the genesis file
+
+```
+What would you like to do? (default = stats)
+ 1. Show network stats
+ 2. Manage existing genesis
+ 3. Track new remote server
+ 4. Deploy network components
+> 2
+
+ 1. Modify existing configurations
+ 2. Export genesis configurations
+ 3. Remove genesis configuration
+> 2
+
+Which folder to save the genesis specs into? (default = current)
+  Will create sirim.json, sirim-aleth.json, sirim-harmony.json, sirim-parity.json
+>
+←[32mINFO ←[0m[02-26|10:55:14.256] Saved native genesis chain spec          ←[32mpath←[0m=sirim.json
+←[31mERROR←[0m[02-26|10:55:14.256] Failed to create Aleth chain spec        ←[31merr←[0m="unsupported consensus engine"
+←[31mERROR←[0m[02-26|10:55:14.257] Failed to create Parity chain spec       ←[31merr←[0m="unsupported consensus engine"
+←[32mINFO ←[0m[02-26|10:55:14.258] Saved genesis chain spec                 ←[32mclient←[0m=harmony ←[32mpath←[0m=sirim-harmony.json
+
+```
+genesis file named sirim.json is created.
+
+6. Edit the genesis file. update the balance for all 3 acount to 1000000000000000000000000 wei (you can google utility for wei calculator)
+```
+"balance": "1000000000000000000000000"
+
+```
+8. greate genesis sealer
 
 geth -identity "[genesis_name]" init [genesis_file] --datadir data_tat/node1/chain-data
 
