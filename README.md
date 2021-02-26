@@ -118,7 +118,13 @@ geth --networkid 1234 --rpc --rpcaddr 0.0.0.0 --port 30303 --rpcport 8545 --rpca
 ```
 web3.eth.getBlock("latest")
 ```
-10. Oter testing can use
+
+10. Start the etherume
+```
+miner.start()
+```
+
+Oter testing can use
 
 ```
 # load script
