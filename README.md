@@ -3,17 +3,16 @@
 ## Step by step to configure the blockchain on Windows
 
 ### Pre requisite
-1. geth.exe > for running the etherum
-
+1. geth.exe - for running the etherum. You can download the latest geth for windows file and extract to working directory https://geth.ethereum.org/downloads/
 2. puppeth.exe > for generating the genesis file
 
 ### Etherium preparation
 
 1. Create working directory
-
+````
 mkdir tat_bc
 cd tat_bc
-
+````
 2. download latest geth for windows file and extract to working directory
 https://geth.ethereum.org/downloads/
 
