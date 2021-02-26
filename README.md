@@ -13,17 +13,17 @@
 mkdir tat_bc
 cd tat_bc
 ````
-2. download latest geth for windows file and extract to working directory
-https://geth.ethereum.org/downloads/
+2. Place the geth.exe and puppeth.exe to working directory
 
 3. check version by running
 geth version
 
-4 create account
-
+4. create account
+````
 geth account new --datadir accounts/
-
-* for the testing purporse, you can create 3 accounts (3 times) with same password 123456
+````
+This will generate an account in the directory accounts.
+For the testing purporse,create 3 accounts (3 times) with same password of 123456
 
 5. genereate genesis json using puppeth. Use filename "tat_bc.json"
 
