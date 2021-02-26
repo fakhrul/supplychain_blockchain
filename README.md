@@ -4,8 +4,10 @@
 
 ### Pre requisite
 1. geth.exe > for running the etherum
+
 2. puppeth.exe > for generating the genesis file
 
+### Etherium preparation
 
 1. Create working directory
 
