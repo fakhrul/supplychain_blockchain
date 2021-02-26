@@ -25,8 +25,51 @@ geth account new --datadir accounts/
 This will generate an account in the directory accounts.
 For the testing purporse,create 3 accounts (3 times) with same password of 123456
 
-5. genereate genesis json using puppeth. Use filename "tat_bc.json"
+5. Genereate genesis json using puppeth. Use filename "sirim.json"
+```
+puppeth.exe
 
+Please specify a network name to administer (no spaces, hyphens or capital letters please)
+> sirim
+
+What would you like to do? (default = stats)
+ 1. Show network stats
+ 2. Configure new genesis
+ 3. Track new remote server
+ 4. Deploy network components
+> 2
+
+What would you like to do? (default = create)
+ 1. Create new genesis from scratch
+ 2. Import already existing genesis
+> 1
+
+Which consensus engine to use? (default = clique)
+ 1. Ethash - proof-of-work
+ 2. Clique - proof-of-authority
+> 2
+
+How many seconds should blocks take? (default = 15)
+> 5
+
+Which accounts are allowed to seal? (mandatory at least one)
+> 0x79a903a884a740ed68ecb2dedc328ee13ef4c3fc
+
+(advice to put the first account)
+
+Which accounts should be pre-funded? (advisable at least one)
+> 0x79a903a884a740ed68ecb2dedc328ee13ef4c3fc
+> 0xe4ce636c7a1f6e0cff746069e51496911cad2ce4
+> 0xad03e3dab78bbcc3c7f2957e93fc74f38152854b
+> 0x
+
+Should the precompile-addresses (0x1 .. 0xff) be pre-funded with 1 wei? (advisable yes)
+> no
+
+Specify your chain/network ID if you want an explicit one (default = random)
+> 1234
+
+```
 6. greate genesis sealer
 
 geth -identity "[genesis_name]" init [genesis_file] --datadir data_tat/node1/chain-data
