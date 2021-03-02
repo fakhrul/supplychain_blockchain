@@ -19,6 +19,7 @@ class Development(object):
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
     MAIL_USE_TLS = False
     MAIL_USE_SSL = True
+    ETHEREUM_ENDPOINT_URI = os.getenv('ETHEREUM_ENDPOINT_URI')
 
 class Production(object):
     """
@@ -34,6 +35,7 @@ class Production(object):
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
     MAIL_USE_TLS = False
     MAIL_USE_SSL = True
+    ETHEREUM_ENDPOINT_URI = os.getenv('ETHEREUM_ENDPOINT_URI')
 
 app_config = {
     'development': Development,

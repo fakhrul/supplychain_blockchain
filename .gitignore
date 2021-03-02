@@ -28,3 +28,5 @@ yarn-error.log*
 tat_api/flasksvr/src/__pycache__/app.cpython-38.pyc
 *.pyc
 *.pyc
+*.pyc
+tat_api/flasksvr/src/__pycache__/config.cpython-38.pyc

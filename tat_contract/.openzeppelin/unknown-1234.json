@@ -1,0 +1,66 @@
+{
+  "manifestVersion": "3.1",
+  "impls": {
+    "a65cdfa308566facef6065beb9e631bc7782c0699e2093fd7f5bc24c50583bce": {
+      "address": "0x419b7A4Fcd83f93011711949600230225E4b1DfD",
+      "txHash": "0x281d948f2d33171638f6781b9ca2bce26ce7f7576bffe8fbc5b75d1073f52182",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Box",
+            "label": "value",
+            "type": "t_uint256",
+            "src": "..\\..\\..\\..\\D\\GitHub\\supplychain_blockchain\\tat_contract\\contracts\\Box.sol:6"
+          }
+        ],
+        "types": {
+          "t_uint256": {
+            "label": "uint256"
+          }
+        }
+      }
+    },
+    "88b530dbc505d20d896e91b9be3c3f6885ec13017cc0464d53996130f6bcc50d": {
+      "address": "0x1d563bf0f2A2477d54B6BD3b25Dd32Dcc9Dd4B15",
+      "txHash": "0x967700e3ae0141671345a81c19c04595f22ae1e6bd8e423f5377f6c4cd7896c3",
+      "layout": {
+        "storage": [
+          {
+            "contract": "BoxV2",
+            "label": "value",
+            "type": "t_uint256",
+            "src": "..\\..\\..\\..\\D\\GitHub\\supplychain_blockchain\\tat_contract\\contracts\\BoxV2.sol:7"
+          }
+        ],
+        "types": {
+          "t_uint256": {
+            "label": "uint256"
+          }
+        }
+      }
+    },
+    "a8c34e30dd42bfa0d900135a30dbc42f877332f6d3aa29d69727e5d34d15e657": {
+      "address": "0x06d745411028F123371C55294f92297A89b3cc80",
+      "txHash": "0x8a967b5e80a59fc9d56a78081e4d5b8e2e0fed21f23372d7a6f32800c0ac29cb",
+      "layout": {
+        "storage": [
+          {
+            "contract": "BoxV2",
+            "label": "value",
+            "type": "t_uint256",
+            "src": "..\\..\\..\\..\\D\\GitHub\\supplychain_blockchain\\tat_contract\\contracts\\BoxV2.sol:7"
+          }
+        ],
+        "types": {
+          "t_uint256": {
+            "label": "uint256"
+          }
+        }
+      }
+    }
+  },
+  "admin": {
+    "address": "0xe68B79df5B2116D44961aACe67b2331A88be66c7",
+    "txHash": "0xe91743545e85dee45f51695d383bc257c5cf529a99e1b45738cd0204f1c1d34f"
+  }
+}
