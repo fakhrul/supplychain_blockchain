@@ -148,4 +148,16 @@ eth.sendTransaction({from:eth.accounts[1], to:eth.accounts[0], value: web3.toWei
 eth.sendTransaction({from:"0xf1326b3d4fbe5049fe94ed8a622f227d36a6d5ee", to:eth.accounts[1], value: web3.toWei(1, "ether")})
 ```
 
-## Connecting the remix to local Eth
+# Quick Start
+```
+start_geth.bat
+web3.personal.unlockAccount(eth.accounts[0], "123456", 60000)
+miner.start()
+```
+
+## Compiling the smart contract
+```
+truffle compile
+
+truffle migrate --network development
+```
