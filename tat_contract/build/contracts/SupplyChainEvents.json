@@ -1,0 +1,2014 @@
+{
+  "contractName": "SupplyChainEvents",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ActivityCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ActivityUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "AreaCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "AreaUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "CategoryCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "CategoryUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "CertificationCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "CertificationUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "OrganizationCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "OrganizationTypeCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "OrganizationTypeUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "OrganizationUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ProductCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ProductUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ProfileCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ProfileUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RoleCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RoleUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "TrackHistoryCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "TrackHistoryUpdated",
+      "type": "event"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.4+commit.3f05b770\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"ActivityCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"ActivityUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"AreaCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"AreaUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"CategoryCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"CategoryUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"CertificationCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"CertificationUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"OrganizationCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"OrganizationTypeCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"OrganizationTypeUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"OrganizationUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"ProductCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"ProductUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"ProfileCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"ProfileUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"RoleCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"RoleUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"TrackHistoryCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"TrackHistoryUpdated\",\"type\":\"event\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/D/GitHub/supplychain_blockchain/tat_contract/contracts/SupplyChainEvents.sol\":\"SupplyChainEvents\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/D/GitHub/supplychain_blockchain/tat_contract/contracts/SupplyChainEvents.sol\":{\"keccak256\":\"0x612ef89eefa76cc4aa0a7c38a3429f355ccb06d603b4a8ae61ee93cde311fda7\",\"urls\":[\"bzz-raw://3833028024ce7bb8b9c0d9104a21aefd43ef9b55c290cb1fbfe5cd485c6e1f87\",\"dweb:/ipfs/QmcZwXitLQFjYUDCDasT8wE4tMPhQaT3hQuruoKiUSDZN9\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212206874abd2b314d77ac63a690da5910f10103633ee853d2d83435483a8bf6438eb64736f6c63430007040033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212206874abd2b314d77ac63a690da5910f10103633ee853d2d83435483a8bf6438eb64736f6c63430007040033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "27:915:4:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "27:915:4:-:0;;;;;",
+  "source": "pragma solidity ^0.7.4;\r\n\r\ncontract SupplyChainEvents {\r\n    event OrganizationCreated(bytes32 objId);\r\n    event OrganizationUpdated(bytes32 objId);\r\n    event OrganizationTypeCreated(bytes32 objId);\r\n    event OrganizationTypeUpdated(bytes32 objId);\r\n    event ActivityCreated(bytes32 objId);\r\n    event ActivityUpdated(bytes32 objId);\r\n    event AreaCreated(bytes32 objId);\r\n    event AreaUpdated(bytes32 objId);\r\n    event CategoryCreated(bytes32 objId);\r\n    event CategoryUpdated(bytes32 objId);\r\n    event ProductCreated(bytes32 objId);\r\n    event ProductUpdated(bytes32 objId);\r\n    event RoleCreated(bytes32 objId);\r\n    event RoleUpdated(bytes32 objId);\r\n    event ProfileCreated(bytes32 objId);\r\n    event ProfileUpdated(bytes32 objId);\r\n    event CertificationCreated(bytes32 objId);\r\n    event CertificationUpdated(bytes32 objId);\r\n    event TrackHistoryCreated(bytes32 objId);\r\n    event TrackHistoryUpdated(bytes32 objId);\r\n\r\n}\r\n",
+  "sourcePath": "D:\\GitHub\\supplychain_blockchain\\tat_contract\\contracts\\SupplyChainEvents.sol",
+  "ast": {
+    "absolutePath": "/D/GitHub/supplychain_blockchain/tat_contract/contracts/SupplyChainEvents.sol",
+    "exportedSymbols": {
+      "SupplyChainEvents": [
+        1942
+      ]
+    },
+    "id": 1943,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1861,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:4"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 1942,
+        "linearizedBaseContracts": [
+          1942
+        ],
+        "name": "SupplyChainEvents",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "id": 1865,
+            "name": "OrganizationCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1864,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1863,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1865,
+                  "src": "87:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1862,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "87:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "86:15:4"
+            },
+            "src": "61:41:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1869,
+            "name": "OrganizationUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1868,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1867,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1869,
+                  "src": "134:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1866,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "134:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "133:15:4"
+            },
+            "src": "108:41:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1873,
+            "name": "OrganizationTypeCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1872,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1871,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1873,
+                  "src": "185:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1870,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "185:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "184:15:4"
+            },
+            "src": "155:45:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1877,
+            "name": "OrganizationTypeUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1876,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1875,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1877,
+                  "src": "236:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1874,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "236:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "235:15:4"
+            },
+            "src": "206:45:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1881,
+            "name": "ActivityCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1880,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1879,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1881,
+                  "src": "279:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1878,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "279:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "278:15:4"
+            },
+            "src": "257:37:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1885,
+            "name": "ActivityUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1884,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1883,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1885,
+                  "src": "322:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1882,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "322:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "321:15:4"
+            },
+            "src": "300:37:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1889,
+            "name": "AreaCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1888,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1887,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1889,
+                  "src": "361:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1886,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "361:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "360:15:4"
+            },
+            "src": "343:33:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1893,
+            "name": "AreaUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1892,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1891,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1893,
+                  "src": "400:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1890,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "400:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "399:15:4"
+            },
+            "src": "382:33:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1897,
+            "name": "CategoryCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1896,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1895,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1897,
+                  "src": "443:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1894,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "443:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "442:15:4"
+            },
+            "src": "421:37:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1901,
+            "name": "CategoryUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1900,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1899,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1901,
+                  "src": "486:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1898,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "486:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "485:15:4"
+            },
+            "src": "464:37:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1905,
+            "name": "ProductCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1904,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1903,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1905,
+                  "src": "528:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1902,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "528:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "527:15:4"
+            },
+            "src": "507:36:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1909,
+            "name": "ProductUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1908,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1907,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1909,
+                  "src": "570:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1906,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "570:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "569:15:4"
+            },
+            "src": "549:36:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1913,
+            "name": "RoleCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1912,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1911,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1913,
+                  "src": "609:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1910,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "609:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "608:15:4"
+            },
+            "src": "591:33:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1917,
+            "name": "RoleUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1916,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1915,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1917,
+                  "src": "648:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1914,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "648:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "647:15:4"
+            },
+            "src": "630:33:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1921,
+            "name": "ProfileCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1920,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1919,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1921,
+                  "src": "690:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1918,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "690:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "689:15:4"
+            },
+            "src": "669:36:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1925,
+            "name": "ProfileUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1924,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1923,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1925,
+                  "src": "732:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1922,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "732:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "731:15:4"
+            },
+            "src": "711:36:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1929,
+            "name": "CertificationCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1928,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1927,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1929,
+                  "src": "780:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1926,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "780:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "779:15:4"
+            },
+            "src": "753:42:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1933,
+            "name": "CertificationUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1932,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1931,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1933,
+                  "src": "828:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1930,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "828:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "827:15:4"
+            },
+            "src": "801:42:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1937,
+            "name": "TrackHistoryCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1936,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1935,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1937,
+                  "src": "875:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1934,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "875:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "874:15:4"
+            },
+            "src": "849:41:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1941,
+            "name": "TrackHistoryUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1940,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1939,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1941,
+                  "src": "922:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1938,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "922:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "921:15:4"
+            },
+            "src": "896:41:4"
+          }
+        ],
+        "scope": 1943,
+        "src": "27:915:4"
+      }
+    ],
+    "src": "0:944:4"
+  },
+  "legacyAST": {
+    "absolutePath": "/D/GitHub/supplychain_blockchain/tat_contract/contracts/SupplyChainEvents.sol",
+    "exportedSymbols": {
+      "SupplyChainEvents": [
+        1942
+      ]
+    },
+    "id": 1943,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1861,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:4"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 1942,
+        "linearizedBaseContracts": [
+          1942
+        ],
+        "name": "SupplyChainEvents",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "id": 1865,
+            "name": "OrganizationCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1864,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1863,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1865,
+                  "src": "87:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1862,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "87:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "86:15:4"
+            },
+            "src": "61:41:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1869,
+            "name": "OrganizationUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1868,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1867,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1869,
+                  "src": "134:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1866,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "134:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "133:15:4"
+            },
+            "src": "108:41:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1873,
+            "name": "OrganizationTypeCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1872,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1871,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1873,
+                  "src": "185:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1870,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "185:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "184:15:4"
+            },
+            "src": "155:45:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1877,
+            "name": "OrganizationTypeUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1876,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1875,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1877,
+                  "src": "236:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1874,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "236:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "235:15:4"
+            },
+            "src": "206:45:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1881,
+            "name": "ActivityCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1880,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1879,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1881,
+                  "src": "279:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1878,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "279:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "278:15:4"
+            },
+            "src": "257:37:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1885,
+            "name": "ActivityUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1884,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1883,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1885,
+                  "src": "322:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1882,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "322:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "321:15:4"
+            },
+            "src": "300:37:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1889,
+            "name": "AreaCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1888,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1887,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1889,
+                  "src": "361:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1886,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "361:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "360:15:4"
+            },
+            "src": "343:33:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1893,
+            "name": "AreaUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1892,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1891,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1893,
+                  "src": "400:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1890,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "400:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "399:15:4"
+            },
+            "src": "382:33:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1897,
+            "name": "CategoryCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1896,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1895,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1897,
+                  "src": "443:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1894,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "443:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "442:15:4"
+            },
+            "src": "421:37:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1901,
+            "name": "CategoryUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1900,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1899,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1901,
+                  "src": "486:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1898,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "486:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "485:15:4"
+            },
+            "src": "464:37:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1905,
+            "name": "ProductCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1904,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1903,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1905,
+                  "src": "528:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1902,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "528:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "527:15:4"
+            },
+            "src": "507:36:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1909,
+            "name": "ProductUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1908,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1907,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1909,
+                  "src": "570:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1906,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "570:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "569:15:4"
+            },
+            "src": "549:36:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1913,
+            "name": "RoleCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1912,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1911,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1913,
+                  "src": "609:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1910,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "609:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "608:15:4"
+            },
+            "src": "591:33:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1917,
+            "name": "RoleUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1916,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1915,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1917,
+                  "src": "648:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1914,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "648:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "647:15:4"
+            },
+            "src": "630:33:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1921,
+            "name": "ProfileCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1920,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1919,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1921,
+                  "src": "690:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1918,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "690:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "689:15:4"
+            },
+            "src": "669:36:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1925,
+            "name": "ProfileUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1924,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1923,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1925,
+                  "src": "732:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1922,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "732:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "731:15:4"
+            },
+            "src": "711:36:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1929,
+            "name": "CertificationCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1928,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1927,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1929,
+                  "src": "780:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1926,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "780:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "779:15:4"
+            },
+            "src": "753:42:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1933,
+            "name": "CertificationUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1932,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1931,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1933,
+                  "src": "828:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1930,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "828:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "827:15:4"
+            },
+            "src": "801:42:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1937,
+            "name": "TrackHistoryCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1936,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1935,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1937,
+                  "src": "875:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1934,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "875:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "874:15:4"
+            },
+            "src": "849:41:4"
+          },
+          {
+            "anonymous": false,
+            "id": 1941,
+            "name": "TrackHistoryUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1940,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1939,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1941,
+                  "src": "922:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1938,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "922:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "921:15:4"
+            },
+            "src": "896:41:4"
+          }
+        ],
+        "scope": 1943,
+        "src": "27:915:4"
+      }
+    ],
+    "src": "0:944:4"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.4+commit.3f05b770.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.2",
+  "updatedAt": "2021-03-03T08:19:16.338Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

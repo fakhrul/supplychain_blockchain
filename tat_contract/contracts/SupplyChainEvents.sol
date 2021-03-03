@@ -13,4 +13,13 @@ contract SupplyChainEvents {
     event CategoryUpdated(bytes32 objId);
     event ProductCreated(bytes32 objId);
     event ProductUpdated(bytes32 objId);
+    event RoleCreated(bytes32 objId);
+    event RoleUpdated(bytes32 objId);
+    event ProfileCreated(bytes32 objId);
+    event ProfileUpdated(bytes32 objId);
+    event CertificationCreated(bytes32 objId);
+    event CertificationUpdated(bytes32 objId);
+    event TrackHistoryCreated(bytes32 objId);
+    event TrackHistoryUpdated(bytes32 objId);
+
 }

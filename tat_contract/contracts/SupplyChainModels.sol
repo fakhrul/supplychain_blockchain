@@ -53,32 +53,40 @@ contract SupplyChainModels {
     struct Role {
         bytes32 roleId;
         string name;
+        bool isActive;
+        string customJsonData;
     }
 
     struct Profile {
-        bytes32 profieId;
+        bytes32 profileId;
         string name;
         string email;
         string passwordHash;
         string phone;
         bytes32[] roleId;
         bytes32 organizationId;
+        bool isActive;
+        string customJsonData;
     }
 
     struct Certification {
         bytes32 certificationId;
         string name;
         string certificateUrl;
+        bool isActive;
+        string customJsonData;
     }
 
     struct TrackHistory {
         bytes32 trackHistoryId;
         bytes32 productId;
-        bytes32 activityid;
+        bytes32 activityId;
         bytes32 profileId;
         bytes32 areaId;
         string gps;
         string remarks;
+        bool isActive;
+        string customJsonData;
     }
 
     mapping(bytes32 => Organization) public organizationMap;
@@ -99,6 +107,7 @@ contract SupplyChainModels {
     bytes32[] public categoryIds;
     bytes32[] public productIds;
     bytes32[] public roleIds;
+    bytes32[] public profileIds;
     bytes32[] public certificationIds;
     bytes32[] public trackHistoryIds;
 }
