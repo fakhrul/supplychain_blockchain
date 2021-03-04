@@ -1,6 +1,6 @@
 pragma solidity ^0.7.4;
 
-contract Organization{
+contract OrganizationContract{
     uint8 public version = 1;
 
     event OrganizationCreated(bytes32 objId);

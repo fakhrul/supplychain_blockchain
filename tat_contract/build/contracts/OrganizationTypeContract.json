@@ -1,0 +1,4001 @@
+{
+  "contractName": "OrganizationTypeContract",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "OrganizationTypeCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "OrganizationTypeUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "organizationTypeIds",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "organizationTypeMap",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "organizationTypeId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "isActive",
+          "type": "bool"
+        },
+        {
+          "internalType": "string",
+          "name": "customJsonData",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_customJsonData",
+          "type": "string"
+        }
+      ],
+      "name": "createOrganizationType",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_customJsonData",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "_isActive",
+          "type": "bool"
+        }
+      ],
+      "name": "updateOrganizationType",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "objId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getOrganizationTypeById",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "customJsonData",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.4+commit.3f05b770\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"OrganizationTypeCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"OrganizationTypeUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_customJsonData\",\"type\":\"string\"}],\"name\":\"createOrganizationType\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"}],\"name\":\"getOrganizationTypeById\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"id\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"customJsonData\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"organizationTypeIds\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"organizationTypeMap\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"organizationTypeId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"isActive\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"customJsonData\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"objId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_customJsonData\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_isActive\",\"type\":\"bool\"}],\"name\":\"updateOrganizationType\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/fakhrul/experiment/supplychain_blockchain/tat_contract/contracts/OrganizationTypeContract.sol\":\"OrganizationTypeContract\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/fakhrul/experiment/supplychain_blockchain/tat_contract/contracts/OrganizationTypeContract.sol\":{\"keccak256\":\"0x9c0372e0b341c3bba053e22cbe96ab53ef7e7260d488ea35d599d174fb4140ec\",\"urls\":[\"bzz-raw://fe04f9b7404a96b6995557f2f5411bc963cad08f875530580ce3cba745565800\",\"dweb:/ipfs/QmXzbJoQSKX1HdFCG7zVfkeZdQpjYW9npCZRji21h7FqeW\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610b38806100206000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c8063037f6ab41461005c5780630a1bb26a146101c25780632499c6a6146102045780638599e25e1461036c578063b156129914610486575b600080fd5b6101ac6004803603604081101561007257600080fd5b810190808035906020019064010000000081111561008f57600080fd5b8201836020820111156100a157600080fd5b803590602001918460018302840111640100000000831117156100c357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561012657600080fd5b82018360208201111561013857600080fd5b8035906020019184600183028401116401000000008311171561015a57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506105a9565b6040518082815260200191505060405180910390f35b6101ee600480360360208110156101d857600080fd5b81019080803590602001909291905050506106b6565b6040518082815260200191505060405180910390f35b61036a6004803603608081101561021a57600080fd5b81019080803590602001909291908035906020019064010000000081111561024157600080fd5b82018360208201111561025357600080fd5b8035906020019184600183028401116401000000008311171561027557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803590602001906401000000008111156102d857600080fd5b8201836020820111156102ea57600080fd5b8035906020019184600183028401116401000000008311171561030c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035151590602001909291905050506106da565b005b6103986004803603602081101561038257600080fd5b810190808035906020019092919050505061077c565b604051808481526020018060200180602001838103835285818151815260200191508051906020019080838360005b838110156103e25780820151818401526020810190506103c7565b50505050905090810190601f16801561040f5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b8381101561044857808201518184015260208101905061042d565b50505050905090810190601f1680156104755780820380516001836020036101000a031916815260200191505b509550505050505060405180910390f35b6104b26004803603602081101561049c57600080fd5b81019080803590602001909291905050506108ea565b6040518085815260200180602001841515815260200180602001838103835286818151815260200191508051906020019080838360005b838110156105045780820151818401526020810190506104e9565b50505050905090810190601f1680156105315780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b8381101561056a57808201518184015260208101905061054f565b50505050905090810190601f1680156105975780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b600080424460405160200180838152602001828152602001925050506040516020818303038152906040528051906020012090506000806000838152602001908152602001600020905081816000018190555060018160020160006101000a81548160ff02191690831515021790555084816001019080519060200190610631929190610a57565b508381600301908051906020019061064a929190610a57565b5060018290806001815401808255809150506001900390600052602060002001600090919091909150557f419c23ff814e3967d54e8426b09e6bb4cfe5682b082e396c591e97bcad447ba9826040518082815260200191505060405180910390a1819250505092915050565b600181815481106106c657600080fd5b906000526020600020016000915090505481565b6000806000868152602001908152602001600020905083816001019080519060200190610708929190610a57565b50818160020160006101000a81548160ff0219169083151502179055508281600301908051906020019061073d929190610a57565b507f4c9c025c66604acf9c898ba08849a696a99176a0d78bdf6ac5111e11e14b59aa856040518082815260200191505060405180910390a15050505050565b60006060806000806000868152602001908152602001600020905080600001548160010182600301818054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108395780601f1061080e57610100808354040283529160200191610839565b820191906000526020600020905b81548152906001019060200180831161081c57829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108d55780601f106108aa576101008083540402835291602001916108d5565b820191906000526020600020905b8154815290600101906020018083116108b857829003601f168201915b50505050509050935093509350509193909250565b6000602052806000526040600020600091509050806000015490806001018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561099c5780601f106109715761010080835404028352916020019161099c565b820191906000526020600020905b81548152906001019060200180831161097f57829003601f168201915b5050505050908060020160009054906101000a900460ff1690806003018054600181600116156101000203166002900480601f016020809104026020016040519081016040528092919081815260200182805460018160011615610100020316600290048015610a4d5780601f10610a2257610100808354040283529160200191610a4d565b820191906000526020600020905b815481529060010190602001808311610a3057829003601f168201915b5050505050905084565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282610a8d5760008555610ad4565b82601f10610aa657805160ff1916838001178555610ad4565b82800160010185558215610ad4579182015b82811115610ad3578251825591602001919060010190610ab8565b5b509050610ae19190610ae5565b5090565b5b80821115610afe576000816000905550600101610ae6565b509056fea2646970667358221220b053d4d7f1ee8ff88fe628c85380bcdd13c7e46e1c843c23b6cc40b0849621f564736f6c63430007040033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c8063037f6ab41461005c5780630a1bb26a146101c25780632499c6a6146102045780638599e25e1461036c578063b156129914610486575b600080fd5b6101ac6004803603604081101561007257600080fd5b810190808035906020019064010000000081111561008f57600080fd5b8201836020820111156100a157600080fd5b803590602001918460018302840111640100000000831117156100c357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561012657600080fd5b82018360208201111561013857600080fd5b8035906020019184600183028401116401000000008311171561015a57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506105a9565b6040518082815260200191505060405180910390f35b6101ee600480360360208110156101d857600080fd5b81019080803590602001909291905050506106b6565b6040518082815260200191505060405180910390f35b61036a6004803603608081101561021a57600080fd5b81019080803590602001909291908035906020019064010000000081111561024157600080fd5b82018360208201111561025357600080fd5b8035906020019184600183028401116401000000008311171561027557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803590602001906401000000008111156102d857600080fd5b8201836020820111156102ea57600080fd5b8035906020019184600183028401116401000000008311171561030c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035151590602001909291905050506106da565b005b6103986004803603602081101561038257600080fd5b810190808035906020019092919050505061077c565b604051808481526020018060200180602001838103835285818151815260200191508051906020019080838360005b838110156103e25780820151818401526020810190506103c7565b50505050905090810190601f16801561040f5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b8381101561044857808201518184015260208101905061042d565b50505050905090810190601f1680156104755780820380516001836020036101000a031916815260200191505b509550505050505060405180910390f35b6104b26004803603602081101561049c57600080fd5b81019080803590602001909291905050506108ea565b6040518085815260200180602001841515815260200180602001838103835286818151815260200191508051906020019080838360005b838110156105045780820151818401526020810190506104e9565b50505050905090810190601f1680156105315780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b8381101561056a57808201518184015260208101905061054f565b50505050905090810190601f1680156105975780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b600080424460405160200180838152602001828152602001925050506040516020818303038152906040528051906020012090506000806000838152602001908152602001600020905081816000018190555060018160020160006101000a81548160ff02191690831515021790555084816001019080519060200190610631929190610a57565b508381600301908051906020019061064a929190610a57565b5060018290806001815401808255809150506001900390600052602060002001600090919091909150557f419c23ff814e3967d54e8426b09e6bb4cfe5682b082e396c591e97bcad447ba9826040518082815260200191505060405180910390a1819250505092915050565b600181815481106106c657600080fd5b906000526020600020016000915090505481565b6000806000868152602001908152602001600020905083816001019080519060200190610708929190610a57565b50818160020160006101000a81548160ff0219169083151502179055508281600301908051906020019061073d929190610a57565b507f4c9c025c66604acf9c898ba08849a696a99176a0d78bdf6ac5111e11e14b59aa856040518082815260200191505060405180910390a15050505050565b60006060806000806000868152602001908152602001600020905080600001548160010182600301818054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108395780601f1061080e57610100808354040283529160200191610839565b820191906000526020600020905b81548152906001019060200180831161081c57829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108d55780601f106108aa576101008083540402835291602001916108d5565b820191906000526020600020905b8154815290600101906020018083116108b857829003601f168201915b50505050509050935093509350509193909250565b6000602052806000526040600020600091509050806000015490806001018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561099c5780601f106109715761010080835404028352916020019161099c565b820191906000526020600020905b81548152906001019060200180831161097f57829003601f168201915b5050505050908060020160009054906101000a900460ff1690806003018054600181600116156101000203166002900480601f016020809104026020016040519081016040528092919081815260200182805460018160011615610100020316600290048015610a4d5780601f10610a2257610100808354040283529160200191610a4d565b820191906000526020600020905b815481529060010190602001808311610a3057829003601f168201915b5050505050905084565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282610a8d5760008555610ad4565b82601f10610aa657805160ff1916838001178555610ad4565b82800160010185558215610ad4579182015b82811115610ad3578251825591602001919060010190610ab8565b5b509050610ae19190610ae5565b5090565b5b80821115610afe576000816000905550600101610ae6565b509056fea2646970667358221220b053d4d7f1ee8ff88fe628c85380bcdd13c7e46e1c843c23b6cc40b0849621f564736f6c63430007040033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "25:1722:3:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "25:1722:3:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;431:565;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;384:36;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1002:386;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1394:350;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;213:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;431:565;553:13;578;633:15;650:16;616:51;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;606:62;;;;;;578:90;;679:28;710:19;:26;730:5;710:26;;;;;;;;;;;679:57;;771:5;746:3;:22;;:30;;;;801:4;786:3;:12;;;:19;;;;;;;;;;;;;;;;;;826:5;815:3;:8;;:16;;;;;;;;;;;;:::i;:::-;;862:15;841:3;:18;;:36;;;;;;;;;;;;:::i;:::-;;888:19;913:5;888:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;935:30;959:5;935:30;;;;;;;;;;;;;;;;;;983:5;975:14;;;;431:565;;;;:::o;384:36::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;1002:386::-;1172:28;1203:19;:26;1223:5;1203:26;;;;;;;;;;;1172:57;;1250:5;1239:3;:8;;:16;;;;;;;;;;;;:::i;:::-;;1280:9;1265:3;:12;;;:24;;;;;;;;;;;;;;;;;;1320:15;1299:3;:18;;:36;;;;;;;;;;;;:::i;:::-;;1351:30;1375:5;1351:30;;;;;;;;;;;;;;;;;;1002:386;;;;;:::o;1394:350::-;1500:10;1524:18;1556:28;1609;1640:19;:26;1660:5;1640:26;;;;;;;;;;;1609:57;;1684:3;:22;;;1708:3;:8;;1718:3;:18;;1676:61;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1394:350;;;;;:::o;213:63::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;-1:-1:-1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.7.4;\n\ncontract OrganizationTypeContract {\n\n    struct OrganizationType {\n        bytes32 organizationTypeId;\n        string name;\n        bool isActive;\n        string customJsonData;\n    }\n    mapping(bytes32 => OrganizationType) public organizationTypeMap;\n\n    event OrganizationTypeCreated(bytes32 objId);\n    event OrganizationTypeUpdated(bytes32 objId);\n\n    bytes32[] public organizationTypeIds;\n\n        function createOrganizationType(\n        string memory _name,\n        string memory _customJsonData\n    ) public returns (bytes32 objId) {\n        bytes32 newId =\n            keccak256(abi.encodePacked(block.timestamp, block.difficulty));\n\n        OrganizationType storage obj = organizationTypeMap[newId];\n        obj.organizationTypeId = newId;\n        obj.isActive = true;\n        obj.name = _name;\n        obj.customJsonData = _customJsonData;\n\n        organizationTypeIds.push(newId);\n\n        emit OrganizationTypeCreated(newId);\n        return (newId);\n    }\n\n    function updateOrganizationType(\n        bytes32 objId,\n        string memory _name,\n        string memory _customJsonData,\n        bool _isActive\n    ) public {\n        OrganizationType storage obj = organizationTypeMap[objId];\n        obj.name = _name;\n        obj.isActive = _isActive;\n        obj.customJsonData = _customJsonData;\n\n        emit OrganizationTypeUpdated(objId);\n    }\n\n    function getOrganizationTypeById(bytes32 objId)\n        public\n        view\n        returns (\n            bytes32 id,\n            string memory name,\n            string memory customJsonData\n        )\n    {\n        OrganizationType storage obj = organizationTypeMap[objId];\n        return (obj.organizationTypeId, obj.name, obj.customJsonData);\n    }\n\n}\n",
+  "sourcePath": "/home/fakhrul/experiment/supplychain_blockchain/tat_contract/contracts/OrganizationTypeContract.sol",
+  "ast": {
+    "absolutePath": "/home/fakhrul/experiment/supplychain_blockchain/tat_contract/contracts/OrganizationTypeContract.sol",
+    "exportedSymbols": {
+      "OrganizationTypeContract": [
+        734
+      ]
+    },
+    "id": 735,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 578,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:3"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 734,
+        "linearizedBaseContracts": [
+          734
+        ],
+        "name": "OrganizationTypeContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "OrganizationTypeContract.OrganizationType",
+            "id": 587,
+            "members": [
+              {
+                "constant": false,
+                "id": 580,
+                "mutability": "mutable",
+                "name": "organizationTypeId",
+                "nodeType": "VariableDeclaration",
+                "scope": 587,
+                "src": "100:26:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 579,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "100:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 582,
+                "mutability": "mutable",
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "scope": 587,
+                "src": "136:11:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 581,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "136:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 584,
+                "mutability": "mutable",
+                "name": "isActive",
+                "nodeType": "VariableDeclaration",
+                "scope": 587,
+                "src": "157:13:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 583,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "157:4:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 586,
+                "mutability": "mutable",
+                "name": "customJsonData",
+                "nodeType": "VariableDeclaration",
+                "scope": 587,
+                "src": "180:21:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 585,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "180:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "OrganizationType",
+            "nodeType": "StructDefinition",
+            "scope": 734,
+            "src": "66:142:3",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "b1561299",
+            "id": 591,
+            "mutability": "mutable",
+            "name": "organizationTypeMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 734,
+            "src": "213:63:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_OrganizationType_$587_storage_$",
+              "typeString": "mapping(bytes32 => struct OrganizationTypeContract.OrganizationType)"
+            },
+            "typeName": {
+              "id": 590,
+              "keyType": {
+                "id": 588,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "221:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "213:36:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_OrganizationType_$587_storage_$",
+                "typeString": "mapping(bytes32 => struct OrganizationTypeContract.OrganizationType)"
+              },
+              "valueType": {
+                "id": 589,
+                "name": "OrganizationType",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 587,
+                "src": "232:16:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                  "typeString": "struct OrganizationTypeContract.OrganizationType"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "id": 595,
+            "name": "OrganizationTypeCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 594,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 593,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 595,
+                  "src": "313:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 592,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "313:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "312:15:3"
+            },
+            "src": "283:45:3"
+          },
+          {
+            "anonymous": false,
+            "id": 599,
+            "name": "OrganizationTypeUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 598,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 597,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 599,
+                  "src": "363:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 596,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "363:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "362:15:3"
+            },
+            "src": "333:45:3"
+          },
+          {
+            "constant": false,
+            "functionSelector": "0a1bb26a",
+            "id": 602,
+            "mutability": "mutable",
+            "name": "organizationTypeIds",
+            "nodeType": "VariableDeclaration",
+            "scope": 734,
+            "src": "384:36:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_bytes32_$dyn_storage",
+              "typeString": "bytes32[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 600,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "384:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "id": 601,
+              "nodeType": "ArrayTypeName",
+              "src": "384:9:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                "typeString": "bytes32[]"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 666,
+              "nodeType": "Block",
+              "src": "568:428:3",
+              "statements": [
+                {
+                  "assignments": [
+                    612
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 612,
+                      "mutability": "mutable",
+                      "name": "newId",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 666,
+                      "src": "578:13:3",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 611,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "578:7:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 622,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "expression": {
+                              "id": 616,
+                              "name": "block",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": -4,
+                              "src": "633:5:3",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_block",
+                                "typeString": "block"
+                              }
+                            },
+                            "id": 617,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "timestamp",
+                            "nodeType": "MemberAccess",
+                            "src": "633:15:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 618,
+                              "name": "block",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": -4,
+                              "src": "650:5:3",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_block",
+                                "typeString": "block"
+                              }
+                            },
+                            "id": 619,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "difficulty",
+                            "nodeType": "MemberAccess",
+                            "src": "650:16:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            },
+                            {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          ],
+                          "expression": {
+                            "id": 614,
+                            "name": "abi",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": -1,
+                            "src": "616:3:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_abi",
+                              "typeString": "abi"
+                            }
+                          },
+                          "id": 615,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "encodePacked",
+                          "nodeType": "MemberAccess",
+                          "src": "616:16:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                            "typeString": "function () pure returns (bytes memory)"
+                          }
+                        },
+                        "id": 620,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "616:51:3",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "id": 613,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": -8,
+                      "src": "606:9:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 621,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "606:62:3",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "578:90:3"
+                },
+                {
+                  "assignments": [
+                    624
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 624,
+                      "mutability": "mutable",
+                      "name": "obj",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 666,
+                      "src": "679:28:3",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                        "typeString": "struct OrganizationTypeContract.OrganizationType"
+                      },
+                      "typeName": {
+                        "id": 623,
+                        "name": "OrganizationType",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 587,
+                        "src": "679:16:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                          "typeString": "struct OrganizationTypeContract.OrganizationType"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 628,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 625,
+                      "name": "organizationTypeMap",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 591,
+                      "src": "710:19:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_OrganizationType_$587_storage_$",
+                        "typeString": "mapping(bytes32 => struct OrganizationTypeContract.OrganizationType storage ref)"
+                      }
+                    },
+                    "id": 627,
+                    "indexExpression": {
+                      "id": 626,
+                      "name": "newId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 612,
+                      "src": "730:5:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "710:26:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_OrganizationType_$587_storage",
+                      "typeString": "struct OrganizationTypeContract.OrganizationType storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "679:57:3"
+                },
+                {
+                  "expression": {
+                    "id": 633,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 629,
+                        "name": "obj",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 624,
+                        "src": "746:3:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                          "typeString": "struct OrganizationTypeContract.OrganizationType storage pointer"
+                        }
+                      },
+                      "id": 631,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "organizationTypeId",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 580,
+                      "src": "746:22:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 632,
+                      "name": "newId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 612,
+                      "src": "771:5:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "src": "746:30:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "id": 634,
+                  "nodeType": "ExpressionStatement",
+                  "src": "746:30:3"
+                },
+                {
+                  "expression": {
+                    "id": 639,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 635,
+                        "name": "obj",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 624,
+                        "src": "786:3:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                          "typeString": "struct OrganizationTypeContract.OrganizationType storage pointer"
+                        }
+                      },
+                      "id": 637,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "isActive",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 584,
+                      "src": "786:12:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "74727565",
+                      "id": 638,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "801:4:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "786:19:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 640,
+                  "nodeType": "ExpressionStatement",
+                  "src": "786:19:3"
+                },
+                {
+                  "expression": {
+                    "id": 645,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 641,
+                        "name": "obj",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 624,
+                        "src": "815:3:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                          "typeString": "struct OrganizationTypeContract.OrganizationType storage pointer"
+                        }
+                      },
+                      "id": 643,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "name",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 582,
+                      "src": "815:8:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 644,
+                      "name": "_name",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 604,
+                      "src": "826:5:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "815:16:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 646,
+                  "nodeType": "ExpressionStatement",
+                  "src": "815:16:3"
+                },
+                {
+                  "expression": {
+                    "id": 651,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 647,
+                        "name": "obj",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 624,
+                        "src": "841:3:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                          "typeString": "struct OrganizationTypeContract.OrganizationType storage pointer"
+                        }
+                      },
+                      "id": 649,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "customJsonData",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 586,
+                      "src": "841:18:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 650,
+                      "name": "_customJsonData",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 606,
+                      "src": "862:15:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "841:36:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 652,
+                  "nodeType": "ExpressionStatement",
+                  "src": "841:36:3"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 656,
+                        "name": "newId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 612,
+                        "src": "913:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "expression": {
+                        "id": 653,
+                        "name": "organizationTypeIds",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 602,
+                        "src": "888:19:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_bytes32_$dyn_storage",
+                          "typeString": "bytes32[] storage ref"
+                        }
+                      },
+                      "id": 655,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "888:24:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32)"
+                      }
+                    },
+                    "id": 657,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "888:31:3",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 658,
+                  "nodeType": "ExpressionStatement",
+                  "src": "888:31:3"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 660,
+                        "name": "newId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 612,
+                        "src": "959:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 659,
+                      "name": "OrganizationTypeCreated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 595,
+                      "src": "935:23:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32)"
+                      }
+                    },
+                    "id": 661,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "935:30:3",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 662,
+                  "nodeType": "EmitStatement",
+                  "src": "930:35:3"
+                },
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "id": 663,
+                        "name": "newId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 612,
+                        "src": "983:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "id": 664,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "982:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "functionReturnParameters": 610,
+                  "id": 665,
+                  "nodeType": "Return",
+                  "src": "975:14:3"
+                }
+              ]
+            },
+            "functionSelector": "037f6ab4",
+            "id": 667,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createOrganizationType",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 607,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 604,
+                  "mutability": "mutable",
+                  "name": "_name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 667,
+                  "src": "472:19:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 603,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "472:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 606,
+                  "mutability": "mutable",
+                  "name": "_customJsonData",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 667,
+                  "src": "501:29:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 605,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "501:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "462:74:3"
+            },
+            "returnParameters": {
+              "id": 610,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 609,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 667,
+                  "src": "553:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 608,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "553:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "552:15:3"
+            },
+            "scope": 734,
+            "src": "431:565:3",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 706,
+              "nodeType": "Block",
+              "src": "1162:226:3",
+              "statements": [
+                {
+                  "assignments": [
+                    679
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 679,
+                      "mutability": "mutable",
+                      "name": "obj",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 706,
+                      "src": "1172:28:3",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                        "typeString": "struct OrganizationTypeContract.OrganizationType"
+                      },
+                      "typeName": {
+                        "id": 678,
+                        "name": "OrganizationType",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 587,
+                        "src": "1172:16:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                          "typeString": "struct OrganizationTypeContract.OrganizationType"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 683,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 680,
+                      "name": "organizationTypeMap",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 591,
+                      "src": "1203:19:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_OrganizationType_$587_storage_$",
+                        "typeString": "mapping(bytes32 => struct OrganizationTypeContract.OrganizationType storage ref)"
+                      }
+                    },
+                    "id": 682,
+                    "indexExpression": {
+                      "id": 681,
+                      "name": "objId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 669,
+                      "src": "1223:5:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1203:26:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_OrganizationType_$587_storage",
+                      "typeString": "struct OrganizationTypeContract.OrganizationType storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1172:57:3"
+                },
+                {
+                  "expression": {
+                    "id": 688,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 684,
+                        "name": "obj",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 679,
+                        "src": "1239:3:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                          "typeString": "struct OrganizationTypeContract.OrganizationType storage pointer"
+                        }
+                      },
+                      "id": 686,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "name",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 582,
+                      "src": "1239:8:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 687,
+                      "name": "_name",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 671,
+                      "src": "1250:5:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1239:16:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 689,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1239:16:3"
+                },
+                {
+                  "expression": {
+                    "id": 694,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 690,
+                        "name": "obj",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 679,
+                        "src": "1265:3:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                          "typeString": "struct OrganizationTypeContract.OrganizationType storage pointer"
+                        }
+                      },
+                      "id": 692,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "isActive",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 584,
+                      "src": "1265:12:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 693,
+                      "name": "_isActive",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 675,
+                      "src": "1280:9:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "1265:24:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 695,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1265:24:3"
+                },
+                {
+                  "expression": {
+                    "id": 700,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 696,
+                        "name": "obj",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 679,
+                        "src": "1299:3:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                          "typeString": "struct OrganizationTypeContract.OrganizationType storage pointer"
+                        }
+                      },
+                      "id": 698,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "customJsonData",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 586,
+                      "src": "1299:18:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 699,
+                      "name": "_customJsonData",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 673,
+                      "src": "1320:15:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1299:36:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 701,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1299:36:3"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 703,
+                        "name": "objId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 669,
+                        "src": "1375:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 702,
+                      "name": "OrganizationTypeUpdated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 599,
+                      "src": "1351:23:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32)"
+                      }
+                    },
+                    "id": 704,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1351:30:3",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 705,
+                  "nodeType": "EmitStatement",
+                  "src": "1346:35:3"
+                }
+              ]
+            },
+            "functionSelector": "2499c6a6",
+            "id": 707,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateOrganizationType",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 676,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 669,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 707,
+                  "src": "1043:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 668,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1043:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 671,
+                  "mutability": "mutable",
+                  "name": "_name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 707,
+                  "src": "1066:19:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 670,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1066:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 673,
+                  "mutability": "mutable",
+                  "name": "_customJsonData",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 707,
+                  "src": "1095:29:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 672,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1095:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 675,
+                  "mutability": "mutable",
+                  "name": "_isActive",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 707,
+                  "src": "1134:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 674,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1134:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1033:121:3"
+            },
+            "returnParameters": {
+              "id": 677,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1162:0:3"
+            },
+            "scope": 734,
+            "src": "1002:386:3",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 732,
+              "nodeType": "Block",
+              "src": "1599:145:3",
+              "statements": [
+                {
+                  "assignments": [
+                    719
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 719,
+                      "mutability": "mutable",
+                      "name": "obj",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 732,
+                      "src": "1609:28:3",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                        "typeString": "struct OrganizationTypeContract.OrganizationType"
+                      },
+                      "typeName": {
+                        "id": 718,
+                        "name": "OrganizationType",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 587,
+                        "src": "1609:16:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                          "typeString": "struct OrganizationTypeContract.OrganizationType"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 723,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 720,
+                      "name": "organizationTypeMap",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 591,
+                      "src": "1640:19:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_OrganizationType_$587_storage_$",
+                        "typeString": "mapping(bytes32 => struct OrganizationTypeContract.OrganizationType storage ref)"
+                      }
+                    },
+                    "id": 722,
+                    "indexExpression": {
+                      "id": 721,
+                      "name": "objId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 709,
+                      "src": "1660:5:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1640:26:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_OrganizationType_$587_storage",
+                      "typeString": "struct OrganizationTypeContract.OrganizationType storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1609:57:3"
+                },
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "expression": {
+                          "id": 724,
+                          "name": "obj",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 719,
+                          "src": "1684:3:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                            "typeString": "struct OrganizationTypeContract.OrganizationType storage pointer"
+                          }
+                        },
+                        "id": 725,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "organizationTypeId",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 580,
+                        "src": "1684:22:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 726,
+                          "name": "obj",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 719,
+                          "src": "1708:3:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                            "typeString": "struct OrganizationTypeContract.OrganizationType storage pointer"
+                          }
+                        },
+                        "id": 727,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "name",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 582,
+                        "src": "1708:8:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage",
+                          "typeString": "string storage ref"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 728,
+                          "name": "obj",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 719,
+                          "src": "1718:3:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_OrganizationType_$587_storage_ptr",
+                            "typeString": "struct OrganizationTypeContract.OrganizationType storage pointer"
+                          }
+                        },
+                        "id": 729,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "customJsonData",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 586,
+                        "src": "1718:18:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage",
+                          "typeString": "string storage ref"
+                        }
+                      }
+                    ],
+                    "id": 730,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1683:54:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_bytes32_$_t_string_storage_$_t_string_storage_$",
+                      "typeString": "tuple(bytes32,string storage ref,string storage ref)"
+                    }
+                  },
+                  "functionReturnParameters": 717,
+                  "id": 731,
+                  "nodeType": "Return",
+                  "src": "1676:61:3"
+                }
+              ]
+            },
+            "functionSelector": "8599e25e",
+            "id": 733,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getOrganizationTypeById",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 710,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 709,
+                  "mutability": "mutable",
+                  "name": "objId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 733,
+                  "src": "1427:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 708,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1427:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1426:15:3"
+            },
+            "returnParameters": {
+              "id": 717,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 712,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 733,
+                  "src": "1500:10:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 711,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1500:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 714,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 733,
+                  "src": "1524:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 713,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1524:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 716,
+                  "mutability": "mutable",
+                  "name": "customJsonData",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 733,
+                  "src": "1556:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 715,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1556:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1486:108:3"
+            },
+            "scope": 734,
+            "src": "1394:350:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 735,
+        "src": "25:1722:3"
+      }
+    ],
+    "src": "0:1748:3"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/home/fakhrul/experiment/supplychain_blockchain/tat_contract/contracts/OrganizationTypeContract.sol",
+      "exportedSymbols": {
+        "OrganizationTypeContract": [
+          734
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.7",
+            ".4"
+          ]
+        },
+        "id": 578,
+        "name": "PragmaDirective",
+        "src": "0:23:3"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            734
+          ],
+          "name": "OrganizationTypeContract",
+          "scope": 735
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "OrganizationTypeContract.OrganizationType",
+              "name": "OrganizationType",
+              "scope": 734,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "organizationTypeId",
+                  "scope": 587,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes32",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 579,
+                    "name": "ElementaryTypeName",
+                    "src": "100:7:3"
+                  }
+                ],
+                "id": 580,
+                "name": "VariableDeclaration",
+                "src": "100:26:3"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "scope": 587,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 581,
+                    "name": "ElementaryTypeName",
+                    "src": "136:6:3"
+                  }
+                ],
+                "id": 582,
+                "name": "VariableDeclaration",
+                "src": "136:11:3"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "isActive",
+                  "scope": 587,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bool",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bool",
+                      "type": "bool"
+                    },
+                    "id": 583,
+                    "name": "ElementaryTypeName",
+                    "src": "157:4:3"
+                  }
+                ],
+                "id": 584,
+                "name": "VariableDeclaration",
+                "src": "157:13:3"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "customJsonData",
+                  "scope": 587,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 585,
+                    "name": "ElementaryTypeName",
+                    "src": "180:6:3"
+                  }
+                ],
+                "id": 586,
+                "name": "VariableDeclaration",
+                "src": "180:21:3"
+              }
+            ],
+            "id": 587,
+            "name": "StructDefinition",
+            "src": "66:142:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "functionSelector": "b1561299",
+              "mutability": "mutable",
+              "name": "organizationTypeMap",
+              "scope": 734,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(bytes32 => struct OrganizationTypeContract.OrganizationType)",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(bytes32 => struct OrganizationTypeContract.OrganizationType)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 588,
+                    "name": "ElementaryTypeName",
+                    "src": "221:7:3"
+                  },
+                  {
+                    "attributes": {
+                      "name": "OrganizationType",
+                      "referencedDeclaration": 587,
+                      "type": "struct OrganizationTypeContract.OrganizationType"
+                    },
+                    "id": 589,
+                    "name": "UserDefinedTypeName",
+                    "src": "232:16:3"
+                  }
+                ],
+                "id": 590,
+                "name": "Mapping",
+                "src": "213:36:3"
+              }
+            ],
+            "id": 591,
+            "name": "VariableDeclaration",
+            "src": "213:63:3"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "OrganizationTypeCreated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "objId",
+                      "scope": 595,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 592,
+                        "name": "ElementaryTypeName",
+                        "src": "313:7:3"
+                      }
+                    ],
+                    "id": 593,
+                    "name": "VariableDeclaration",
+                    "src": "313:13:3"
+                  }
+                ],
+                "id": 594,
+                "name": "ParameterList",
+                "src": "312:15:3"
+              }
+            ],
+            "id": 595,
+            "name": "EventDefinition",
+            "src": "283:45:3"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "OrganizationTypeUpdated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "objId",
+                      "scope": 599,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 596,
+                        "name": "ElementaryTypeName",
+                        "src": "363:7:3"
+                      }
+                    ],
+                    "id": 597,
+                    "name": "VariableDeclaration",
+                    "src": "363:13:3"
+                  }
+                ],
+                "id": 598,
+                "name": "ParameterList",
+                "src": "362:15:3"
+              }
+            ],
+            "id": 599,
+            "name": "EventDefinition",
+            "src": "333:45:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "functionSelector": "0a1bb26a",
+              "mutability": "mutable",
+              "name": "organizationTypeIds",
+              "scope": 734,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bytes32[]",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "bytes32[]"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 600,
+                    "name": "ElementaryTypeName",
+                    "src": "384:7:3"
+                  }
+                ],
+                "id": 601,
+                "name": "ArrayTypeName",
+                "src": "384:9:3"
+              }
+            ],
+            "id": 602,
+            "name": "VariableDeclaration",
+            "src": "384:36:3"
+          },
+          {
+            "attributes": {
+              "functionSelector": "037f6ab4",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "createOrganizationType",
+              "scope": 734,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_name",
+                      "scope": 667,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 603,
+                        "name": "ElementaryTypeName",
+                        "src": "472:6:3"
+                      }
+                    ],
+                    "id": 604,
+                    "name": "VariableDeclaration",
+                    "src": "472:19:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_customJsonData",
+                      "scope": 667,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 605,
+                        "name": "ElementaryTypeName",
+                        "src": "501:6:3"
+                      }
+                    ],
+                    "id": 606,
+                    "name": "VariableDeclaration",
+                    "src": "501:29:3"
+                  }
+                ],
+                "id": 607,
+                "name": "ParameterList",
+                "src": "462:74:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "objId",
+                      "scope": 667,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 608,
+                        "name": "ElementaryTypeName",
+                        "src": "553:7:3"
+                      }
+                    ],
+                    "id": 609,
+                    "name": "VariableDeclaration",
+                    "src": "553:13:3"
+                  }
+                ],
+                "id": 610,
+                "name": "ParameterList",
+                "src": "552:15:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        612
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "newId",
+                          "scope": 666,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "bytes32",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "bytes32",
+                              "type": "bytes32"
+                            },
+                            "id": 611,
+                            "name": "ElementaryTypeName",
+                            "src": "578:7:3"
+                          }
+                        ],
+                        "id": 612,
+                        "name": "VariableDeclaration",
+                        "src": "578:13:3"
+                      },
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "bytes32",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": -8,
+                              "type": "function (bytes memory) pure returns (bytes32)",
+                              "value": "keccak256"
+                            },
+                            "id": 613,
+                            "name": "Identifier",
+                            "src": "606:9:3"
+                          },
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "bytes memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "member_name": "encodePacked",
+                                  "type": "function () pure returns (bytes memory)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": -1,
+                                      "type": "abi",
+                                      "value": "abi"
+                                    },
+                                    "id": 614,
+                                    "name": "Identifier",
+                                    "src": "616:3:3"
+                                  }
+                                ],
+                                "id": 615,
+                                "name": "MemberAccess",
+                                "src": "616:16:3"
+                              },
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "timestamp",
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": -4,
+                                      "type": "block",
+                                      "value": "block"
+                                    },
+                                    "id": 616,
+                                    "name": "Identifier",
+                                    "src": "633:5:3"
+                                  }
+                                ],
+                                "id": 617,
+                                "name": "MemberAccess",
+                                "src": "633:15:3"
+                              },
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "difficulty",
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": -4,
+                                      "type": "block",
+                                      "value": "block"
+                                    },
+                                    "id": 618,
+                                    "name": "Identifier",
+                                    "src": "650:5:3"
+                                  }
+                                ],
+                                "id": 619,
+                                "name": "MemberAccess",
+                                "src": "650:16:3"
+                              }
+                            ],
+                            "id": 620,
+                            "name": "FunctionCall",
+                            "src": "616:51:3"
+                          }
+                        ],
+                        "id": 621,
+                        "name": "FunctionCall",
+                        "src": "606:62:3"
+                      }
+                    ],
+                    "id": 622,
+                    "name": "VariableDeclarationStatement",
+                    "src": "578:90:3"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        624
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "obj",
+                          "scope": 666,
+                          "stateVariable": false,
+                          "storageLocation": "storage",
+                          "type": "struct OrganizationTypeContract.OrganizationType",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "OrganizationType",
+                              "referencedDeclaration": 587,
+                              "type": "struct OrganizationTypeContract.OrganizationType"
+                            },
+                            "id": 623,
+                            "name": "UserDefinedTypeName",
+                            "src": "679:16:3"
+                          }
+                        ],
+                        "id": 624,
+                        "name": "VariableDeclaration",
+                        "src": "679:28:3"
+                      },
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "struct OrganizationTypeContract.OrganizationType storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 591,
+                              "type": "mapping(bytes32 => struct OrganizationTypeContract.OrganizationType storage ref)",
+                              "value": "organizationTypeMap"
+                            },
+                            "id": 625,
+                            "name": "Identifier",
+                            "src": "710:19:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 612,
+                              "type": "bytes32",
+                              "value": "newId"
+                            },
+                            "id": 626,
+                            "name": "Identifier",
+                            "src": "730:5:3"
+                          }
+                        ],
+                        "id": 627,
+                        "name": "IndexAccess",
+                        "src": "710:26:3"
+                      }
+                    ],
+                    "id": 628,
+                    "name": "VariableDeclarationStatement",
+                    "src": "679:57:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bytes32"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "organizationTypeId",
+                              "referencedDeclaration": 580,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 624,
+                                  "type": "struct OrganizationTypeContract.OrganizationType storage pointer",
+                                  "value": "obj"
+                                },
+                                "id": 629,
+                                "name": "Identifier",
+                                "src": "746:3:3"
+                              }
+                            ],
+                            "id": 631,
+                            "name": "MemberAccess",
+                            "src": "746:22:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 612,
+                              "type": "bytes32",
+                              "value": "newId"
+                            },
+                            "id": 632,
+                            "name": "Identifier",
+                            "src": "771:5:3"
+                          }
+                        ],
+                        "id": 633,
+                        "name": "Assignment",
+                        "src": "746:30:3"
+                      }
+                    ],
+                    "id": 634,
+                    "name": "ExpressionStatement",
+                    "src": "746:30:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "isActive",
+                              "referencedDeclaration": 584,
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 624,
+                                  "type": "struct OrganizationTypeContract.OrganizationType storage pointer",
+                                  "value": "obj"
+                                },
+                                "id": 635,
+                                "name": "Identifier",
+                                "src": "786:3:3"
+                              }
+                            ],
+                            "id": 637,
+                            "name": "MemberAccess",
+                            "src": "786:12:3"
+                          },
+                          {
+                            "attributes": {
+                              "hexvalue": "74727565",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "token": "bool",
+                              "type": "bool",
+                              "value": "true"
+                            },
+                            "id": 638,
+                            "name": "Literal",
+                            "src": "801:4:3"
+                          }
+                        ],
+                        "id": 639,
+                        "name": "Assignment",
+                        "src": "786:19:3"
+                      }
+                    ],
+                    "id": 640,
+                    "name": "ExpressionStatement",
+                    "src": "786:19:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "string storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "name",
+                              "referencedDeclaration": 582,
+                              "type": "string storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 624,
+                                  "type": "struct OrganizationTypeContract.OrganizationType storage pointer",
+                                  "value": "obj"
+                                },
+                                "id": 641,
+                                "name": "Identifier",
+                                "src": "815:3:3"
+                              }
+                            ],
+                            "id": 643,
+                            "name": "MemberAccess",
+                            "src": "815:8:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 604,
+                              "type": "string memory",
+                              "value": "_name"
+                            },
+                            "id": 644,
+                            "name": "Identifier",
+                            "src": "826:5:3"
+                          }
+                        ],
+                        "id": 645,
+                        "name": "Assignment",
+                        "src": "815:16:3"
+                      }
+                    ],
+                    "id": 646,
+                    "name": "ExpressionStatement",
+                    "src": "815:16:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "string storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "customJsonData",
+                              "referencedDeclaration": 586,
+                              "type": "string storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 624,
+                                  "type": "struct OrganizationTypeContract.OrganizationType storage pointer",
+                                  "value": "obj"
+                                },
+                                "id": 647,
+                                "name": "Identifier",
+                                "src": "841:3:3"
+                              }
+                            ],
+                            "id": 649,
+                            "name": "MemberAccess",
+                            "src": "841:18:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 606,
+                              "type": "string memory",
+                              "value": "_customJsonData"
+                            },
+                            "id": 650,
+                            "name": "Identifier",
+                            "src": "862:15:3"
+                          }
+                        ],
+                        "id": 651,
+                        "name": "Assignment",
+                        "src": "841:36:3"
+                      }
+                    ],
+                    "id": 652,
+                    "name": "ExpressionStatement",
+                    "src": "841:36:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "push",
+                              "type": "function (bytes32)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 602,
+                                  "type": "bytes32[] storage ref",
+                                  "value": "organizationTypeIds"
+                                },
+                                "id": 653,
+                                "name": "Identifier",
+                                "src": "888:19:3"
+                              }
+                            ],
+                            "id": 655,
+                            "name": "MemberAccess",
+                            "src": "888:24:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 612,
+                              "type": "bytes32",
+                              "value": "newId"
+                            },
+                            "id": 656,
+                            "name": "Identifier",
+                            "src": "913:5:3"
+                          }
+                        ],
+                        "id": 657,
+                        "name": "FunctionCall",
+                        "src": "888:31:3"
+                      }
+                    ],
+                    "id": 658,
+                    "name": "ExpressionStatement",
+                    "src": "888:31:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 595,
+                              "type": "function (bytes32)",
+                              "value": "OrganizationTypeCreated"
+                            },
+                            "id": 659,
+                            "name": "Identifier",
+                            "src": "935:23:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 612,
+                              "type": "bytes32",
+                              "value": "newId"
+                            },
+                            "id": 660,
+                            "name": "Identifier",
+                            "src": "959:5:3"
+                          }
+                        ],
+                        "id": 661,
+                        "name": "FunctionCall",
+                        "src": "935:30:3"
+                      }
+                    ],
+                    "id": 662,
+                    "name": "EmitStatement",
+                    "src": "930:35:3"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 610
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "bytes32"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 612,
+                              "type": "bytes32",
+                              "value": "newId"
+                            },
+                            "id": 663,
+                            "name": "Identifier",
+                            "src": "983:5:3"
+                          }
+                        ],
+                        "id": 664,
+                        "name": "TupleExpression",
+                        "src": "982:7:3"
+                      }
+                    ],
+                    "id": 665,
+                    "name": "Return",
+                    "src": "975:14:3"
+                  }
+                ],
+                "id": 666,
+                "name": "Block",
+                "src": "568:428:3"
+              }
+            ],
+            "id": 667,
+            "name": "FunctionDefinition",
+            "src": "431:565:3"
+          },
+          {
+            "attributes": {
+              "functionSelector": "2499c6a6",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updateOrganizationType",
+              "scope": 734,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "objId",
+                      "scope": 707,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 668,
+                        "name": "ElementaryTypeName",
+                        "src": "1043:7:3"
+                      }
+                    ],
+                    "id": 669,
+                    "name": "VariableDeclaration",
+                    "src": "1043:13:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_name",
+                      "scope": 707,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 670,
+                        "name": "ElementaryTypeName",
+                        "src": "1066:6:3"
+                      }
+                    ],
+                    "id": 671,
+                    "name": "VariableDeclaration",
+                    "src": "1066:19:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_customJsonData",
+                      "scope": 707,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 672,
+                        "name": "ElementaryTypeName",
+                        "src": "1095:6:3"
+                      }
+                    ],
+                    "id": 673,
+                    "name": "VariableDeclaration",
+                    "src": "1095:29:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_isActive",
+                      "scope": 707,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 674,
+                        "name": "ElementaryTypeName",
+                        "src": "1134:4:3"
+                      }
+                    ],
+                    "id": 675,
+                    "name": "VariableDeclaration",
+                    "src": "1134:14:3"
+                  }
+                ],
+                "id": 676,
+                "name": "ParameterList",
+                "src": "1033:121:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 677,
+                "name": "ParameterList",
+                "src": "1162:0:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        679
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "obj",
+                          "scope": 706,
+                          "stateVariable": false,
+                          "storageLocation": "storage",
+                          "type": "struct OrganizationTypeContract.OrganizationType",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "OrganizationType",
+                              "referencedDeclaration": 587,
+                              "type": "struct OrganizationTypeContract.OrganizationType"
+                            },
+                            "id": 678,
+                            "name": "UserDefinedTypeName",
+                            "src": "1172:16:3"
+                          }
+                        ],
+                        "id": 679,
+                        "name": "VariableDeclaration",
+                        "src": "1172:28:3"
+                      },
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "struct OrganizationTypeContract.OrganizationType storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 591,
+                              "type": "mapping(bytes32 => struct OrganizationTypeContract.OrganizationType storage ref)",
+                              "value": "organizationTypeMap"
+                            },
+                            "id": 680,
+                            "name": "Identifier",
+                            "src": "1203:19:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 669,
+                              "type": "bytes32",
+                              "value": "objId"
+                            },
+                            "id": 681,
+                            "name": "Identifier",
+                            "src": "1223:5:3"
+                          }
+                        ],
+                        "id": 682,
+                        "name": "IndexAccess",
+                        "src": "1203:26:3"
+                      }
+                    ],
+                    "id": 683,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1172:57:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "string storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "name",
+                              "referencedDeclaration": 582,
+                              "type": "string storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 679,
+                                  "type": "struct OrganizationTypeContract.OrganizationType storage pointer",
+                                  "value": "obj"
+                                },
+                                "id": 684,
+                                "name": "Identifier",
+                                "src": "1239:3:3"
+                              }
+                            ],
+                            "id": 686,
+                            "name": "MemberAccess",
+                            "src": "1239:8:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 671,
+                              "type": "string memory",
+                              "value": "_name"
+                            },
+                            "id": 687,
+                            "name": "Identifier",
+                            "src": "1250:5:3"
+                          }
+                        ],
+                        "id": 688,
+                        "name": "Assignment",
+                        "src": "1239:16:3"
+                      }
+                    ],
+                    "id": 689,
+                    "name": "ExpressionStatement",
+                    "src": "1239:16:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "isActive",
+                              "referencedDeclaration": 584,
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 679,
+                                  "type": "struct OrganizationTypeContract.OrganizationType storage pointer",
+                                  "value": "obj"
+                                },
+                                "id": 690,
+                                "name": "Identifier",
+                                "src": "1265:3:3"
+                              }
+                            ],
+                            "id": 692,
+                            "name": "MemberAccess",
+                            "src": "1265:12:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 675,
+                              "type": "bool",
+                              "value": "_isActive"
+                            },
+                            "id": 693,
+                            "name": "Identifier",
+                            "src": "1280:9:3"
+                          }
+                        ],
+                        "id": 694,
+                        "name": "Assignment",
+                        "src": "1265:24:3"
+                      }
+                    ],
+                    "id": 695,
+                    "name": "ExpressionStatement",
+                    "src": "1265:24:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "string storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "customJsonData",
+                              "referencedDeclaration": 586,
+                              "type": "string storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 679,
+                                  "type": "struct OrganizationTypeContract.OrganizationType storage pointer",
+                                  "value": "obj"
+                                },
+                                "id": 696,
+                                "name": "Identifier",
+                                "src": "1299:3:3"
+                              }
+                            ],
+                            "id": 698,
+                            "name": "MemberAccess",
+                            "src": "1299:18:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 673,
+                              "type": "string memory",
+                              "value": "_customJsonData"
+                            },
+                            "id": 699,
+                            "name": "Identifier",
+                            "src": "1320:15:3"
+                          }
+                        ],
+                        "id": 700,
+                        "name": "Assignment",
+                        "src": "1299:36:3"
+                      }
+                    ],
+                    "id": 701,
+                    "name": "ExpressionStatement",
+                    "src": "1299:36:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 599,
+                              "type": "function (bytes32)",
+                              "value": "OrganizationTypeUpdated"
+                            },
+                            "id": 702,
+                            "name": "Identifier",
+                            "src": "1351:23:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 669,
+                              "type": "bytes32",
+                              "value": "objId"
+                            },
+                            "id": 703,
+                            "name": "Identifier",
+                            "src": "1375:5:3"
+                          }
+                        ],
+                        "id": 704,
+                        "name": "FunctionCall",
+                        "src": "1351:30:3"
+                      }
+                    ],
+                    "id": 705,
+                    "name": "EmitStatement",
+                    "src": "1346:35:3"
+                  }
+                ],
+                "id": 706,
+                "name": "Block",
+                "src": "1162:226:3"
+              }
+            ],
+            "id": 707,
+            "name": "FunctionDefinition",
+            "src": "1002:386:3"
+          },
+          {
+            "attributes": {
+              "functionSelector": "8599e25e",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getOrganizationTypeById",
+              "scope": 734,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "objId",
+                      "scope": 733,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 708,
+                        "name": "ElementaryTypeName",
+                        "src": "1427:7:3"
+                      }
+                    ],
+                    "id": 709,
+                    "name": "VariableDeclaration",
+                    "src": "1427:13:3"
+                  }
+                ],
+                "id": 710,
+                "name": "ParameterList",
+                "src": "1426:15:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "id",
+                      "scope": 733,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 711,
+                        "name": "ElementaryTypeName",
+                        "src": "1500:7:3"
+                      }
+                    ],
+                    "id": 712,
+                    "name": "VariableDeclaration",
+                    "src": "1500:10:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "name",
+                      "scope": 733,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 713,
+                        "name": "ElementaryTypeName",
+                        "src": "1524:6:3"
+                      }
+                    ],
+                    "id": 714,
+                    "name": "VariableDeclaration",
+                    "src": "1524:18:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "customJsonData",
+                      "scope": 733,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 715,
+                        "name": "ElementaryTypeName",
+                        "src": "1556:6:3"
+                      }
+                    ],
+                    "id": 716,
+                    "name": "VariableDeclaration",
+                    "src": "1556:28:3"
+                  }
+                ],
+                "id": 717,
+                "name": "ParameterList",
+                "src": "1486:108:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        719
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "obj",
+                          "scope": 732,
+                          "stateVariable": false,
+                          "storageLocation": "storage",
+                          "type": "struct OrganizationTypeContract.OrganizationType",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "OrganizationType",
+                              "referencedDeclaration": 587,
+                              "type": "struct OrganizationTypeContract.OrganizationType"
+                            },
+                            "id": 718,
+                            "name": "UserDefinedTypeName",
+                            "src": "1609:16:3"
+                          }
+                        ],
+                        "id": 719,
+                        "name": "VariableDeclaration",
+                        "src": "1609:28:3"
+                      },
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "struct OrganizationTypeContract.OrganizationType storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 591,
+                              "type": "mapping(bytes32 => struct OrganizationTypeContract.OrganizationType storage ref)",
+                              "value": "organizationTypeMap"
+                            },
+                            "id": 720,
+                            "name": "Identifier",
+                            "src": "1640:19:3"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 709,
+                              "type": "bytes32",
+                              "value": "objId"
+                            },
+                            "id": 721,
+                            "name": "Identifier",
+                            "src": "1660:5:3"
+                          }
+                        ],
+                        "id": 722,
+                        "name": "IndexAccess",
+                        "src": "1640:26:3"
+                      }
+                    ],
+                    "id": 723,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1609:57:3"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 717
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "tuple(bytes32,string storage ref,string storage ref)"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "organizationTypeId",
+                              "referencedDeclaration": 580,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 719,
+                                  "type": "struct OrganizationTypeContract.OrganizationType storage pointer",
+                                  "value": "obj"
+                                },
+                                "id": 724,
+                                "name": "Identifier",
+                                "src": "1684:3:3"
+                              }
+                            ],
+                            "id": 725,
+                            "name": "MemberAccess",
+                            "src": "1684:22:3"
+                          },
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "name",
+                              "referencedDeclaration": 582,
+                              "type": "string storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 719,
+                                  "type": "struct OrganizationTypeContract.OrganizationType storage pointer",
+                                  "value": "obj"
+                                },
+                                "id": 726,
+                                "name": "Identifier",
+                                "src": "1708:3:3"
+                              }
+                            ],
+                            "id": 727,
+                            "name": "MemberAccess",
+                            "src": "1708:8:3"
+                          },
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "customJsonData",
+                              "referencedDeclaration": 586,
+                              "type": "string storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 719,
+                                  "type": "struct OrganizationTypeContract.OrganizationType storage pointer",
+                                  "value": "obj"
+                                },
+                                "id": 728,
+                                "name": "Identifier",
+                                "src": "1718:3:3"
+                              }
+                            ],
+                            "id": 729,
+                            "name": "MemberAccess",
+                            "src": "1718:18:3"
+                          }
+                        ],
+                        "id": 730,
+                        "name": "TupleExpression",
+                        "src": "1683:54:3"
+                      }
+                    ],
+                    "id": 731,
+                    "name": "Return",
+                    "src": "1676:61:3"
+                  }
+                ],
+                "id": 732,
+                "name": "Block",
+                "src": "1599:145:3"
+              }
+            ],
+            "id": 733,
+            "name": "FunctionDefinition",
+            "src": "1394:350:3"
+          }
+        ],
+        "id": 734,
+        "name": "ContractDefinition",
+        "src": "25:1722:3"
+      }
+    ],
+    "id": 735,
+    "name": "SourceUnit",
+    "src": "0:1748:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.4+commit.3f05b770.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-03-04T14:59:37.270Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
