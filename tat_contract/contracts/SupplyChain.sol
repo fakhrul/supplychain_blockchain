@@ -4,8 +4,7 @@ import "./SupplyChainModels.sol";
 import "./SupplyChainEvents.sol";
 
 contract SupplyChain is SupplyChainModels, SupplyChainEvents {
-    string private info;
-    string public version = "1.0.0.1";
+    uint8 public version = 1;
 
     /*
         Organization Type
@@ -56,70 +55,70 @@ contract SupplyChain is SupplyChainModels, SupplyChainEvents {
         return (obj.organizationTypeId, obj.name, obj.customJsonData);
     }
 
-    /*
-        Organization
-    */
-    function createOrganization(
-        string memory _name,
-        bytes32[] memory _organizationTypeIdList,
-        string memory _organizationAddress,
-        string memory _customJsonData
-    ) public returns (bytes32 objId) {
-        bytes32 newId =
-            keccak256(abi.encodePacked(block.timestamp, block.difficulty));
+    // /*
+    //     Organization
+    // */
+    // function createOrganization(
+    //     string memory _name,
+    //     bytes32[] memory _organizationTypeIdList,
+    //     string memory _organizationAddress,
+    //     string memory _customJsonData
+    // ) public returns (bytes32 objId) {
+    //     bytes32 newId =
+    //         keccak256(abi.encodePacked(block.timestamp, block.difficulty));
 
-        Organization storage obj = organizationMap[newId];
-        obj.organizationId = newId;
-        obj.organizationTypeIdList = _organizationTypeIdList;
-        obj.isActive = true;
-        obj.organizationAddress = _organizationAddress;
-        obj.name = _name;
-        obj.customJsonData = _customJsonData;
+    //     Organization storage obj = organizationMap[newId];
+    //     obj.organizationId = newId;
+    //     obj.organizationTypeIdList = _organizationTypeIdList;
+    //     obj.isActive = true;
+    //     obj.organizationAddress = _organizationAddress;
+    //     obj.name = _name;
+    //     obj.customJsonData = _customJsonData;
 
-        organizationIds.push(newId);
+    //     organizationIds.push(newId);
 
-        emit OrganizationCreated(newId);
-        return (newId);
-    }
+    //     emit OrganizationCreated(newId);
+    //     return (newId);
+    // }
 
-    function updateOrganization(
-        bytes32 objId,
-        string memory _name,
-        bytes32[] memory _organizationTypeIdList,
-        string memory _organizationAddress,
-        string memory _customJsonData,
-        bool _isActive
-    ) public {
-        Organization storage obj = organizationMap[objId];
-        obj.organizationTypeIdList = _organizationTypeIdList;
-        obj.organizationAddress = _organizationAddress;
-        obj.name = _name;
-        obj.isActive = _isActive;
-        obj.customJsonData = _customJsonData;
+    // function updateOrganization(
+    //     bytes32 objId,
+    //     string memory _name,
+    //     bytes32[] memory _organizationTypeIdList,
+    //     string memory _organizationAddress,
+    //     string memory _customJsonData,
+    //     bool _isActive
+    // ) public {
+    //     Organization storage obj = organizationMap[objId];
+    //     obj.organizationTypeIdList = _organizationTypeIdList;
+    //     obj.organizationAddress = _organizationAddress;
+    //     obj.name = _name;
+    //     obj.isActive = _isActive;
+    //     obj.customJsonData = _customJsonData;
 
-        emit OrganizationUpdated(objId);
-    }
+    //     emit OrganizationUpdated(objId);
+    // }
 
-    function getOrganizationById(bytes32 objId)
-        public
-        view
-        returns (
-            bytes32 id,
-            string memory name,
-            bytes32[] memory organizationTypeIdList,
-            bool isActive,
-            string memory customJsonData
-        )
-    {
-        Organization storage obj = organizationMap[objId];
-        return (
-            obj.organizationId,
-            obj.name,
-            obj.organizationTypeIdList,
-            obj.isActive,
-            obj.customJsonData
-        );
-    }
+    // function getOrganizationById(bytes32 objId)
+    //     public
+    //     view
+    //     returns (
+    //         bytes32 id,
+    //         string memory name,
+    //         bytes32[] memory organizationTypeIdList,
+    //         bool isActive,
+    //         string memory customJsonData
+    //     )
+    // {
+    //     Organization storage obj = organizationMap[objId];
+    //     return (
+    //         obj.organizationId,
+    //         obj.name,
+    //         obj.organizationTypeIdList,
+    //         obj.isActive,
+    //         obj.customJsonData
+    //     );
+    // }
 
     /*
         Activity
@@ -649,14 +648,4 @@ contract SupplyChain is SupplyChainModels, SupplyChainEvents {
         );
     }
 
-    /*
-        Contract Information
-    */
-    function setInfo(string memory _info) public {
-        info = _info;
-    }
-
-    function getInfo() public view returns (string memory) {
-        return info;
-    }
 }

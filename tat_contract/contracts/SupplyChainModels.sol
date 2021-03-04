@@ -8,14 +8,14 @@ contract SupplyChainModels {
         bool isActive;
         string customJsonData;
     }
-    struct Organization {
-        bytes32 organizationId;
-        string name;
-        bytes32[] organizationTypeIdList;
-        string organizationAddress;
-        bool isActive;
-        string customJsonData;
-    }
+    // struct Organization {
+    //     bytes32 organizationId;
+    //     string name;
+    //     bytes32[] organizationTypeIdList;
+    //     string organizationAddress;
+    //     bool isActive;
+    //     string customJsonData;
+    // }
 
     struct Activity {
         bytes32 activityId;
@@ -89,7 +89,7 @@ contract SupplyChainModels {
         string customJsonData;
     }
 
-    mapping(bytes32 => Organization) public organizationMap;
+    // mapping(bytes32 => Organization) public organizationMap;
     mapping(bytes32 => OrganizationType) public organizationTypeMap;
     mapping(bytes32 => Activity) public activityMap;
     mapping(bytes32 => Area) public areaMap;
@@ -100,7 +100,7 @@ contract SupplyChainModels {
     mapping(bytes32 => Certification) public certificationMap;
     mapping(bytes32 => TrackHistory) public trackHistoryMap;
 
-    bytes32[] public organizationIds;
+    // bytes32[] public organizationIds;
     bytes32[] public organizationTypeIds;
     bytes32[] public activityIds;
     bytes32[] public areaIds;
