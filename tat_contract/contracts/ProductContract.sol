@@ -1,17 +1,18 @@
 pragma solidity ^0.7.4;
 
-contract ActivityContract {
+contract ProductContract {
     uint256 public version = 1;
-
-    struct Activity {
-        bytes32 activityId;
+    struct Product {
+        bytes32 productId;
+        bytes32 categoryId;
         string name;
-        bytes32 organizationTypeId;
+        string description;
+        bytes32[] certicationIdList;
         bool isActive;
         string customJsonData;
     }
 
-    mapping(bytes32 => Activity) public dataMap;
+    mapping(bytes32 => Product) public dataMap;
     bytes32[] public dataList;
 
     event Created(bytes32 objId);
@@ -19,16 +20,20 @@ contract ActivityContract {
 
     function create(
         string memory _name,
-        bytes32 _organizationTypeId,
+        bytes32 _categoryId,
+        string memory _description,
+        bytes32[] memory _certificationIdList,
         string memory _customJsonData
     ) public returns (bytes32 objId) {
         bytes32 newId =
             keccak256(abi.encodePacked(block.timestamp, block.difficulty));
 
-        Activity storage obj = dataMap[newId];
-        obj.activityId = newId;
+        Product storage obj = dataMap[newId];
+        obj.productId = newId;
         obj.name = _name;
-        obj.organizationTypeId = _organizationTypeId;
+        obj.description = _description;
+        obj.certicationIdList = _certificationIdList;
+        obj.categoryId = _categoryId;
         obj.isActive = true;
         obj.customJsonData = _customJsonData;
 
@@ -41,13 +46,17 @@ contract ActivityContract {
     function update(
         bytes32 objId,
         string memory _name,
-        bytes32 _organizationTypeId,
+        bytes32 _categoryId,
+        string memory _description,
+        bytes32[] memory _certificationIdList,
         string memory _customJsonData,
         bool _isActive
     ) public {
-        Activity storage obj = dataMap[objId];
-        obj.organizationTypeId = _organizationTypeId;
+        Product storage obj = dataMap[objId];
         obj.name = _name;
+        obj.categoryId = _categoryId;
+        obj.description = _description;
+        obj.certicationIdList = _certificationIdList;
         obj.isActive = _isActive;
         obj.customJsonData = _customJsonData;
 
@@ -59,17 +68,21 @@ contract ActivityContract {
         view
         returns (
             bytes32 id,
+            bytes32 categoryId,
             string memory name,
-            bytes32 organizationTypeId,
+            string memory description,
+            bytes32[] memory certicationIdList,
             bool isActive,
             string memory customJsonData
         )
     {
-        Activity storage obj = dataMap[objId];
+        Product storage obj = dataMap[objId];
         return (
-            obj.activityId,
+            obj.productId,
+            obj.categoryId,
             obj.name,
-            obj.organizationTypeId,
+            obj.description,
+            obj.certicationIdList,
             obj.isActive,
             obj.customJsonData
         );

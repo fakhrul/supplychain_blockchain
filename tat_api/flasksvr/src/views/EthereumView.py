@@ -49,6 +49,35 @@ def setInfo():
     }
     return custom_response(retObj, 201)    
 
+
+
+@etheruem_api.route('/organizationType', methods=['GET'])
+def get_organization_type_list():
+    retObj = {
+        'data' : Ethereum.get_organization_type_list()
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/organizationType/<string:id>', methods=['GET'])
+def getOrganizationType(id):
+    retObj = {
+        'data' : Ethereum.get_organization_type(id)
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/organizationType', methods=['POST'])
+def setOrganizationType():
+    req_data = request.get_json()
+    name = req_data['name'];
+    custom = req_data['custom'];
+
+    data = Ethereum.create_organization_type(name, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+
 def custom_response(res, status_code):
     """
     Custom Response Function

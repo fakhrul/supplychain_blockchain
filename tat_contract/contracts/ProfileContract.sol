@@ -1,6 +1,7 @@
 pragma solidity ^0.7.4;
 
 contract ProfileContract {
+    uint256 public version = 1;
     struct Profile {
         bytes32 profileId;
         string name;
@@ -13,13 +14,13 @@ contract ProfileContract {
         string customJsonData;
     }
 
-    mapping(bytes32 => Profile) public profileMap;
-    bytes32[] public profileIds;
+    mapping(bytes32 => Profile) public dataMap;
+    bytes32[] public dataList;
 
-    event ProfileCreated(bytes32 objId);
-    event ProfileUpdated(bytes32 objId);
+    event Created(bytes32 objId);
+    event Updated(bytes32 objId);
 
-    function createProfile(
+    function create(
         string memory _name,
         string memory _email,
         string memory _passwordHash,
@@ -31,7 +32,7 @@ contract ProfileContract {
         bytes32 newId =
             keccak256(abi.encodePacked(block.timestamp, block.difficulty));
 
-        Profile storage obj = profileMap[newId];
+        Profile storage obj = dataMap[newId];
         obj.profileId = newId;
         obj.name = _name;
         obj.email = _email;
@@ -42,13 +43,13 @@ contract ProfileContract {
         obj.isActive = true;
         obj.customJsonData = _customJsonData;
 
-        profileIds.push(newId);
+        dataList.push(newId);
 
-        emit ProfileCreated(newId);
+        emit Created(newId);
         return (newId);
     }
 
-    function updateProfile(
+    function update(
         bytes32 objId,
         string memory _name,
         string memory _email,
@@ -59,7 +60,7 @@ contract ProfileContract {
         string memory _customJsonData,
         bool _isActive
     ) public {
-        Profile storage obj = profileMap[objId];
+        Profile storage obj = dataMap[objId];
         obj.name = _name;
         obj.email = _email;
         obj.passwordHash = _passwordHash;
@@ -69,10 +70,10 @@ contract ProfileContract {
         obj.isActive = _isActive;
         obj.customJsonData = _customJsonData;
 
-        emit ProfileUpdated(objId);
+        emit Updated(objId);
     }
 
-    function getProfileById(bytes32 objId)
+    function getById(bytes32 objId)
         public
         view
         returns (
@@ -87,7 +88,7 @@ contract ProfileContract {
             string memory customJsonData
         )
     {
-        Profile storage obj = profileMap[objId];
+        Profile storage obj = dataMap[objId];
         return (
             obj.profileId,
             obj.name,
@@ -101,5 +102,7 @@ contract ProfileContract {
         );
     }
 
-
+    function getAll() public view returns (bytes32[] memory ids) {
+        return (dataList);
+    }
 }

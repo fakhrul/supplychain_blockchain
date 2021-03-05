@@ -1,6 +1,8 @@
 pragma solidity ^0.7.4;
 
 contract AreaContract {
+    uint256 public version = 1;
+
     struct Area {
         bytes32 areaId;
         string name;
@@ -9,13 +11,13 @@ contract AreaContract {
         string customJsonData;
     }
 
-    mapping(bytes32 => Area) public areaMap;
-    bytes32[] public areaIds;
+    mapping(bytes32 => Area) public dataMap;
+    bytes32[] public dataList;
 
-        event AreaCreated(bytes32 objId);
-    event AreaUpdated(bytes32 objId);
+    event Created(bytes32 objId);
+    event Updated(bytes32 objId);
 
-    function createArea(
+    function create(
         string memory _name,
         bytes32 _organizationId,
         string memory _customJsonData
@@ -23,36 +25,36 @@ contract AreaContract {
         bytes32 newId =
             keccak256(abi.encodePacked(block.timestamp, block.difficulty));
 
-        Area storage obj = areaMap[newId];
+        Area storage obj = dataMap[newId];
         obj.areaId = newId;
         obj.name = _name;
         obj.organizationId = _organizationId;
         obj.isActive = true;
         obj.customJsonData = _customJsonData;
 
-        areaIds.push(newId);
+        dataList.push(newId);
 
-        emit AreaCreated(newId);
+        emit Created(newId);
         return (newId);
     }
 
-    function updateArea(
+    function update(
         bytes32 objId,
         string memory _name,
         bytes32 _organizationId,
         string memory _customJsonData,
         bool _isActive
     ) public {
-        Area storage obj = areaMap[objId];
+        Area storage obj = dataMap[objId];
         obj.organizationId = _organizationId;
         obj.name = _name;
         obj.isActive = _isActive;
         obj.customJsonData = _customJsonData;
 
-        emit AreaUpdated(objId);
+        emit Updated(objId);
     }
 
-    function getAreaById(bytes32 objId)
+    function getById(bytes32 objId)
         public
         view
         returns (
@@ -63,7 +65,7 @@ contract AreaContract {
             string memory customJsonData
         )
     {
-        Area storage obj = areaMap[objId];
+        Area storage obj = dataMap[objId];
         return (
             obj.areaId,
             obj.name,
@@ -71,6 +73,10 @@ contract AreaContract {
             obj.isActive,
             obj.customJsonData
         );
+    }
+
+        function getAll() public view returns (bytes32[] memory ids) {
+        return (dataList);
     }
 
 }
