@@ -54,6 +54,13 @@ class Ethereum():
         }
         return data
 
+    # @staticmethod
+    # def convert_array(raw):
+    #     dataInHex = []
+    #     for data in raw:
+    #         dataInHex.append(Web3.toHex(raw))
+    #     return dataInHex
+
     @staticmethod
     def get_organization_type_list():
         web3 = Web3(Web3.HTTPProvider(geth_url))
@@ -62,17 +69,10 @@ class Ethereum():
         contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-        data = contract.functions.getAll().call()
+        datas = contract.functions.getAll().call()
+        dataInHex = []
+        for data in datas:
+            dataInHex.append(Web3.toHex(data))
+            
+        return dataInHex
 
-        tx_json = Web3.toJSON(data)
-
-        print(tx_json)
-        return tx_json
-        print(dataList)
-        return 'a'
-        data = {
-            'id' : Web3.toHex(objId),
-            'name' : name,
-            'custom' : custom
-        }
-        return data
