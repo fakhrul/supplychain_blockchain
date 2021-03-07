@@ -20,7 +20,11 @@ geth version
 
 4. create account
 ````
+windows
 geth account new --datadir accounts/
+
+linux
+./geth account new --datadir accounts
 ````
 This will generate an account in the directory accounts.
 For the testing purporse,create 3 accounts (3 times) with same password of 123456
