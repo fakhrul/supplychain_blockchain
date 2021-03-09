@@ -167,4 +167,7 @@ miner.start()
 truffle compile
 
 truffle migrate --network development
+
+truffle migrate --reset --network development
+
 ```
