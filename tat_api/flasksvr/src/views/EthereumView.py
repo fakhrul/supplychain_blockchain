@@ -28,28 +28,7 @@ etheruem_api = Blueprint('etheruem_api', __name__)
 def index():
     return custom_response('etheruem', 200)
 
-
-@etheruem_api.route('/info', methods=['GET'])
-def getInfo():
-    retObj = {
-        'data' : Ethereum.get_info()
-    }
-    return custom_response(retObj, 200)
-
-@etheruem_api.route('/info', methods=['POST'])
-def setInfo():
-    req_data = request.get_json()
-    info = req_data['info'];
-    tx_hash = contract.functions.setInfo(info).transact()
-    web3.eth.waitForTransactionReceipt(tx_hash)
-
-    data = contract.functions.getInfo().call()
-    retObj = {
-        'data' : data
-    }
-    return custom_response(retObj, 201)    
-
-
+## ORGANIZATION TYPE
 
 @etheruem_api.route('/organizationType', methods=['GET'])
 def get_organization_type_list():
@@ -66,7 +45,7 @@ def getOrganizationType(id):
     return custom_response(retObj, 200)
 
 @etheruem_api.route('/organizationType', methods=['POST'])
-def setOrganizationType():
+def createOrganizationType():
     req_data = request.get_json()
     name = req_data['name'];
     custom = req_data['custom'];
@@ -76,6 +55,72 @@ def setOrganizationType():
         'data' : data
     }
     return custom_response(retObj, 201)    
+
+@etheruem_api.route('/organizationType/<string:id>', methods=['PUT'])
+def updateOrganizationType(id):
+    req_data = request.get_json()
+    name = req_data['name'];
+    custom = req_data['custom'];
+
+    data = Ethereum.update_organization_type(id, name, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/organizationType/<string:id>', methods=['DELETE'])
+def deleteOrganizationType(id):
+    retObj = {
+        'data' : Ethereum.delete_organization_type(id)
+    }
+    return custom_response(retObj, 200)
+
+## ORGANIZATION
+
+@etheruem_api.route('/organization', methods=['GET'])
+def getOrganizationList():
+    retObj = {
+        'data' : Ethereum.get_organization_list()
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/organization/<string:id>', methods=['GET'])
+def getOrganization(id):
+    retObj = {
+        'data' : Ethereum.get_organization(id)
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/organization', methods=['POST'])
+def createOrganization():
+    req_data = request.get_json()
+    name = req_data['name'];
+    custom = req_data['custom'];
+
+    data = Ethereum.create_organization(name, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/organization/<string:id>', methods=['PUT'])
+def updateOrganization(id):
+    req_data = request.get_json()
+    name = req_data['name'];
+    custom = req_data['custom'];
+
+    data = Ethereum.update_organization(id, name, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/organization/<string:id>', methods=['DELETE'])
+def deleteOrganization(id):
+    retObj = {
+        'data' : Ethereum.delete_organization(id)
+    }
+    return custom_response(retObj, 200)
 
 
 def custom_response(res, status_code):

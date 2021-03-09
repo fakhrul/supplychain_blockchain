@@ -53,14 +53,20 @@ contract OrganizationTypeContract {
         returns (
             bytes32 id,
             string memory name,
+            bool isActive,
             string memory customJsonData
         )
     {
         OrganizationType storage obj = dataMap[objId];
-        return (obj.organizationTypeId, obj.name, obj.customJsonData);
+        return (obj.organizationTypeId, obj.name,obj.isActive,  obj.customJsonData);
     }
 
     function getAll() public view returns (bytes32[] memory ids) {
         return (dataList);
+    }
+
+    function activate(bytes32 objId, bool _isActive) public {
+        dataMap[objId].isActive = _isActive;
+        emit Updated(objId);
     }
 }

@@ -77,4 +77,9 @@ contract CertificationContract {
     function getAll() public view returns (bytes32[] memory ids) {
         return (dataList);
     }
+
+    function activate(bytes32 objId, bool _isActive) public {
+        dataMap[objId].isActive = _isActive;
+        emit Updated(objId);
+    }
 }
