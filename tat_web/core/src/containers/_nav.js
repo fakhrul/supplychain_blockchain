@@ -18,6 +18,12 @@ export default [
       },
       {
         _name: 'CSidebarNavItem',
+        name: 'OrganizationType',
+        to: '/admin/organizationTypelist',
+        icon: 'cil-calculator'
+      },
+      {
+        _name: 'CSidebarNavItem',
         name: 'Organization',
         to: '/admin/organizationlist',
         icon: 'cil-calculator'

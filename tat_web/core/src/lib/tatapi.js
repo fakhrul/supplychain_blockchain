@@ -1,5 +1,5 @@
 // let apiUrl = 'http://localhost:8000/api/';
-let apiUrl = 'http://localhost:5005/api/';
+let apiUrl = 'http://localhost:5005/api/eth/';
 
 class TatApi {
 
@@ -82,6 +82,48 @@ class TatApi {
             });
 
     }
+
+    getOrganizationType(id) {
+        var url = apiUrl + 'organizationType/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+   
+    getOrganizationTypeList() {
+        var url = apiUrl + 'organizationType';
+        return api.call('get', url)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    deleteOrganizationType(id) {
+        var url = apiUrl + 'organizationType/';
+        return api.call('delete', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    updateOrganizationType(data) {
+        var url = apiUrl + 'organizationType/';
+        return api.call('put', url + data.id, data)
+            .then(({ data }) => {
+                return data
+            });
+    }    
+
+
+    createOrganizationType(data) {
+        var url = apiUrl + 'organizationType';
+        return api.call('post', url, data)
+            .then(({ data }) => {
+                return data
+            });
+
+    }
+    
 
     getOrganization(id) {
         var url = apiUrl + 'organization/';

@@ -1,64 +1,72 @@
 pragma solidity ^0.7.4;
 
 contract OrganizationTypeContract {
-
+    uint256 public version = 1;
     struct OrganizationType {
         bytes32 organizationTypeId;
         string name;
         bool isActive;
         string customJsonData;
     }
-    mapping(bytes32 => OrganizationType) public organizationTypeMap;
+    mapping(bytes32 => OrganizationType) public dataMap;
+    bytes32[] public dataList;
 
-    event OrganizationTypeCreated(bytes32 objId);
-    event OrganizationTypeUpdated(bytes32 objId);
+    event Created(bytes32 objId);
+    event Updated(bytes32 objId);
 
-    bytes32[] public organizationTypeIds;
-
-        function createOrganizationType(
-        string memory _name,
-        string memory _customJsonData
-    ) public returns (bytes32 objId) {
+    function create(string memory _name, string memory _customJsonData)
+        public
+        returns (bytes32 objId)
+    {
         bytes32 newId =
             keccak256(abi.encodePacked(block.timestamp, block.difficulty));
 
-        OrganizationType storage obj = organizationTypeMap[newId];
+        OrganizationType storage obj = dataMap[newId];
         obj.organizationTypeId = newId;
         obj.isActive = true;
         obj.name = _name;
         obj.customJsonData = _customJsonData;
 
-        organizationTypeIds.push(newId);
+        dataList.push(newId);
 
-        emit OrganizationTypeCreated(newId);
+        emit Created(newId);
         return (newId);
     }
 
-    function updateOrganizationType(
+    function update(
         bytes32 objId,
         string memory _name,
         string memory _customJsonData,
         bool _isActive
     ) public {
-        OrganizationType storage obj = organizationTypeMap[objId];
+        OrganizationType storage obj = dataMap[objId];
         obj.name = _name;
         obj.isActive = _isActive;
         obj.customJsonData = _customJsonData;
 
-        emit OrganizationTypeUpdated(objId);
+        emit Updated(objId);
     }
 
-    function getOrganizationTypeById(bytes32 objId)
+    function getById(bytes32 objId)
         public
         view
         returns (
             bytes32 id,
             string memory name,
+            bool isActive,
             string memory customJsonData
         )
     {
-        OrganizationType storage obj = organizationTypeMap[objId];
-        return (obj.organizationTypeId, obj.name, obj.customJsonData);
+        OrganizationType storage obj = dataMap[objId];
+        return (obj.organizationTypeId, obj.name,obj.isActive,  obj.customJsonData);
     }
 
+    function getAll() public view returns (bytes32[] memory ids) {
+        return (dataList);
+    }
+
+    function activate(bytes32 objId, bool _isActive) public {
+        dataMap[objId].isActive = _isActive;
+        emit Updated(objId);
+    }
 }

@@ -1,6 +1,7 @@
 pragma solidity ^0.7.4;
 
 contract RoleContract {
+    uint256 public version = 1;
     struct Role {
         bytes32 roleId;
         string name;
@@ -8,49 +9,49 @@ contract RoleContract {
         string customJsonData;
     }
 
-    mapping(bytes32 => Role) public roleMap;
-    bytes32[] public roleIds;
+    mapping(bytes32 => Role) public dataMap;
+    bytes32[] public dataList;
 
-    event RoleCreated(bytes32 objId);
-    event RoleUpdated(bytes32 objId);
+    event Created(bytes32 objId);
+    event Updated(bytes32 objId);
 
     /*
         Role
     */
-    function createRole(string memory _name, string memory _customJsonData)
+    function create(string memory _name, string memory _customJsonData)
         public
         returns (bytes32 objId)
     {
         bytes32 newId =
             keccak256(abi.encodePacked(block.timestamp, block.difficulty));
 
-        Role storage obj = roleMap[newId];
+        Role storage obj = dataMap[newId];
         obj.roleId = newId;
         obj.name = _name;
         obj.isActive = true;
         obj.customJsonData = _customJsonData;
 
-        roleIds.push(newId);
+        dataList.push(newId);
 
-        emit RoleCreated(newId);
+        emit Created(newId);
         return (newId);
     }
 
-    function updateRole(
+    function update(
         bytes32 objId,
         string memory _name,
         string memory _customJsonData,
         bool _isActive
     ) public {
-        Role storage obj = roleMap[objId];
+        Role storage obj = dataMap[objId];
         obj.name = _name;
         obj.isActive = _isActive;
         obj.customJsonData = _customJsonData;
 
-        emit RoleUpdated(objId);
+        emit Updated(objId);
     }
 
-    function getRoleById(bytes32 objId)
+    function getById(bytes32 objId)
         public
         view
         returns (
@@ -60,8 +61,16 @@ contract RoleContract {
             string memory customJsonData
         )
     {
-        Role storage obj = roleMap[objId];
+        Role storage obj = dataMap[objId];
         return (obj.roleId, obj.name, obj.isActive, obj.customJsonData);
     }
 
+    function getAll() public view returns (bytes32[] memory ids) {
+        return (dataList);
+    }
+
+    function activate(bytes32 objId, bool _isActive) public {
+        dataMap[objId].isActive = _isActive;
+        emit Updated(objId);
+    }
 }

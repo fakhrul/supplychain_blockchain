@@ -8,25 +8,34 @@
             <CForm>
               <CInput label="Id" v-model="obj.id" horizontal plaintext />
               <CInput
-                description="Organization Code"
-                label="Code"
-                horizontal
-                autocomplete="code"
-                v-model="obj.code"
-              />
-              <CInput
                 description="Organization Name"
                 label="Name"
                 horizontal
                 autocomplete="name"
                 v-model="obj.name"
               />
+              <CRow form class="form-group">
+                <CCol tag="label" sm="3" class="col-form-label">
+                  Organization Type
+                </CCol>
+                <CCol sm="9">
+                  <CInputCheckbox
+                    v-for="item in organizationTypes"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                    :checked="item.checked"
+                    @click="onOrganizationTypeClick(item.value, $event)"
+                  />
+                  <span>{{ obj.organizationTypeIdList }}</span>
+                </CCol>
+              </CRow>
               <CTextarea
                 label="Address"
                 placeholder="Organization Address..."
                 horizontal
                 rows="5"
-                v-model="obj.address"
+                v-model="obj.organizationAddress"
               />
             </CForm>
           </CCardBody>
@@ -52,24 +61,93 @@ export default {
   data: () => {
     return {
       api: new TatApi(),
+      organizationTypes: [],
+      // organizationTypes: [
+      //   {
+      //     label: "a",
+      //     value: "A",
+      //     checked: false,
+      //   },
+      //   {
+      //     label: "b",
+      //     value: "B",
+      //     checked: true,
+      //   },
+      // ],
       obj: {
         id: "",
-        code: "",
         name: "",
-        address: "",
+        organizationTypeIdList: [],
+        organizationAddress: "",
+        isActive: false,
+        customJsonData: "",
       },
     };
   },
+  created() {},
   mounted() {
     var self = this;
     if (self.$route.params.id) {
-      this.api.getOrganization(self.$route.params.id).then((response) => {
-        self.obj = response;
+      self.api.getOrganization(self.$route.params.id).then((response) => {
+        self.obj = response.data;
+        self.api.getOrganizationTypeList().then((response) => {
+          for (var i in response.data) {
+            var isAvailable = self.containsObject(
+              response.data[i].id,
+              self.obj.organizationTypeIdList
+            );
+            self.organizationTypes.push({
+              value: response.data[i].id,
+              label: response.data[i].name,
+              checked: isAvailable,
+            });
+          }
+        });
+      });
+    } else {
+      self.api.getOrganizationTypeList().then((response) => {
+        for (var i in response.data) {
+          self.organizationTypes.push({
+            value: response.data[i].id,
+            label: response.data[i].name,
+            checked: false,
+          });
+        }
       });
     }
   },
   methods: {
+    onOrganizationTypeClick(value, event) {
+      var self = this;
+      if (event.target.checked) {
+        if (!self.containsObject(value, self.obj.organizationTypeIdList)) {
+          self.obj.organizationTypeIdList.push({
+            id: value,
+          });
+        }
+      } else {
+        self.removeObject(value, self.obj.organizationTypeIdList);
+      }
+      console.log(self.obj.organizationTypeIdList);
+    },
+    removeObject(obj, list) {
+      var removeIndex = list
+        .map(function(item) {
+          return item.id;
+        })
+        .indexOf(obj);
+      list.splice(removeIndex, 1);
+    },
+    containsObject(obj, list) {
+      var i;
+      for (i = 0; i < list.length; i++) {
+        if (list[i].id === obj) {
+          return true;
+        }
+      }
 
+      return false;
+    },
     onSubmit(evt) {
       evt.preventDefault();
       var self = this;
@@ -87,7 +165,12 @@ export default {
     },
     onReset(evt) {
       evt.preventDefault();
-      this.obj = {};
+      var self = this;
+      console.log(self.organizationTypes);
+      // this.obj = {};
+    },
+    organizaitonTypeClick() {
+      alert("a");
     },
   },
 };

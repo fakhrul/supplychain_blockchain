@@ -1,6 +1,8 @@
 pragma solidity ^0.7.4;
 
 contract ActivityContract {
+    uint256 public version = 1;
+
     struct Activity {
         bytes32 activityId;
         string name;
@@ -9,13 +11,13 @@ contract ActivityContract {
         string customJsonData;
     }
 
-    mapping(bytes32 => Activity) public activityMap;
-    bytes32[] public activityIds;
+    mapping(bytes32 => Activity) public dataMap;
+    bytes32[] public dataList;
 
-        event ActivityCreated(bytes32 objId);
-    event ActivityUpdated(bytes32 objId);
+    event Created(bytes32 objId);
+    event Updated(bytes32 objId);
 
-    function createActivity(
+    function create(
         string memory _name,
         bytes32 _organizationTypeId,
         string memory _customJsonData
@@ -23,36 +25,36 @@ contract ActivityContract {
         bytes32 newId =
             keccak256(abi.encodePacked(block.timestamp, block.difficulty));
 
-        Activity storage obj = activityMap[newId];
+        Activity storage obj = dataMap[newId];
         obj.activityId = newId;
         obj.name = _name;
         obj.organizationTypeId = _organizationTypeId;
         obj.isActive = true;
         obj.customJsonData = _customJsonData;
 
-        activityIds.push(newId);
+        dataList.push(newId);
 
-        emit ActivityCreated(newId);
+        emit Created(newId);
         return (newId);
     }
 
-    function updateActivity(
+    function update(
         bytes32 objId,
         string memory _name,
         bytes32 _organizationTypeId,
         string memory _customJsonData,
         bool _isActive
     ) public {
-        Activity storage obj = activityMap[objId];
+        Activity storage obj = dataMap[objId];
         obj.organizationTypeId = _organizationTypeId;
         obj.name = _name;
         obj.isActive = _isActive;
         obj.customJsonData = _customJsonData;
 
-        emit ActivityUpdated(objId);
+        emit Updated(objId);
     }
 
-    function getActivityById(bytes32 objId)
+    function getById(bytes32 objId)
         public
         view
         returns (
@@ -63,7 +65,7 @@ contract ActivityContract {
             string memory customJsonData
         )
     {
-        Activity storage obj = activityMap[objId];
+        Activity storage obj = dataMap[objId];
         return (
             obj.activityId,
             obj.name,
@@ -73,4 +75,12 @@ contract ActivityContract {
         );
     }
 
+    function getAll() public view returns (bytes32[] memory ids) {
+        return (dataList);
+    }
+
+    function activate(bytes32 objId, bool _isActive) public {
+        dataMap[objId].isActive = _isActive;
+        emit Updated(objId);
+    }
 }

@@ -69,6 +69,9 @@ const LocationList = () => import('@/views/admin/LocationList')
 const Organization = () => import('@/views/admin/Organization')
 const OrganizationList = () => import('@/views/admin/OrganizationList')
 
+const OrganizationType = () => import('@/views/admin/OrganizationType')
+const OrganizationTypeList = () => import('@/views/admin/OrganizationTypeList')
+
 const Profile = () => import('@/views/admin/Profile')
 const ProfileList = () => import('@/views/admin/ProfileList')
 
@@ -182,6 +185,21 @@ function configRoutes() {
               component: LocationList
             },
             {
+              path: 'organizationTypeList',
+              name: 'OrganizationTypeList',
+              component: OrganizationTypeList
+            },
+            {
+              path: 'organizationType',
+              name: 'OrganizationType',
+              component: OrganizationType
+            },
+            {
+              path: 'organizationType/:id',
+              name: 'OrganizationType',
+              component: OrganizationType
+            },
+            {
               path: 'organizationlist',
               name: 'OrganizationList',
               component: OrganizationList
@@ -220,7 +238,7 @@ function configRoutes() {
               path: 'role/:id',
               name: 'Role',
               component: Role
-            },   {
+            }, {
               path: 'rolelist',
               name: 'RoleList',
               component: RoleList

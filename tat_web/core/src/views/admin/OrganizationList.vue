@@ -36,13 +36,26 @@
                 <CCardBody>
                   <CMedia :aside-image-props="{ height: 102 }">
                     <h4>
-                      {{ item.code }}
+                      {{ item.name }}
                     </h4>
-                    <p class="text-muted">Name: {{ item.name }}</p>
+                    <!-- <p class="text-muted">Name: {{ item.name }}</p> -->
                     <p class="text-muted">
-                      Address: {{ item.address }}
+                      Address: {{ item.organizationAddress }}
                     </p>
-                    <CButton size="sm" color="info" class="" @click="onEdit(item)">
+                    <p class="text-muted">
+                      Organization Type: 
+                    </p>
+                    <ul id="example-1">
+                      <li v-for="item in item.organizationTypeIdList" :key="item.id">
+                        {{item.name}}
+                      </li>
+                    </ul>
+                    <CButton
+                      size="sm"
+                      color="info"
+                      class=""
+                      @click="onEdit(item)"
+                    >
                       Edit
                     </CButton>
                     <CButton
@@ -83,10 +96,10 @@ import TatApi from "../../lib/tatapi";
 const items = [];
 
 const fields = [
-  { key: "id", _style: "min-width:20px" },
-  { key: "code", _style: "min-width:20px;" },
   { key: "name", _style: "min-width:100px;" },
-  { key: "address", _style: "min-width:200px;" },
+  { key: "organizationAddress", _style: "min-width:200px;" },
+  { key: "isActive", _style: "min-width:100px;" },
+  { key: "id", _style: "min-width:20px" },
   {
     key: "show_details",
     label: "",
@@ -127,12 +140,13 @@ export default {
       var self = this;
       self.api.getOrganizationList().then((response) => {
         self.items = response.data;
+        console.log(self.items)
       });
     },
-    onEdit(item){
+    onEdit(item) {
       var self = this;
       self.$router.push({
-        path: `/admin/organization/${item.id}`
+        path: `/admin/organization/${item.id}`,
       });
     },
     onDeleteConfirmation(status, evt, accept) {
