@@ -22,6 +22,7 @@ for filename in os.listdir(contract_path):
     except Exception as e:
         print(e)
 
+
 class Ethereum():
     @staticmethod
     def create_organization_type(name, custom):
@@ -29,12 +30,13 @@ class Ethereum():
         web3.eth.defaultAccount = web3.eth.accounts[0]
         contractName = 'OrganizationTypeContract'
 
-        contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
         tx_hash = contract.functions.create(name, custom).transact()
-        receipt =web3.eth.waitForTransactionReceipt(tx_hash)
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
         logs = contract.events.Created().processReceipt(receipt)
-        objId =Web3.toHex(logs[0]['args']['objId'])
+        objId = Web3.toHex(logs[0]['args']['objId'])
         return objId
 
     @staticmethod
@@ -43,12 +45,13 @@ class Ethereum():
         web3.eth.defaultAccount = web3.eth.accounts[0]
         contractName = 'OrganizationTypeContract'
 
-        contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
         tx_hash = contract.functions.update(id, name, custom, True).transact()
-        receipt =web3.eth.waitForTransactionReceipt(tx_hash)
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
         logs = contract.events.Updated().processReceipt(receipt)
-        objId =Web3.toHex(logs[0]['args']['objId'])
+        objId = Web3.toHex(logs[0]['args']['objId'])
         return objId
 
     @staticmethod
@@ -56,13 +59,14 @@ class Ethereum():
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
         contractName = 'OrganizationTypeContract'
-        contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
-        objId, name, isActive, custom =contract.functions.getById(id).call()
+        objId, name, isActive, custom = contract.functions.getById(id).call()
         data = {
-            'id' : Web3.toHex(objId),
-            'name' : name,
-            'custom' : custom,
+            'id': Web3.toHex(objId),
+            'name': name,
+            'custom': custom,
             'isActive': isActive
         }
         return data
@@ -73,13 +77,14 @@ class Ethereum():
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
         contractName = 'OrganizationTypeContract'
-        contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
         tx_hash = contract.functions.activate(id, False).transact()
-        receipt =web3.eth.waitForTransactionReceipt(tx_hash)
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
         logs = contract.events.Updated().processReceipt(receipt)
-        objId =Web3.toHex(logs[0]['args']['objId'])
+        objId = Web3.toHex(logs[0]['args']['objId'])
         return objId
 
     @staticmethod
@@ -87,33 +92,41 @@ class Ethereum():
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
         contractName = 'OrganizationTypeContract'
-        contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
         datas = contract.functions.getAll().call()
         dataInHex = []
         for data in datas:
-            retObj = Ethereum.get_organization_type(Web3.toHex(data));
-            if retObj['isActive'] :
+            retObj = Ethereum.get_organization_type(Web3.toHex(data))
+            if retObj['isActive']:
                 dataInHex.append(retObj)
             # dataInHex.append(Web3.toHex(data))
-            
+
         return dataInHex
 
-## ORGANIZATION
+# ORGANIZATION
 
     @staticmethod
-    def create_organization(name, custom):
+    def create_organization(name, organizationTypeIdList, organizationAddress, custom):
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
-        contractName = 'OrganizationTypeContract'
+        contractName = 'OrganizationContract'
+        organizationTypeIdListInBytes = []
+        for organizationTypeId in organizationTypeIdList:
+            organizationTypeIdListInBytes.append(organizationTypeId["id"])
 
-        contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        # print(organizationTypeIdListInBytes)
+        # return 'a'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
-        tx_hash = contract.functions.create(name, custom).transact()
-        receipt =web3.eth.waitForTransactionReceipt(tx_hash)
+        tx_hash = contract.functions.create(
+            name, organizationTypeIdListInBytes, organizationAddress, custom).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
         logs = contract.events.Created().processReceipt(receipt)
-        objId =Web3.toHex(logs[0]['args']['objId'])
+        objId = Web3.toHex(logs[0]['args']['objId'])
         return objId
 
     @staticmethod
@@ -122,26 +135,36 @@ class Ethereum():
         web3.eth.defaultAccount = web3.eth.accounts[0]
         contractName = 'OrganizationTypeContract'
 
-        contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
         tx_hash = contract.functions.update(id, name, custom, True).transact()
-        receipt =web3.eth.waitForTransactionReceipt(tx_hash)
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
         logs = contract.events.Updated().processReceipt(receipt)
-        objId =Web3.toHex(logs[0]['args']['objId'])
+        objId = Web3.toHex(logs[0]['args']['objId'])
         return objId
 
     @staticmethod
     def get_organization(id):
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
-        contractName = 'OrganizationTypeContract'
-        contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        contractName = 'OrganizationContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
-        objId, name, isActive, custom =contract.functions.getById(id).call()
+        objId, name, organizationTypeIdList,organizationAddress, isActive, custom = contract.functions.getById(id).call()
+
+        organizationType = []
+        for data in organizationTypeIdList:
+            orgTypeInfo = Ethereum.get_organization_type(Web3.toHex(data))
+            organizationType.append(orgTypeInfo)
+
         data = {
-            'id' : Web3.toHex(objId),
-            'name' : name,
-            'custom' : custom,
+            'id': Web3.toHex(objId),
+            'name': name,
+            'organizationTypeIdList' : organizationType,
+            'organizationAddress' : organizationAddress,
+            'custom': custom,
             'isActive': isActive
         }
         return data
@@ -152,29 +175,32 @@ class Ethereum():
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
         contractName = 'OrganizationTypeContract'
-        contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
         tx_hash = contract.functions.activate(id, False).transact()
-        receipt =web3.eth.waitForTransactionReceipt(tx_hash)
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
         logs = contract.events.Updated().processReceipt(receipt)
-        objId =Web3.toHex(logs[0]['args']['objId'])
+        objId = Web3.toHex(logs[0]['args']['objId'])
         return objId
 
     @staticmethod
     def get_organization_list():
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
-        contractName = 'OrganizationTypeContract'
-        contract = web3.eth.contract(address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        contractName = 'OrganizationContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
         datas = contract.functions.getAll().call()
         dataInHex = []
         for data in datas:
-            retObj = Ethereum.get_organization_type(Web3.toHex(data));
-            if retObj['isActive'] :
+            retObj = Ethereum.get_organization(Web3.toHex(data))
+            if retObj['isActive']:
                 dataInHex.append(retObj)
-            # dataInHex.append(Web3.toHex(data))
-            
+        # for data in datas:
+        #     dataInHex.append(Web3.toHex(data))
+
         return dataInHex

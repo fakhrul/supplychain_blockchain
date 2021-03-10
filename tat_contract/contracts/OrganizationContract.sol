@@ -68,6 +68,7 @@ contract OrganizationContract {
             bytes32 id,
             string memory name,
             bytes32[] memory organizationTypeIdList,
+            string memory organizationAddress,
             bool isActive,
             string memory customJsonData
         )
@@ -77,6 +78,7 @@ contract OrganizationContract {
             obj.organizationId,
             obj.name,
             obj.organizationTypeIdList,
+            obj.organizationAddress,
             obj.isActive,
             obj.customJsonData
         );
