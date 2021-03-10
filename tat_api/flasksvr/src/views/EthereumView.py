@@ -110,9 +110,11 @@ def createOrganization():
 def updateOrganization(id):
     req_data = request.get_json()
     name = req_data['name'];
+    organizationTypeIdList = req_data['organizationTypeIdList'];
+    organizationAddress = req_data['organizationAddress'];
     custom = req_data['custom'];
 
-    data = Ethereum.update_organization(id, name, custom)
+    data = Ethereum.update_organization(id, name,organizationTypeIdList, organizationAddress, custom)
     retObj = {
         'data' : data
     }

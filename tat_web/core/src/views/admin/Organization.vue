@@ -24,7 +24,7 @@
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
-                    :v-model="item.checked"
+                    :checked="item.checked"
                     @click="onOrganizationTypeClick(item.value, $event)"
                   />
                   <span>{{ obj.organizationTypeIdList }}</span>
@@ -84,11 +84,25 @@ export default {
       },
     };
   },
-  created() {
+  created() {},
+  mounted() {
     var self = this;
     if (self.$route.params.id) {
       self.api.getOrganization(self.$route.params.id).then((response) => {
-        self.obj = response;
+        self.obj = response.data;
+        self.api.getOrganizationTypeList().then((response) => {
+          for (var i in response.data) {
+            var isAvailable = self.containsObject(
+              response.data[i].id,
+              self.obj.organizationTypeIdList
+            );
+            self.organizationTypes.push({
+              value: response.data[i].id,
+              label: response.data[i].name,
+              checked: isAvailable,
+            });
+          }
+        });
       });
     } else {
       self.api.getOrganizationTypeList().then((response) => {
@@ -96,29 +110,11 @@ export default {
           self.organizationTypes.push({
             value: response.data[i].id,
             label: response.data[i].name,
-            isCheck: false,
+            checked: false,
           });
         }
       });
     }
-  },
-  mounted() {
-    // var self = this;
-    // if (self.$route.params.id) {
-    //   self.api.getOrganization(self.$route.params.id).then((response) => {
-    //     self.obj = response;
-    //   });
-    // } else {
-    //   self.api.getOrganizationTypeList().then((response) => {
-    //     for (var i in response.data) {
-    //       self.organizationTypes.push({
-    //         value: response.data[i].id,
-    //         label: response.data[i].name,
-    //         checked: true
-    //       });
-    //     }
-    //   });
-    // }
   },
   methods: {
     onOrganizationTypeClick(value, event) {
@@ -145,7 +141,7 @@ export default {
     containsObject(obj, list) {
       var i;
       for (i = 0; i < list.length; i++) {
-        if (list[i] === obj) {
+        if (list[i].id === obj) {
           return true;
         }
       }
