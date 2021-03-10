@@ -8,7 +8,7 @@ from .models import db, bcrypt
 from .shared import mail
 
 from .views.UserView import user_api as user_blueprint
-from .views.BlogpostView import blogpost_api as blogpost_blueprint
+# from .views.BlogpostView import blogpost_api as blogpost_blueprint
 from .views.PaymentView import payment_api as payment_blueprint
 
 from .views.ActivityView import activity_api as activity_blueprint
@@ -50,7 +50,7 @@ def create_app(env_name):
     seeder.init_app(app, db)
 
     app.register_blueprint(user_blueprint, url_prefix='/api/auth')
-    app.register_blueprint(blogpost_blueprint, url_prefix='/api/v1/blogposts')
+    # app.register_blueprint(blogpost_blueprint, url_prefix='/api/v1/blogposts')
     app.register_blueprint(payment_blueprint, url_prefix='/api/v1/payment')
 
     app.register_blueprint(activity_blueprint, url_prefix='/api/activity')

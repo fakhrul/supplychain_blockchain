@@ -127,6 +127,201 @@ def deleteOrganization(id):
     }
     return custom_response(retObj, 200)
 
+## ACTIVITY
+
+@etheruem_api.route('/activity', methods=['GET'])
+def getActivityList():
+    retObj = {
+        'data' : Ethereum.get_activity_list()
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/activity/<string:id>', methods=['GET'])
+def getActivity(id):
+    retObj = {
+        'data' : Ethereum.get_activity(id)
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/activity', methods=['POST'])
+def createActivity():
+    req_data = request.get_json()
+    name = req_data['name']
+    organizationTypeId = req_data['organizationTypeId']
+    custom = req_data['customJsonData']
+
+    data = Ethereum.create_activity(name, organizationTypeId, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/activity/<string:id>', methods=['PUT'])
+def updateActivity(id):
+    req_data = request.get_json()
+    name = req_data['name']
+    organizationType = req_data['organizationType']
+    custom = req_data['custom']
+
+    data = Ethereum.update_activity(id, name,organizationId, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/activity/<string:id>', methods=['DELETE'])
+def deleteActivity(id):
+    retObj = {
+        'data' : Ethereum.delete_activity(id)
+    }
+    return custom_response(retObj, 200)
+
+## AREA
+
+@etheruem_api.route('/area', methods=['GET'])
+def getAreaList():
+    retObj = {
+        'data' : Ethereum.get_area_list()
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/area/<string:id>', methods=['GET'])
+def getArea(id):
+    retObj = {
+        'data' : Ethereum.get_area(id)
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/area', methods=['POST'])
+def createArea():
+    req_data = request.get_json()
+    name = req_data['name']
+    organization = req_data['organization']
+    custom = req_data['customJsonData']
+
+    data = Ethereum.create_area(name, organization, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/area/<string:id>', methods=['PUT'])
+def updateArea(id):
+    req_data = request.get_json()
+    name = req_data['name']
+    organization = req_data['organization']
+    custom = req_data['custom']
+
+    data = Ethereum.update_area(id, name,organization, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/area/<string:id>', methods=['DELETE'])
+def deleteArea(id):
+    retObj = {
+        'data' : Ethereum.delete_area(id)
+    }
+    return custom_response(retObj, 200)
+
+
+## category
+
+@etheruem_api.route('/category', methods=['GET'])
+def getCategoryList():
+    retObj = {
+        'data' : Ethereum.get_category_list()
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/category/<string:id>', methods=['GET'])
+def getCategory(id):
+    retObj = {
+        'data' : Ethereum.get_category(id)
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/category', methods=['POST'])
+def createCategory():
+    req_data = request.get_json()
+    name = req_data['name']
+    custom = req_data['customJsonData']
+
+    data = Ethereum.create_category(name, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/category/<string:id>', methods=['PUT'])
+def updateCategory(id):
+    req_data = request.get_json()
+    name = req_data['name']
+    custom = req_data['custom']
+
+    data = Ethereum.update_category(id, name, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/category/<string:id>', methods=['DELETE'])
+def deleteCategory(id):
+    retObj = {
+        'data' : Ethereum.delete_category(id)
+    }
+    return custom_response(retObj, 200)
+
+
+## certification
+
+@etheruem_api.route('/certification', methods=['GET'])
+def getCertificationList():
+    retObj = {
+        'data' : Ethereum.get_certification_list()
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/certification/<string:id>', methods=['GET'])
+def getCertification(id):
+    retObj = {
+        'data' : Ethereum.get_certification(id)
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/certification', methods=['POST'])
+def createCertification():
+    req_data = request.get_json()
+    name = req_data['name']
+    certificateUrl = req_data['certificateUrl']
+    custom = req_data['customJsonData']
+
+    data = Ethereum.create_certification(name, certificateUrl, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/certification/<string:id>', methods=['PUT'])
+def updateCertification(id):
+    req_data = request.get_json()
+    name = req_data['name']
+    certificateUrl = req_data['certificateUrl']
+    custom = req_data['custom']
+
+    data = Ethereum.update_certification(id, name,certificateUrl, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/certification/<string:id>', methods=['DELETE'])
+def deleteCertification(id):
+    retObj = {
+        'data' : Ethereum.delete_certification(id)
+    }
+    return custom_response(retObj, 200)
 
 def custom_response(res, status_code):
     """
