@@ -574,3 +574,109 @@ class Ethereum():
                 dataInHex.append(retObj)
 
         return dataInHex
+
+# product
+
+    @staticmethod
+    def create_product(name, category, description,certificationList, custom):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProductContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        categoryId = category["id"]
+        certificationIdListInBytes = []
+        for certification in certificationList:
+            certificationIdListInBytes.append(certification["id"])
+
+        tx_hash = contract.functions.create(
+            name,categoryId, description, certificationIdListInBytes, custom).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Created().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def update_product(id, name, category,description, certificationList, custom):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProductContract'
+        categoryId = category["id"]
+        certificationIdListInBytes = []
+        for certification in certificationList:
+            certificationIdListInBytes.append(certification["id"])
+
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        tx_hash = contract.functions.update(
+            id, name, categoryId, description, certificationIdListInBytes, custom, True).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Updated().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def get_product(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProductContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+        objId, categoryId, name, description, certificationIdList, isActive, custom = contract.functions.getById(
+            id).call()
+
+        category = Ethereum.get_category(Web3.toHex(organizationId))
+
+        certificationList = []
+        for data in certificationIdList:
+            certification = Ethereum.get_certification(Web3.toHex(data))
+            certificationList.append(certification)
+
+        data = {
+            'id': Web3.toHex(objId),
+            'name': name,
+            'category' : category,
+            'description' : description,
+            'certificationList' : certificationList,
+            'custom': custom,
+            'isActive': isActive
+        }
+        return data
+
+    @staticmethod
+    def delete_product(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProductContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        tx_hash = contract.functions.activate(id, False).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Updated().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def get_product_list():
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProductContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        datas = contract.functions.getAll().call()
+        dataInHex = []
+        for data in datas:
+            retObj = Ethereum.get_product(Web3.toHex(data))
+            if retObj['isActive']:
+                dataInHex.append(retObj)
+
+        return dataInHex

@@ -323,6 +323,59 @@ def deleteCertification(id):
     }
     return custom_response(retObj, 200)
 
+## product
+
+@etheruem_api.route('/product', methods=['GET'])
+def getProductList():
+    retObj = {
+        'data' : Ethereum.get_product_list()
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/product/<string:id>', methods=['GET'])
+def getProduct(id):
+    retObj = {
+        'data' : Ethereum.get_product(id)
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/product', methods=['POST'])
+def createProduct():
+    req_data = request.get_json()
+    name = req_data['name']
+    category = req_data['category']
+    description = req_data['description']
+    certificationList = req_data['certificationList']
+    custom = req_data['customJsonData']
+
+    data = Ethereum.create_product(name, category, description, certificationList ,  custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/product/<string:id>', methods=['PUT'])
+def updateProduct(id):
+    req_data = request.get_json()
+    name = req_data['name']
+    category = req_data['category']
+    description = req_data['description']
+    certificationList = req_data['certificationList']
+    custom = req_data['custom']
+
+    data = Ethereum.update_product(id, name, category, description, certificationList, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/product/<string:id>', methods=['DELETE'])
+def deleteProduct(id):
+    retObj = {
+        'data' : Ethereum.delete_product(id)
+    }
+    return custom_response(retObj, 200)
+
 def custom_response(res, status_code):
     """
     Custom Response Function
