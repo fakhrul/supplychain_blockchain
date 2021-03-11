@@ -3,12 +3,12 @@
     <CRow>
       <CCol sm="12">
         <CCard>
-          <CCardHeader> <strong> Role </strong> Information </CCardHeader>
+          <CCardHeader> <strong> Category </strong> Information </CCardHeader>
           <CCardBody>
             <CForm>
               <CInput label="Id" v-model="obj.id" horizontal plaintext />
               <CInput
-                description="Role Name"
+                description="Category Name"
                 label="Name"
                 horizontal
                 autocomplete="name"
@@ -34,13 +34,14 @@
 import TatApi from "../../lib/tatapi";
 
 export default {
-  name: "Role",
+  name: "Category",
   data: () => {
     return {
       api: new TatApi(),
       obj: {
         id: "",
         name: "",
+        isActive: "",
         customJsonData: "",
       },
     };
@@ -48,24 +49,23 @@ export default {
   mounted() {
     var self = this;
     if (self.$route.params.id) {
-      this.api.getRole(self.$route.params.id).then((response) => {
+      this.api.getCategory(self.$route.params.id).then((response) => {
         self.obj = response.data;
       });
     }
   },
   methods: {
+
     onSubmit(evt) {
       evt.preventDefault();
       var self = this;
       if (self.obj.id == "") {
-        this.api.createRole(self.obj).then((response) => {
-          self.obj = {};
-          self.$router.push({ path: "/admin/rolelist" });
+        this.api.createCategory(self.obj).then((response) => {
+          self.$router.push({ path: "/admin/categorylist" });
         });
       } else {
-        this.api.updateRole(self.obj).then((response) => {
-          self.obj = {};
-          self.$router.push({ path: "/admin/rolelist" });
+        this.api.updateCategory(self.obj).then((response) => {
+          self.$router.push({ path: "/admin/categorylist" });
         });
       }
     },

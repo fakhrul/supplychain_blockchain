@@ -35,22 +35,44 @@
                 autocomplete="password"
                 v-model="obj.password"
               />
+              <CInput
+                description="Profile Phone"
+                label="Phone"
+                horizontal
+                autocomplete="phone"
+                v-model="obj.phone"
+              />
               <CSelect
                 label="Organization"
                 horizontal
-                v-model="obj.organization_code"
-                :value.sync="obj.organization_code"
+                v-model="obj.organization.id"
+                :value.sync="obj.organization.id"
                 :options="organizationList"
                 placeholder="Please select"
               />
-              <CSelect
+              <!-- <CSelect
                 label="Role"
                 horizontal
                 v-model="obj.role_code"
                 :value.sync="obj.role_code"
                 :options="roleList"
                 placeholder="Please select"
-              />
+              /> -->
+              <CRow form class="form-group">
+                <CCol tag="label" sm="3" class="col-form-label">
+                  Organization Type
+                </CCol>
+                <CCol sm="9">
+                  <CInputCheckbox
+                    v-for="item in roleList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                    :checked="item.checked"
+                    @click="onRoleClick(item.value, $event)"
+                  />
+                </CCol>
+              </CRow>
             </CForm>
           </CCardBody>
           <CCardFooter>
@@ -79,32 +101,92 @@ export default {
       api: new TatApi(),
       obj: {
         id: "",
-        code: "",
         name: "",
         email: "",
         password: "",
-        organization_code: "",
-        role_code: "",
+        phone: "",
+        organization: {
+          id: "",
+        },
+        roleList: [],
+        isActive: "",
+        customJsonData: "",
       },
     };
   },
   mounted() {
     var self = this;
     self.refreshOrganization();
-    self.refreshRole();
+    // self.refreshRole();
     if (self.$route.params.id) {
       this.api.getProfile(self.$route.params.id).then((response) => {
-        self.obj = response;
+        self.obj = response.data;
+        self.api.getRoleList().then((response) => {
+          for (var i in response.data) {
+            var isAvailable = self.containsObject(
+              response.data[i].id,
+              self.obj.roleList
+            );
+            self.roleList.push({
+              value: response.data[i].id,
+              label: response.data[i].name,
+              checked: isAvailable,
+            });
+          }
+        });
+      });
+    } else {
+       self.api.getRoleList().then((response) => {
+        for (var i in response.data) {
+          self.roleList.push({
+            value: response.data[i].id,
+            label: response.data[i].name,
+            checked: false,
+          });
+        }
       });
     }
   },
   methods: {
+    onOrganizationClick(event) {
+      console.log(event);
+    },
+    onRoleClick(value, event) {
+      var self = this;
+      if (event.target.checked) {
+        if (!self.containsObject(value, self.obj.roleList)) {
+          self.obj.roleList.push({
+            id: value,
+          });
+        }
+      } else {
+        self.removeObject(value, self.obj.roleList);
+      }
+    },
+    removeObject(obj, list) {
+      var removeIndex = list
+        .map(function(item) {
+          return item.id;
+        })
+        .indexOf(obj);
+      list.splice(removeIndex, 1);
+    },
+    containsObject(obj, list) {
+      var i;
+      for (i = 0; i < list.length; i++) {
+        if (list[i].id === obj) {
+          return true;
+        }
+      }
+
+      return false;
+    },
     refreshOrganization() {
       var self = this;
       self.api.getOrganizationList().then((response) => {
         for (var i in response.data) {
           self.organizationList.push({
-            value: response.data[i].code,
+            value: response.data[i].id,
             label: response.data[i].name,
           });
         }
@@ -115,7 +197,7 @@ export default {
       self.api.getRoleList().then((response) => {
         for (var i in response.data) {
           self.roleList.push({
-            value: response.data[i].code,
+            value: response.data[i].id,
             label: response.data[i].name,
           });
         }
@@ -125,7 +207,6 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       var self = this;
-      if (self.obj.code == "") self.obj.code = self.obj.email;
       if (self.obj.id == "") {
         this.api.createProfile(self.obj).then((response) => {
           self.obj = {};

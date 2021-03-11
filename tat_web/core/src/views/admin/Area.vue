@@ -3,30 +3,24 @@
     <CRow>
       <CCol sm="12">
         <CCard>
-          <CCardHeader> <strong> Species </strong> Information </CCardHeader>
+          <CCardHeader> <strong> Area </strong> Information </CCardHeader>
           <CCardBody>
             <CForm>
               <CInput label="Id" v-model="obj.id" horizontal plaintext />
               <CInput
-                description="Species Code"
-                label="Code"
-                horizontal
-                autocomplete="code"
-                v-model="obj.code"
-              />
-              <CInput
-                description="Species Name"
+                description="Area Name"
                 label="Name"
                 horizontal
                 autocomplete="name"
                 v-model="obj.name"
               />
-              <CTextarea
-                label="Descirption"
-                placeholder="Product description..."
+              <CSelect
+                label="Organization"
                 horizontal
-                rows="9"
-                v-model="obj.description"
+                v-model="obj.organization.id"
+                :value.sync="obj.organization.id"
+                :options="organizationList"
+                placeholder="Please select"
               />
             </CForm>
           </CCardBody>
@@ -48,40 +42,56 @@
 import TatApi from "../../lib/tatapi";
 
 export default {
-  name: "Species",
+  name: "Area",
   data: () => {
     return {
+      organizationList: [],
       api: new TatApi(),
       obj: {
         id: "",
-        code: "",
         name: "",
-        description: "",
+        organization: {
+          id: "",
+        },
+        isActive: "",
+        customJsonData: ""
       },
     };
   },
   mounted() {
     var self = this;
+    self.refreshOrganization();
     if (self.$route.params.id) {
-      this.api.getSpecies(self.$route.params.id).then((response) => {
-        self.obj = response;
+      this.api.getArea(self.$route.params.id).then((response) => {
+        self.obj = response.data;
       });
     }
   },
   methods: {
+    refreshOrganization() {
+      var self = this;
+      self.api.getOrganizationList().then((response) => {
+        for (var i in response.data) {
+          self.organizationList.push({
+            value: response.data[i].id,
+            label: response.data[i].name,
+          });
+        }
+      });
+    },
 
     onSubmit(evt) {
       evt.preventDefault();
       var self = this;
       if (self.obj.id == "") {
-        this.api.createSpecies(self.obj).then((response) => {
-          self.obj = {};
-          self.$router.push({ path: "/admin/specieslist" });
+        this.api.createArea(self.obj).then((response) => {
+          // self.obj = {};
+          self.$router.push({ path: "/admin/arealist" });
         });
       } else {
-        this.api.updateSpecies(self.obj).then((response) => {
-          self.obj = {};
-          self.$router.push({ path: "/admin/specieslist" });
+        this.api.updateArea(self.obj).then((response) => {
+          // self.obj = {};
+          self.$router.push({ path: "/admin/arealist" });
         });
       }
     },

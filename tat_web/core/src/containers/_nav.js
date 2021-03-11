@@ -30,6 +30,22 @@ export default [
       },
       {
         _name: 'CSidebarNavItem',
+        name: 'Area',
+        to: '/admin/arealist',
+        icon: 'cil-calculator'
+      },
+      {
+        _name: 'CSidebarNavItem',
+        name: 'Activity',
+        to: '/admin/activitylist',
+        icon: 'cil-cursor'
+      },
+      {
+        _name: 'CSidebarNavTitle',
+        _children: ['Profile']
+      },
+      {
+        _name: 'CSidebarNavItem',
         name: 'Profile',
         to: '/admin/profilelist',
         icon: 'cil-drop'
@@ -40,38 +56,38 @@ export default [
         to: '/admin/rolelist',
         icon: 'cil-puzzle'
       },
+      // {
+      //   _name: 'CSidebarNavItem',
+      //   name: 'Location',
+      //   to: '/admin/locationlist',
+      //   icon: 'cil-drop'
+      // },
       {
         _name: 'CSidebarNavTitle',
-        _children: ['General']
-      },
-      {
-        _name: 'CSidebarNavItem',
-        name: 'Activity',
-        to: '/admin/activitylist',
-        icon: 'cil-cursor'
-      },
-      {
-        _name: 'CSidebarNavItem',
-        name: 'Location',
-        to: '/admin/locationlist',
-        icon: 'cil-drop'
+        _children: ['Product']
       },
 
       {
         _name: 'CSidebarNavItem',
-        name: 'Species',
-        to: '/admin/specieslist',
+        name: 'Category',
+        to: '/admin/categorylist',
         icon: 'cil-drop'
-      },
-      {
-        _name: 'CSidebarNavTitle',
-        _children: ['Track And Trace']
       },
       {
         _name: 'CSidebarNavItem',
         name: 'Product',
         to: '/track/productlist',
         icon: 'cil-drop'
+      },
+      {
+        _name: 'CSidebarNavItem',
+        name: 'Certification',
+        to: '/track/certificationlist',
+        icon: 'cil-drop'
+      },
+      {
+        _name: 'CSidebarNavTitle',
+        _children: ['Track And Trace']
       },
       {
         _name: 'CSidebarNavItem',

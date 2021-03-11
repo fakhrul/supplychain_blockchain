@@ -43,6 +43,46 @@ class TatApi {
 
     }
 
+    getAreaList() {
+        var url = apiUrl + 'area';
+        return api.call('get', url)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    getArea(id) {
+        var url = apiUrl + 'area/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    deleteArea(id) {
+        var url = apiUrl + 'area/';
+        return api.call('delete', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    updateArea(data) {
+        var url = apiUrl + 'area/';
+        return api.call('put', url + data.id, data)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    createArea(data) {
+        var url = apiUrl + 'area';
+        return api.call('post', url, data)
+            .then(({ data }) => {
+                return data
+            });
+
+    }
+        
     getRole(id) {
         var url = apiUrl + 'role/';
         return api.call('get', url + id)
@@ -294,45 +334,84 @@ class TatApi {
     }
 
 
-    getSpeciesList() {
-        var url = apiUrl + 'species';
+    getCategoryList() {
+        var url = apiUrl + 'category';
         return api.call('get', url)
             .then(({ data }) => {
                 return data
             });
     }
-    getSpecies(id) {
-        var url = apiUrl + 'species/';
+    getCategory(id) {
+        var url = apiUrl + 'category/';
         return api.call('get', url + id)
             .then(({ data }) => {
                 return data
             });
     }
 
-    deleteSpecies(id) {
-        var url = apiUrl + 'species/';
+    deleteCategory(id) {
+        var url = apiUrl + 'category/';
         return api.call('delete', url + id)
             .then(({ data }) => {
                 return data
             });
     }
 
-    updateSpecies(data) {
-        var url = apiUrl + 'species/';
+    updateCategory(data) {
+        var url = apiUrl + 'category/';
         return api.call('put', url + data.id, data)
             .then(({ data }) => {
                 return data
             });
     }
 
-    createSpecies(data) {
-        return api.call('post', 'http://localhost:8000/api/species', data)
+    createCategory(data) {
+        var url = apiUrl + 'category';
+        return api.call('post', url, data)
             .then(({ data }) => {
                 return data
             });
 
     }
 
+    getCertificationList() {
+        var url = apiUrl + 'certification';
+        return api.call('get', url)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    getCertification(id) {
+        var url = apiUrl + 'certification/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    deleteCertification(id) {
+        var url = apiUrl + 'certification/';
+        return api.call('delete', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    updateCertification(data) {
+        var url = apiUrl + 'certification/';
+        return api.call('put', url + data.id, data)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+    createCertification(data) {
+        var url = apiUrl + 'certification';
+        return api.call('post', url, data)
+            .then(({ data }) => {
+                return data
+            });
+
+    }
 }
 
 export default TatApi;

@@ -72,14 +72,20 @@ const OrganizationList = () => import('@/views/admin/OrganizationList')
 const OrganizationType = () => import('@/views/admin/OrganizationType')
 const OrganizationTypeList = () => import('@/views/admin/OrganizationTypeList')
 
+const Area = () => import('@/views/admin/Area')
+const AreaList = () => import('@/views/admin/AreaList')
+
 const Profile = () => import('@/views/admin/Profile')
 const ProfileList = () => import('@/views/admin/ProfileList')
 
 const Role = () => import('@/views/admin/Role')
 const RoleList = () => import('@/views/admin/RoleList')
 
-const Species = () => import('@/views/admin/Species')
-const SpeciesList = () => import('@/views/admin/SpeciesList')
+const Category = () => import('@/views/admin/Category')
+const CategoryList = () => import('@/views/admin/CategoryList')
+
+const Certification = () => import('@/views/track/Certification')
+const CertificationList = () => import('@/views/track/CertificationList')
 
 const Product = () => import('@/views/track/Product')
 const ProductList = () => import('@/views/track/ProductList')
@@ -215,6 +221,21 @@ function configRoutes() {
               component: Organization
             },
             {
+              path: 'areaList',
+              name: 'AreaList',
+              component: AreaList
+            },
+            {
+              path: 'area',
+              name: 'Area',
+              component: Area
+            },
+            {
+              path: 'area/:id',
+              name: 'Area',
+              component: Area
+            },
+            {
               path: 'profile',
               name: 'Profile',
               component: Profile
@@ -244,19 +265,19 @@ function configRoutes() {
               component: RoleList
             },
             {
-              path: 'species',
-              name: 'Species',
-              component: Species
+              path: 'category',
+              name: 'Category',
+              component: Category
             },
             {
-              path: 'species/:id',
-              name: 'Species',
-              component: Species
+              path: 'category/:id',
+              name: 'Category',
+              component: Category
             },
             {
-              path: 'specieslist',
-              name: 'SpeciesList',
-              component: SpeciesList
+              path: 'categorylist',
+              name: 'CategoryList',
+              component: CategoryList
             }
           ]
         },
@@ -268,6 +289,21 @@ function configRoutes() {
             render(c) { return c('router-view') }
           },
           children: [
+            {
+              path: 'certification',
+              name: 'Certification',
+              component: Certification
+            },
+            {
+              path: 'certification/:id',
+              name: 'Certification',
+              component: Certification
+            },
+            {
+              path: 'certificationlist',
+              name: 'CertificationList',
+              component: CertificationList
+            },
             {
               path: 'product',
               name: 'Product',
@@ -283,6 +319,8 @@ function configRoutes() {
               name: 'ProductList',
               component: ProductList
             },
+            
+            
             {
               path: 'tracklist',
               name: 'TrackList',

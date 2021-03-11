@@ -47,9 +47,6 @@
                       {{ item.code }}
                     </h4>
                     <p class="text-muted">Name: {{ item.name }}</p>
-                    <p class="text-muted">
-                      Description: {{ item.description }}
-                    </p>
                     <CButton size="sm" color="info" class="" @click="onEdit(item)">
                       Edit
                     </CButton>
@@ -91,9 +88,8 @@ import TatApi from "../../lib/tatapi";
 const items = [];
 
 const fields = [
-  { key: "id", _style: "min-width:50px" },
-  { key: "code", _style: "min-width:100px;" },
   { key: "name", _style: "min-width:200px;" },
+  { key: "id", _style: "min-width:50px" },
   {
     key: "show_details",
     label: "",

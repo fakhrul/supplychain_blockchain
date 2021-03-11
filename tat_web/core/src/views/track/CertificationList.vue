@@ -2,7 +2,7 @@
   <CRow>
     <CCol sm="12">
       <CCard>
-        <CCardHeader> <strong> Profile </strong> List </CCardHeader>
+        <CCardHeader> <strong> Certification </strong> List </CCardHeader>
         <CCardBody>
           <CDataTable
             :items="items"
@@ -47,29 +47,7 @@
                       {{ item.code }}
                     </h4>
                     <p class="text-muted">Name: {{ item.name }}</p>
-                    <p class="text-muted">Email: {{ item.email }}</p>
-                    <p class="text-muted">Password: {{ item.password }}</p>
-                    <p class="text-muted">Phone: {{ item.phone }}</p>
-                    <p class="text-muted">
-                      Org. Name: {{ item.organization.name }}
-                    </p>
-                    <p class="text-muted">
-                      Roles:
-                    </p>
-                    <ul id="example-1">
-                      <li
-                        v-for="item in item.roleList"
-                        :key="item.id"
-                      >
-                        {{ item.name }}
-                      </li>
-                    </ul>
-                    <CButton
-                      size="sm"
-                      color="info"
-                      class=""
-                      @click="onEdit(item)"
-                    >
+                    <CButton size="sm" color="info" class="" @click="onEdit(item)">
                       Edit
                     </CButton>
                     <CButton
@@ -111,8 +89,8 @@ const items = [];
 
 const fields = [
   { key: "name", _style: "min-width:200px;" },
-  { key: "email", _style: "min-width:100px;" },
-  { key: "phone", _style: "min-width:100px;" },
+  { key: "certificateUrl", _style: "min-width:200px;" },
+  { key: "isActive", _style: "min-width:100px;" },
   { key: "id", _style: "min-width:50px" },
   {
     key: "show_details",
@@ -124,7 +102,7 @@ const fields = [
 ];
 
 export default {
-  name: "ProfileList",
+  name: "CertificationList",
   data() {
     return {
       items: items.map((item, id) => {
@@ -152,21 +130,20 @@ export default {
     },
     refreshTable() {
       var self = this;
-      self.api.getProfileList().then((response) => {
+      self.api.getCertificationList().then((response) => {
         self.items = response.data;
-        console.log(self.items);
       });
     },
-    onEdit(item) {
+    onEdit(item){
       var self = this;
       self.$router.push({
-        path: `/admin/profile/${item.id}`,
+        path: `/track/certification/${item.id}`
       });
     },
     onDeleteConfirmation(status, evt, accept) {
       var self = this;
       if (accept) {
-        this.api.deleteProfile(self.itemToDelete.id).then((response) => {
+        this.api.deleteCertification(self.itemToDelete.id).then((response) => {
           self.refreshTable();
         });
       }
@@ -178,7 +155,7 @@ export default {
       self.warningModal = true;
     },
     addNew() {
-      this.$router.push({ path: "/admin/profile" });
+      this.$router.push({ path: "/track/certification" });
     },
   },
 };

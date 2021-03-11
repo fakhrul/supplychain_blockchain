@@ -88,9 +88,10 @@ import TatApi from "../../lib/tatapi";
 const items = [];
 
 const fields = [
-  { key: "id", _style: "min-width:50px" },
-  { key: "code", _style: "min-width:100px;" },
+  { key: "organizationType_name", _style: "min-width:100px;" },
   { key: "name", _style: "min-width:200px;" },
+  { key: "isActive", _style: "min-width:200px;" },
+  { key: "id", _style: "min-width:50px" },
   {
     key: "show_details",
     label: "",

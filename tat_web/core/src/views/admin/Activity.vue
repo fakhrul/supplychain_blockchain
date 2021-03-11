@@ -8,18 +8,19 @@
             <CForm>
               <CInput label="Id" v-model="obj.id" horizontal plaintext />
               <CInput
-                description="Activity Code"
-                label="Code"
-                horizontal
-                autocomplete="code"
-                v-model="obj.code"
-              />
-              <CInput
                 description="Activity Name"
                 label="Name"
                 horizontal
                 autocomplete="name"
                 v-model="obj.name"
+              />
+              <CSelect
+                label="Organization"
+                horizontal
+                v-model="obj.organizationType.id"
+                :value.sync="obj.organizationType.id"
+                :options="organizationTypeList"
+                placeholder="Please select"
               />
             </CForm>
           </CCardBody>
@@ -44,36 +45,49 @@ export default {
   name: "Activity",
   data: () => {
     return {
+      organizationTypeList: [],
       api: new TatApi(),
       obj: {
         id: "",
-        code: "",
         name: "",
-        description: "",
+        organizationType: {
+          id: "",
+        },
+        isActive: "",
+        customJsonData: "",
       },
     };
   },
   mounted() {
     var self = this;
+    self.refreshOrganizationType();
     if (self.$route.params.id) {
       this.api.getActivity(self.$route.params.id).then((response) => {
-        self.obj = response;
+        self.obj = response.data;
       });
     }
   },
   methods: {
-
+    refreshOrganizationType() {
+      var self = this;
+      self.api.getOrganizationTypeList().then((response) => {
+        for (var i in response.data) {
+          self.organizationTypeList.push({
+            value: response.data[i].id,
+            label: response.data[i].name,
+          });
+        }
+      });
+    },
     onSubmit(evt) {
       evt.preventDefault();
       var self = this;
       if (self.obj.id == "") {
         this.api.createActivity(self.obj).then((response) => {
-          self.obj = {};
           self.$router.push({ path: "/admin/activitylist" });
         });
       } else {
         this.api.updateActivity(self.obj).then((response) => {
-          self.obj = {};
           self.$router.push({ path: "/admin/activitylist" });
         });
       }

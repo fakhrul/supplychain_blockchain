@@ -27,7 +27,6 @@
                     :checked="item.checked"
                     @click="onOrganizationTypeClick(item.value, $event)"
                   />
-                  <span>{{ obj.organizationTypeIdList }}</span>
                 </CCol>
               </CRow>
               <CTextarea
@@ -128,7 +127,6 @@ export default {
       } else {
         self.removeObject(value, self.obj.organizationTypeIdList);
       }
-      console.log(self.obj.organizationTypeIdList);
     },
     removeObject(obj, list) {
       var removeIndex = list

@@ -48,12 +48,25 @@
                     </h4>
                     <p class="text-muted">Name: {{ item.name }}</p>
                     <p class="text-muted">
-                      Species Code: {{ item.species_code }}
+                      Category Name: {{ item.categoryName }}
                     </p>
                     <p class="text-muted">
-                      Species Name: {{ item.species_name }}
+                      Description: {{ item.description }}
                     </p>
-                    <CButton size="sm" color="info" class="" @click="onEdit(item)">
+                    <p class="text-muted">
+                      Certifications:
+                    </p>
+                    <ul id="example-1">
+                      <li v-for="item in item.certificationList" :key="item.id">
+                        {{ item.name }}
+                      </li>
+                    </ul>
+                    <CButton
+                      size="sm"
+                      color="info"
+                      class=""
+                      @click="onEdit(item)"
+                    >
                       Edit
                     </CButton>
                     <CButton
@@ -94,11 +107,10 @@ import TatApi from "../../lib/tatapi";
 const items = [];
 
 const fields = [
-  { key: "id", _style: "min-width:50px" },
-  { key: "code", _style: "min-width:100px;" },
   { key: "name", _style: "min-width:200px;" },
-  { key: "species_code", _style: "min-width:200px;" },
-  { key: "species_name", _style: "min-width:200px;" },
+  { key: "categoryName", _style: "min-width:200px;" },
+  { key: "isActive", _style: "min-width:200px;" },
+  { key: "id", _style: "min-width:50px" },
   {
     key: "show_details",
     label: "",
@@ -141,10 +153,10 @@ export default {
         self.items = response.data;
       });
     },
-    onEdit(item){
+    onEdit(item) {
       var self = this;
       self.$router.push({
-        path: `/track/product/${item.id}`
+        path: `/track/product/${item.id}`,
       });
     },
     onDeleteConfirmation(status, evt, accept) {

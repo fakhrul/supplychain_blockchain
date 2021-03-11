@@ -2,7 +2,7 @@
   <CRow>
     <CCol sm="12">
       <CCard>
-        <CCardHeader> <strong> Species </strong> List </CCardHeader>
+        <CCardHeader> <strong> Category </strong> List </CCardHeader>
         <CCardBody>
           <CDataTable
             :items="items"
@@ -47,9 +47,6 @@
                       {{ item.code }}
                     </h4>
                     <p class="text-muted">Name: {{ item.name }}</p>
-                    <p class="text-muted">
-                      Description: {{ item.description }}
-                    </p>
                     <CButton size="sm" color="info" class="" @click="onEdit(item)">
                       Edit
                     </CButton>
@@ -91,9 +88,9 @@ import TatApi from "../../lib/tatapi";
 const items = [];
 
 const fields = [
-  { key: "id", _style: "min-width:50px" },
-  { key: "code", _style: "min-width:100px;" },
   { key: "name", _style: "min-width:200px;" },
+  { key: "isActive", _style: "min-width:100px;" },
+  { key: "id", _style: "min-width:50px" },
   {
     key: "show_details",
     label: "",
@@ -104,7 +101,7 @@ const fields = [
 ];
 
 export default {
-  name: "SpeciesList",
+  name: "CategoryList",
   data() {
     return {
       items: items.map((item, id) => {
@@ -132,20 +129,20 @@ export default {
     },
     refreshTable() {
       var self = this;
-      self.api.getSpeciesList().then((response) => {
+      self.api.getCategoryList().then((response) => {
         self.items = response.data;
       });
     },
     onEdit(item){
       var self = this;
       self.$router.push({
-        path: `/admin/species/${item.id}`
+        path: `/track/category/${item.id}`
       });
     },
     onDeleteConfirmation(status, evt, accept) {
       var self = this;
       if (accept) {
-        this.api.deleteSpecies(self.itemToDelete.id).then((response) => {
+        this.api.deleteCategory(self.itemToDelete.id).then((response) => {
           self.refreshTable();
         });
       }
@@ -157,7 +154,7 @@ export default {
       self.warningModal = true;
     },
     addNew() {
-      this.$router.push({ path: "/admin/species" });
+      this.$router.push({ path: "/track/category" });
     },
   },
 };

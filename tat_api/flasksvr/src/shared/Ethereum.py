@@ -2,7 +2,8 @@ import os
 import json
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
-
+from .Encryptor import Encryptor
+ 
 geth_url = os.getenv('ETHEREUM_ENDPOINT_URI')
 contract_path = os.getenv('ETHEREUM_CONTRACT_PATH')
 
@@ -267,6 +268,7 @@ class Ethereum():
             'id': Web3.toHex(objId),
             'name': name,
             'organizationType': organizationType,
+            'organizationType_name': organizationType['name'],
             'custom': custom,
             'isActive': isActive
         }
@@ -361,6 +363,7 @@ class Ethereum():
             'id': Web3.toHex(objId),
             'name': name,
             'organization': organization,
+            'organization_name': organization["name"],
             'custom': custom,
             'isActive': isActive
         }
@@ -531,12 +534,13 @@ class Ethereum():
         contract = web3.eth.contract(
             address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
-        objId, name, isActive, custom = contract.functions.getById(
+        objId, name, certificateUrl, isActive, custom = contract.functions.getById(
             id).call()
 
         data = {
             'id': Web3.toHex(objId),
             'name': name,
+            'certificateUrl': certificateUrl,
             'custom': custom,
             'isActive': isActive
         }
@@ -630,7 +634,7 @@ class Ethereum():
         objId, categoryId, name, description, certificationIdList, isActive, custom = contract.functions.getById(
             id).call()
 
-        category = Ethereum.get_category(Web3.toHex(organizationId))
+        category = Ethereum.get_category(Web3.toHex(categoryId))
 
         certificationList = []
         for data in certificationIdList:
@@ -641,6 +645,7 @@ class Ethereum():
             'id': Web3.toHex(objId),
             'name': name,
             'category' : category,
+            'categoryName' : category['name'],
             'description' : description,
             'certificationList' : certificationList,
             'custom': custom,
@@ -676,6 +681,311 @@ class Ethereum():
         dataInHex = []
         for data in datas:
             retObj = Ethereum.get_product(Web3.toHex(data))
+            if retObj['isActive']:
+                dataInHex.append(retObj)
+
+        return dataInHex
+
+# profile
+
+    @staticmethod
+    def create_profile(name, email, password, phone, roleList, organization, custom):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProfileContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        organizationId = organization["id"]
+        roleIdListInBytes = []
+        for role in roleList:
+            roleIdListInBytes.append(role["id"])
+        passwordHash = Encryptor.encrypt(password)
+
+        tx_hash = contract.functions.create(
+            name, email, passwordHash, phone, roleIdListInBytes, organizationId, custom).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Created().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def update_profile(id, name, email,password, phone, roleList, organization, custom):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProfileContract'
+        
+        organizationId = organization["id"]
+        roleIdListInBytes = []
+        for role in roleList:
+            roleIdListInBytes.append(role["id"])
+        passwordHash = Encryptor.encrypt(password)
+
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        tx_hash = contract.functions.update(
+            id, name, email, passwordHash, phone, roleIdListInBytes, organizationId,custom,  True ).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Updated().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def get_profile(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProfileContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+        objId, name, email, passwordHash, phone, roleIdList, organizationId, isActive, custom = contract.functions.getById(
+            id).call()
+
+        organization = Ethereum.get_organization(Web3.toHex(organizationId))
+
+        roleList = []
+        for data in roleIdList:
+            role = Ethereum.get_role(Web3.toHex(data))
+            roleList.append(role)
+        password = Encryptor.decrypt(passwordHash)
+        data = {
+            'id': Web3.toHex(objId),
+            'name': name,
+            'email' : email,
+            'password' : password,
+            'phone' : phone,
+            'roleList' : roleList,
+            'organization' : organization,
+            'custom': custom,
+            'isActive': isActive
+        }
+        return data
+
+    @staticmethod
+    def delete_profile(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProfileContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        tx_hash = contract.functions.activate(id, False).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Updated().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def get_profile_list():
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProfileContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        datas = contract.functions.getAll().call()
+        dataInHex = []
+        for data in datas:
+            retObj = Ethereum.get_profile(Web3.toHex(data))
+            if retObj['isActive']:
+                dataInHex.append(retObj)
+
+        return dataInHex
+
+# role
+
+    @staticmethod
+    def create_role(name, custom):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'RoleContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        tx_hash = contract.functions.create(name, custom).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Created().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def update_role(id, name, custom):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'RoleContract'
+        
+
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        tx_hash = contract.functions.update(
+            id, name, custom, True).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Updated().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def get_role(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'RoleContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+        objId, name, isActive, custom = contract.functions.getById(
+            id).call()
+
+        data = {
+            'id': Web3.toHex(objId),
+            'name': name,
+            'custom': custom,
+            'isActive': isActive
+        }
+        return data
+
+    @staticmethod
+    def delete_role(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'RoleContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        tx_hash = contract.functions.activate(id, False).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Updated().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def get_role_list():
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'RoleContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        datas = contract.functions.getAll().call()
+        dataInHex = []
+        for data in datas:
+            retObj = Ethereum.get_role(Web3.toHex(data))
+            if retObj['isActive']:
+                dataInHex.append(retObj)
+
+        return dataInHex
+
+
+# trackhistory
+
+    @staticmethod
+    def create_trackhistory(product, activity,  profile,  area, gps, remarks, custom):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'TrackHistoryContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        productId = product["id"]
+        activityId = activity["id"]
+        profileId = profile["id"]
+        areaId = area["id"]
+
+        tx_hash = contract.functions.create( productId, activityId, profileId, areaId, gps, remarks, custom).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Created().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def update_trackhistory(id, product, activity,  profile,  area, gps, remarks,  custom):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'TrackHistoryContract'
+        
+        productId = product["id"]
+        activityId = activity["id"]
+        profileId = profile["id"]
+        areaId = area["id"]
+
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        tx_hash = contract.functions.update(
+            id, productId, activityId, profileId, area, gps, remarks, custom, True).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Updated().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def get_trackhistory(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'TrackHistoryContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+        objId, productId, activityId, profileId, areaId, gps, remarks, isActive, custom = contract.functions.getById(
+            id).call()
+
+        product = Ethereum.get_product(Web3.toHex(productId))
+        activity = Ethereum.get_activity(Web3.toHex(activityId))
+        profile = Ethereum.get_profile(Web3.toHex(profileId))
+        area = Ethereum.get_area(Web3.toHex(areaId))
+
+        data = {
+            'id': Web3.toHex(objId),
+            'product': product,
+            'activity' : activity,
+            'profile' : profile,
+            'area' : area,
+            'gps' : gps,
+            'remarks' : remarks,
+            'custom': custom,
+            'isActive': isActive
+        }
+        return data
+
+    @staticmethod
+    def delete_trackhistory(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'TrackHistoryContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        tx_hash = contract.functions.activate(id, False).transact()
+        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+        logs = contract.events.Updated().processReceipt(receipt)
+        objId = Web3.toHex(logs[0]['args']['objId'])
+        return objId
+
+    @staticmethod
+    def get_trackhistory_list():
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'TrackHistoryContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        datas = contract.functions.getAll().call()
+        dataInHex = []
+        for data in datas:
+            retObj = Ethereum.get_trackhistory(Web3.toHex(data))
             if retObj['isActive']:
                 dataInHex.append(retObj)
 

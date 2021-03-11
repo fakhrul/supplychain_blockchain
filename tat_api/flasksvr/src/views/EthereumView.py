@@ -4,22 +4,6 @@ from marshmallow import ValidationError
 from ..shared.Authentication import Auth
 from ..shared.Ethereum import Ethereum
 
-
-# import json
-# from web3 import Web3
-# from web3.middleware import geth_poa_middleware
-
-# # geth_url = "http://127.0.0.1:8545"
-# # web3 = Web3(Web3.HTTPProvider(geth_url))
-# # web3.eth.defaultAccount = web3.eth.accounts[0]
-# # abi = json.loads('[{"constant":true,"inputs":[],"name":"getInfo","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_info","type":"string"}],"name":"setInfo","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]')
-
-# # address = web3.toChecksumAddress('0x40F8B7b30DbAbC5141A7F668A1ad328E2B1FF95c') # FILL IN YOUR ACTUAL ADDRESS
-# # contract = web3.eth.contract(address=address, abi=abi)
-
-# # web3.middleware_onion.inject(geth_poa_middleware, layer=0)
-
-
 app = Flask(__name__)
 etheruem_api = Blueprint('etheruem_api', __name__)
 
@@ -147,10 +131,10 @@ def getActivity(id):
 def createActivity():
     req_data = request.get_json()
     name = req_data['name']
-    organizationTypeId = req_data['organizationTypeId']
+    organizationType = req_data['organizationType']
     custom = req_data['customJsonData']
 
-    data = Ethereum.create_activity(name, organizationTypeId, custom)
+    data = Ethereum.create_activity(name, organizationType, custom)
     retObj = {
         'data' : data
     }
@@ -163,7 +147,7 @@ def updateActivity(id):
     organizationType = req_data['organizationType']
     custom = req_data['custom']
 
-    data = Ethereum.update_activity(id, name,organizationId, custom)
+    data = Ethereum.update_activity(id, name,organizationType, custom)
     retObj = {
         'data' : data
     }
@@ -375,6 +359,172 @@ def deleteProduct(id):
         'data' : Ethereum.delete_product(id)
     }
     return custom_response(retObj, 200)
+
+## profile
+
+@etheruem_api.route('/profile', methods=['GET'])
+def getProfileList():
+    retObj = {
+        'data' : Ethereum.get_profile_list()
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/profile/<string:id>', methods=['GET'])
+def getProfile(id):
+    retObj = {
+        'data' : Ethereum.get_profile(id)
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/profile', methods=['POST'])
+def createProfile():
+    req_data = request.get_json()
+    name = req_data['name']
+    email = req_data['email']
+    password = req_data['password']
+    phone = req_data['phone']
+    roleList = req_data['roleList']
+    organization = req_data['organization']
+    custom = req_data['customJsonData']
+
+    data = Ethereum.create_profile(name, email, password,  phone, roleList, organization, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/profile/<string:id>', methods=['PUT'])
+def updateProfile(id):
+    req_data = request.get_json()
+    name = req_data['name']
+    email = req_data['email']
+    password = req_data['password']
+    phone = req_data['phone']
+    roleList = req_data['roleList']
+    organization = req_data['organization']
+    custom = req_data['custom']
+
+    data = Ethereum.update_profile(id, name, email, password,
+     phone, roleList, organization, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/profile/<string:id>', methods=['DELETE'])
+def deleteProfile(id):
+    retObj = {
+        'data' : Ethereum.delete_profile(id)
+    }
+    return custom_response(retObj, 200)
+
+## role
+
+@etheruem_api.route('/role', methods=['GET'])
+def getRoleList():
+    retObj = {
+        'data' : Ethereum.get_role_list()
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/role/<string:id>', methods=['GET'])
+def getRole(id):
+    retObj = {
+        'data' : Ethereum.get_role(id)
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/role', methods=['POST'])
+def createRole():
+    req_data = request.get_json()
+    name = req_data['name']
+    custom = req_data['customJsonData']
+
+    data = Ethereum.create_role(name, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/role/<string:id>', methods=['PUT'])
+def updateRole(id):
+    req_data = request.get_json()
+    name = req_data['name']
+    custom = req_data['custom']
+
+    data = Ethereum.update_role(id, name, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/role/<string:id>', methods=['DELETE'])
+def deleteRole(id):
+    retObj = {
+        'data' : Ethereum.delete_role(id)
+    }
+    return custom_response(retObj, 200)
+
+
+## trackhistory
+
+@etheruem_api.route('/trackhistory', methods=['GET'])
+def getTrackHistoryList():
+    retObj = {
+        'data' : Ethereum.get_trackhistory_list()
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/trackhistory/<string:id>', methods=['GET'])
+def getTrackHistory(id):
+    retObj = {
+        'data' : Ethereum.get_trackhistory(id)
+    }
+    return custom_response(retObj, 200)
+
+@etheruem_api.route('/trackhistory', methods=['POST'])
+def createTrackHistory():
+    req_data = request.get_json()
+    product = req_data['product']
+    activity = req_data['activity']
+    profile = req_data['profile']
+    area = req_data['area']
+    gps = req_data['gps']
+    remarks = req_data['remarks']
+    custom = req_data['customJsonData']
+
+    data = Ethereum.create_trackhistory(product, activity, 
+    profile,  area, gps, remarks, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/trackhistory/<string:id>', methods=['PUT'])
+def updateTrackHistory(id):
+    req_data = request.get_json()
+    product = req_data['product']
+    activity = req_data['activity']
+    profile = req_data['profile']
+    area = req_data['area']
+    gps = req_data['gps']
+    remarks = req_data['remarks']
+    custom = req_data['customJsonData']
+
+    data = Ethereum.update_trackhistory(id, product, activity, 
+    profile, area, gps, remarks, custom)
+    retObj = {
+        'data' : data
+    }
+    return custom_response(retObj, 201)    
+
+@etheruem_api.route('/trackhistory/<string:id>', methods=['DELETE'])
+def deleteTrackHistory(id):
+    retObj = {
+        'data' : Ethereum.delete_trackhistory(id)
+    }
+    return custom_response(retObj, 200)
+
 
 def custom_response(res, status_code):
     """
