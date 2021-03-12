@@ -48,22 +48,19 @@
                     </h4>
                     <p class="text-muted">Name: {{ item.name }}</p>
                     <p class="text-muted">
-                      Species Code: {{ item.species_code }}
+                      Category: {{ item.categoryName }}
                     </p>
-                    <p class="text-muted">
-                      Species Name: {{ item.species_name }}
-                    </p>
-                    <CButton size="sm" color="info" class="" @click="onEdit(item)">
-                      Edit
+                    <CButton size="sm" color="info" class="" @click="onView(item)">
+                      View
                     </CButton>
-                    <CButton
+                    <!-- <CButton
                       size="sm"
                       color="danger"
                       class="ml-1"
                       @click="showDeleteConfirmation(item)"
                     >
                       Delete
-                    </CButton>
+                    </CButton> -->
                   </CMedia>
                 </CCardBody>
               </CCollapse>
@@ -94,19 +91,10 @@ import TatApi from "../../lib/tatapi";
 const items = [];
 
 const fields = [
+  { key: "name", _style: "min-width:50px" },
+  { key: "categoryName", _style: "min-width:50px" },
+  { key: "isActive", _style: "min-width:50px" },
   { key: "id", _style: "min-width:50px" },
-  { key: "created_at", _style: "min-width:50px" },
-  { key: "info", _style: "min-width:50px" },
-  { key: "remarks", _style: "min-width:50px" },
-  { key: "product_code", _style: "min-width:50px" },
-  { key: "product_name", _style: "min-width:50px" },
-  { key: "activity_code", _style: "min-width:50px" },
-  { key: "activity_name", _style: "min-width:50px" },
-  { key: "profile_code", _style: "min-width:50px" },
-  { key: "profile_name", _style: "min-width:50px" },
-  { key: "location_code", _style: "min-width:50px" },
-  { key: "location_name", _style: "min-width:50px" },
-  { key: "gps", _style: "min-width:50px" },
   {
     key: "show_details",
     label: "",
@@ -117,7 +105,7 @@ const fields = [
 ];
 
 export default {
-  name: "ProductList",
+  name: "TrackList",
   data() {
     return {
       items: items.map((item, id) => {
@@ -145,20 +133,21 @@ export default {
     },
     refreshTable() {
       var self = this;
-      self.api.getTrackList().then((response) => {
+      self.api.getTrailList().then((response) => {
         self.items = response.data;
+        console.log(self.items)
       });
     },
-    onEdit(item){
+    onView(item){
       var self = this;
       self.$router.push({
-        path: `/track/product/${item.id}`
+        path: `/track/history/${item.id}`
       });
     },
     onDeleteConfirmation(status, evt, accept) {
       var self = this;
       if (accept) {
-        this.api.deleteProduct(self.itemToDelete.id).then((response) => {
+        this.api.deleteTrack(self.itemToDelete.id).then((response) => {
           self.refreshTable();
         });
       }

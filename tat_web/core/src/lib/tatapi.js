@@ -18,6 +18,16 @@ class TatApi {
                 return data
             });
     }
+
+    getProfileByOrganization (id) {
+        var url = apiUrl + 'profileByOrganization/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    
+
     deleteProfile(id) {
         var url = apiUrl + 'profile/';
         return api.call('delete', url + id)
@@ -58,6 +68,15 @@ class TatApi {
                 return data
             });
     }
+
+    getAreaByOrganization(id) {
+        var url = apiUrl + 'areaByOrganization/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
     deleteArea(id) {
         var url = apiUrl + 'area/';
         return api.call('delete', url + id)
@@ -260,6 +279,16 @@ class TatApi {
                 return data
             });
     }
+
+    getActivityByOrganization(id) {
+        var url = apiUrl + 'activityByOrganization/';
+        return api.call('get', url + id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    
+
     deleteActivity(id) {
         var url = apiUrl + 'activity/';
         return api.call('delete', url + id)
@@ -283,15 +312,6 @@ class TatApi {
                 return data
             });
 
-    }
-
-
-    getTrackList() {
-        var url = apiUrl + 'trackhistory';
-        return api.call('get', url)
-            .then(({ data }) => {
-                return data
-            });
     }
 
     getProductList() {
@@ -412,6 +432,34 @@ class TatApi {
             });
 
     }
+
+    createTrail(data) {
+        var url = apiUrl + 'trail';
+        return api.call('post', url, data)
+            .then(({ data }) => {
+                console.log(data)
+                return data
+            });
+
+    }
+
+    getTrailList() {
+        var url = apiUrl + 'trail';
+        return api.call('get', url)
+            .then(({ data }) => {
+                return data
+            });
+    }
+    
+    getProductTrail(id) {
+        var url = apiUrl + 'trail/';
+        return api.call('get', url +id)
+            .then(({ data }) => {
+                return data
+            });
+    }
+
+
 }
 
 export default TatApi;

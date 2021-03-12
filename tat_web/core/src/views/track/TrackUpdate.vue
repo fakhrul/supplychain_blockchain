@@ -7,46 +7,59 @@
           <CCardBody>
             <CForm>
               <CInput label="Id" v-model="obj.id" horizontal plaintext />
-              <CInput
-                description="Updater"
+              <CSelect
+                label="Organization"
+                horizontal
+                v-model="obj.organization.id"
+                :value.sync="obj.organization.id"
+                :options="organizationList"
+                placeholder="Please select"
+                @change="organizationChange($event)"
+              />
+              <CSelect
                 label="Updater"
                 horizontal
-                autocomplete="code"
-                v-model="obj.code"
+                v-model="obj.profile.id"
+                :value.sync="obj.profile.id"
+                :options="profileList"
+                placeholder="Please select"
+                @change="profileChange($event)"
               />
-              <CInput
-                description="Product Code"
-                label="Code"
+              <CSelect
+                label="Area"
                 horizontal
-                autocomplete="code"
-                v-model="obj.code"
+                v-model="obj.area.id"
+                :value.sync="obj.area.id"
+                :options="areaList"
+                placeholder="Please select"
+                @change="areaChange($event)"
               />
               <CSelect
                 label="Activity"
                 horizontal
-                v-model="obj.activity_code"
-                :value.sync="obj.activity_code"
+                v-model="obj.activity.id"
+                :value.sync="obj.activity.id"
                 :options="activityList"
                 placeholder="Please select"
+                @change="activityChange($event)"
               />
-              <CSelect
-                label="Location"
+              <CInput
+                description="Product"
+                label="Product Id"
                 horizontal
-                v-model="obj.location_code"
-                :value.sync="obj.location_code"
-                :options="locationList"
-                placeholder="Please select"
+                autocomplete=""
+                v-model="obj.product.id"
               />
-             <CTextarea
-                label="Information"
-                placeholder="Information..."
+              <CInput
+                description="GPS"
+                label="GPS"
                 horizontal
-                rows="9"
-                v-model="obj.info"
+                autocomplete=""
+                v-model="obj.gps"
               />
-             <CTextarea
+              <CTextarea
                 label="Remarks"
-                placeholder="Product description..."
+                placeholder="Remarks"
                 horizontal
                 rows="9"
                 v-model="obj.remarks"
@@ -74,28 +87,103 @@ export default {
   name: "TrackUpdate",
   data: () => {
     return {
+      organizationList: [],
+      profileList: [],
       activityList: [],
       locationList: [],
+      areaList: [],
       api: new TatApi(),
       obj: {
         id: "",
-        code:"",
-        name:"",
-        species_code:""
+        organization: {
+          id: "",
+        },
+        profile: {
+          id: "",
+        },
+        product: {
+          id: "",
+        },
+        area: {
+          id: "",
+        },
+        activity: {
+          id: "",
+        },
+        name: "",
+        customJsonData: "",
       },
     };
   },
   mounted() {
     var self = this;
-    self.refreshActivity();
-    self.refreshLocation();
+    self.refreshOrganization();
+    // self.refreshActivity();
+    // self.refreshLocation();
     if (self.$route.params.id) {
       this.api.getProduct(self.$route.params.id).then((response) => {
-        self.obj = response;
+        self.obj.product = response.data;
       });
     }
   },
   methods: {
+    activityChange(event) {},
+    areaChange(event) {},
+    profileChange(event) {},
+    organizationChange(event) {
+      var self = this;
+      self.profileList = [];
+      self.areaList = [];
+      var organizationId = event.target.value;
+      self.api.getOrganization(organizationId).then((response) => {
+        self.obj.organization = response.data;
+        self.api
+          .getProfileByOrganization(self.obj.organization.id)
+          .then((response) => {
+            for (var i in response.data) {
+              self.profileList.push({
+                value: response.data[i].id,
+                label: response.data[i].name,
+              });
+            }
+          });
+
+        self.api
+          .getAreaByOrganization(self.obj.organization.id)
+          .then((response) => {
+            for (var i in response.data) {
+              self.areaList.push({
+                value: response.data[i].id,
+                label: response.data[i].name,
+              });
+            }
+          });
+
+        console.log(self.obj.organization);
+        self.api
+          .getActivityByOrganization(self.obj.organization.id)
+          .then((response) => {
+            for (var i in response.data) {
+              self.activityList.push({
+                value: response.data[i].id,
+                label: response.data[i].name,
+              });
+            }
+          });
+      });
+    },
+    refreshOrganization() {
+      var self = this;
+      self.api.getOrganizationList().then((response) => {
+        for (var i in response.data) {
+          self.organizationList.push({
+            value: response.data[i].id,
+            label: response.data[i].name,
+          });
+        }
+      });
+    },
+
     refreshActivity() {
       var self = this;
       self.api.getActivityList().then((response) => {
@@ -105,7 +193,6 @@ export default {
             label: response.data[i].name,
           });
         }
-
       });
     },
     refreshLocation() {
@@ -117,24 +204,27 @@ export default {
             label: response.data[i].name,
           });
         }
-
       });
     },
 
     onSubmit(evt) {
       evt.preventDefault();
       var self = this;
-      if (self.obj.id == "") {
-        this.api.createProduct(self.obj).then((response) => {
-          self.obj = {};
-          self.$router.push({ path: "/track/productlist" });
+      // alert(self.obj.product.id)
+      this.api.createTrail(self.obj).then((response) => {
+        self.$router.push({
+          // path: "/track/history",
+          path: `/track/history/${self.obj.product.id}`,
         });
-      } else {
-        this.api.updateProduct(self.obj).then((response) => {
-          self.obj = {};
-          self.$router.push({ path: "/track/productlist" });
-        });
-      }
+      });
+      // } else {
+      //   this.api.updateTrail(self.obj).then((response) => {
+      //     self.$router.push({
+      //       //  path: "/track/history"
+      //         path: `/track/history/${self.product.id}`,
+      //        });
+      //   });
+      // }
     },
     onReset(evt) {
       evt.preventDefault();

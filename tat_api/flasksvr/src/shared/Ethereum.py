@@ -3,7 +3,8 @@ import json
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 from .Encryptor import Encryptor
- 
+from datetime import datetime
+
 geth_url = os.getenv('ETHEREUM_ENDPOINT_URI')
 contract_path = os.getenv('ETHEREUM_CONTRACT_PATH')
 
@@ -308,6 +309,33 @@ class Ethereum():
 
         return dataInHex
 
+    @staticmethod
+    def get_activity_list_by_organization(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ActivityContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        organization = Ethereum.get_organization(id);
+        organizationTypeIdList = organization["organizationTypeIdList"]
+        organizationTypeIds = []
+        for data in organizationTypeIdList:
+            organizationTypeIds.append(data['id'])
+
+        datas = contract.functions.getAll().call()
+        dataInHex = []
+        for data in datas:
+            retObj = Ethereum.get_activity(Web3.toHex(data))
+            if retObj['isActive']:
+                for organizationTypeId in organizationTypeIds:
+                    if retObj["organizationType"]["id"] == organizationTypeId:
+                        dataInHex.append(retObj)
+
+        return dataInHex
+
+
 # AREA
 
     @staticmethod
@@ -402,6 +430,35 @@ class Ethereum():
                 dataInHex.append(retObj)
 
         return dataInHex
+
+    @staticmethod
+    def get_area_list_by_organization(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'AreaContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        datas = contract.functions.getAll().call()
+        dataInHex = []
+        for data in datas:
+            retObj = Ethereum.get_area(Web3.toHex(data))
+            if retObj['isActive']:
+                if retObj['organization']['id'] == id: 
+                    dataInHex.append(retObj)
+
+        # datas = contract.functions.getAll().call()
+        # dataInHex = []
+        # for data in datas:
+        #     retObj = Ethereum.get_profile(Web3.toHex(data))
+        #     if retObj['isActive']:
+        #         if retObj['organization']['id'] == id: 
+        #             dataInHex.append(retObj)
+
+
+        return dataInHex
+
 
 # category
 
@@ -797,6 +854,25 @@ class Ethereum():
 
         return dataInHex
 
+    @staticmethod
+    def get_profile_list_by_organization(id):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProfileContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        datas = contract.functions.getAll().call()
+        dataInHex = []
+        for data in datas:
+            retObj = Ethereum.get_profile(Web3.toHex(data))
+            if retObj['isActive']:
+                if retObj['organization']['id'] == id: 
+                    dataInHex.append(retObj)
+
+        return dataInHex
+
 # role
 
     @staticmethod
@@ -885,13 +961,39 @@ class Ethereum():
         return dataInHex
 
 
-# trackhistory
+# trail
+
+    # @staticmethod
+    # def create_trail(product, activity,  profile,  area, gps, remarks, custom):
+    #     web3 = Web3(Web3.HTTPProvider(geth_url))
+    #     web3.eth.defaultAccount = web3.eth.accounts[0]
+    #     contractName = 'TrailInfoContract'
+    #     contract = web3.eth.contract(
+    #         address=contract_address_lib[contractName], abi=abi_lib[contractName])
+    #     web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+    #     productId = product["id"]
+    #     activityId = activity["id"]
+    #     profileId = profile["id"]
+    #     areaId = area["id"]
+    #     return areaId
+    #     # tx_hash = contract.functions.addProductTrail( productId, activityId, profileId, areaId, gps, remarks, custom).transact()
+    #     tx_hash = contract.functions.addProductTrail( 
+    #         0x56ceec9805cac5fa712309bf1b049b1386911c300e5c5b387cefe9cb95610243, 
+    #         0x56ceec9805cac5fa712309bf1b049b1386911c300e5c5b387cefe9cb95610243, 
+    #         0x56ceec9805cac5fa712309bf1b049b1386911c300e5c5b387cefe9cb95610243, 
+    #         0x56ceec9805cac5fa712309bf1b049b1386911c300e5c5b387cefe9cb95610243, "gps", "gps", "gps").transact()
+
+    #     receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+    #     logs = contract.events.Created().processReceipt(receipt)
+    #     objId = Web3.toHex(logs[0]['args']['objId'])
+    #     return objId
 
     @staticmethod
-    def create_trackhistory(product, activity,  profile,  area, gps, remarks, custom):
+    def create_trail(product, activity,  profile,  area, gps, remarks, custom):
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
-        contractName = 'TrackHistoryContract'
+        contractName = 'TrailInfoContract'
         contract = web3.eth.contract(
             address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
@@ -901,92 +1003,145 @@ class Ethereum():
         profileId = profile["id"]
         areaId = area["id"]
 
-        tx_hash = contract.functions.create( productId, activityId, profileId, areaId, gps, remarks, custom).transact()
+        tx_hash = contract.functions.addProductTrail(productId, activityId, profileId, areaId, gps, remarks, custom).transact()
         receipt = web3.eth.waitForTransactionReceipt(tx_hash)
         logs = contract.events.Created().processReceipt(receipt)
         objId = Web3.toHex(logs[0]['args']['objId'])
         return objId
 
-    @staticmethod
-    def update_trackhistory(id, product, activity,  profile,  area, gps, remarks,  custom):
-        web3 = Web3(Web3.HTTPProvider(geth_url))
-        web3.eth.defaultAccount = web3.eth.accounts[0]
-        contractName = 'TrackHistoryContract'
+    # @staticmethod
+    # def update_trail(id, product, activity,  profile,  area, gps, remarks,  custom):
+    #     web3 = Web3(Web3.HTTPProvider(geth_url))
+    #     web3.eth.defaultAccount = web3.eth.accounts[0]
+    #     contractName = 'TrailInfoContract'
         
-        productId = product["id"]
-        activityId = activity["id"]
-        profileId = profile["id"]
-        areaId = area["id"]
+    #     productId = product["id"]
+    #     activityId = activity["id"]
+    #     profileId = profile["id"]
+    #     areaId = area["id"]
 
-        contract = web3.eth.contract(
-            address=contract_address_lib[contractName], abi=abi_lib[contractName])
-        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+    #     contract = web3.eth.contract(
+    #         address=contract_address_lib[contractName], abi=abi_lib[contractName])
+    #     web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-        tx_hash = contract.functions.update(
-            id, productId, activityId, profileId, area, gps, remarks, custom, True).transact()
-        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
-        logs = contract.events.Updated().processReceipt(receipt)
-        objId = Web3.toHex(logs[0]['args']['objId'])
-        return objId
+    #     tx_hash = contract.functions.update(
+    #         id, productId, activityId, profileId, area, gps, remarks, custom, True).transact()
+    #     receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+    #     logs = contract.events.Updated().processReceipt(receipt)
+    #     objId = Web3.toHex(logs[0]['args']['objId'])
+    #     return objId
 
     @staticmethod
-    def get_trackhistory(id):
+    def get_trail(productId, trailId):
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
-        contractName = 'TrackHistoryContract'
+        contractName = 'TrailInfoContract'
         contract = web3.eth.contract(
             address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
-        objId, productId, activityId, profileId, areaId, gps, remarks, isActive, custom = contract.functions.getById(
-            id).call()
 
-        product = Ethereum.get_product(Web3.toHex(productId))
-        activity = Ethereum.get_activity(Web3.toHex(activityId))
-        profile = Ethereum.get_profile(Web3.toHex(profileId))
-        area = Ethereum.get_area(Web3.toHex(areaId))
+        pId, activityId, profileId, areaId, gps, remarks, isActive, custom, createdDate = contract.functions.getProductTrail(productId, trailId).call()
+
+        product = Ethereum.get_product(productId)
+        activity = Ethereum.get_activity(activityId)
+        profile = Ethereum.get_profile(profileId)
+        area = Ethereum.get_area(areaId)
+
+        createdDateInText = datetime.fromtimestamp(createdDate).strftime('%Y-%m-%d %H:%M:%S')
 
         data = {
-            'id': Web3.toHex(objId),
+            'id': trailId,
             'product': product,
+            'product_name' : product['name'],
             'activity' : activity,
+            'activity_name' : activity['name'],
             'profile' : profile,
+            'organization': profile['organization'],
+            'organization_name': profile['organization']['name'],
             'area' : area,
+            'area_name' : area['name'],
             'gps' : gps,
             'remarks' : remarks,
             'custom': custom,
-            'isActive': isActive
+            'isActive': isActive,
+            'createdDate': createdDateInText
         }
         return data
 
     @staticmethod
-    def delete_trackhistory(id):
+    def get_product_trail(id):
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
-        contractName = 'TrackHistoryContract'
+        contractName = 'TrailInfoContract'
         contract = web3.eth.contract(
             address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-        tx_hash = contract.functions.activate(id, False).transact()
-        receipt = web3.eth.waitForTransactionReceipt(tx_hash)
-        logs = contract.events.Updated().processReceipt(receipt)
-        objId = Web3.toHex(logs[0]['args']['objId'])
-        return objId
+        datas = contract.functions.getProductTrailList(id).call()
+
+        trailInfo = []
+        for data in datas:
+            retObj = Ethereum.get_trail(id, Web3.toHex(data))
+            if retObj['isActive']:
+                trailInfo.append(retObj)
+
+        data = {
+            'id': id,
+            'trailInfoList': trailInfo
+        }
+        return data
+
 
     @staticmethod
-    def get_trackhistory_list():
+    def get_product_trail_list():
         web3 = Web3(Web3.HTTPProvider(geth_url))
         web3.eth.defaultAccount = web3.eth.accounts[0]
-        contractName = 'TrackHistoryContract'
+        contractName = 'TrailInfoContract'
         contract = web3.eth.contract(
             address=contract_address_lib[contractName], abi=abi_lib[contractName])
         web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-        datas = contract.functions.getAll().call()
-        dataInHex = []
+        datas = contract.functions.getProductList().call()
+        productInfo = []
         for data in datas:
-            retObj = Ethereum.get_trackhistory(Web3.toHex(data))
-            if retObj['isActive']:
-                dataInHex.append(retObj)
+            retObj = Ethereum.get_product(Web3.toHex(data))
+            productInfo.append(retObj)
 
-        return dataInHex
+
+        # data = {
+        #     'productList':productInfo
+        # }
+        return productInfo
+
+    # @staticmethod
+    # def delete_trail(id):
+    #     web3 = Web3(Web3.HTTPProvider(geth_url))
+    #     web3.eth.defaultAccount = web3.eth.accounts[0]
+    #     contractName = 'TrailInfoContract'
+    #     contract = web3.eth.contract(
+    #         address=contract_address_lib[contractName], abi=abi_lib[contractName])
+    #     web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+    #     tx_hash = contract.functions.activate(id, False).transact()
+    #     receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+    #     logs = contract.events.Updated().processReceipt(receipt)
+    #     objId = Web3.toHex(logs[0]['args']['objId'])
+    #     return objId
+
+    # @staticmethod
+    # def get_trail_list():
+    #     web3 = Web3(Web3.HTTPProvider(geth_url))
+    #     web3.eth.defaultAccount = web3.eth.accounts[0]
+    #     contractName = 'TrailInfoContract'
+    #     contract = web3.eth.contract(
+    #         address=contract_address_lib[contractName], abi=abi_lib[contractName])
+    #     web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+    #     datas = contract.functions.getAll().call()
+    #     dataInHex = []
+    #     for data in datas:
+    #         retObj = Ethereum.get_trail(Web3.toHex(data))
+    #         if retObj['isActive']:
+    #             dataInHex.append(retObj)
+
+    #     return dataInHex

@@ -136,7 +136,7 @@ export default {
         });
       });
     } else {
-       self.api.getRoleList().then((response) => {
+      self.api.getRoleList().then((response) => {
         for (var i in response.data) {
           self.roleList.push({
             value: response.data[i].id,

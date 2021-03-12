@@ -81,8 +81,8 @@ const ProfileList = () => import('@/views/admin/ProfileList')
 const Role = () => import('@/views/admin/Role')
 const RoleList = () => import('@/views/admin/RoleList')
 
-const Category = () => import('@/views/admin/Category')
-const CategoryList = () => import('@/views/admin/CategoryList')
+const Category = () => import('@/views/track/Category')
+const CategoryList = () => import('@/views/track/CategoryList')
 
 const Certification = () => import('@/views/track/Certification')
 const CertificationList = () => import('@/views/track/CertificationList')
@@ -264,6 +264,17 @@ function configRoutes() {
               name: 'RoleList',
               component: RoleList
             },
+ 
+          ]
+        },
+        {
+          path: 'track',
+          redirect: '/track/productlist',
+          name: 'Track',
+          component: {
+            render(c) { return c('router-view') }
+          },
+          children: [
             {
               path: 'category',
               name: 'Category',
@@ -278,18 +289,8 @@ function configRoutes() {
               path: 'categorylist',
               name: 'CategoryList',
               component: CategoryList
-            }
-          ]
-        },
-        {
-          path: 'track',
-          redirect: '/track/productlist',
-          name: 'Track',
-          component: {
-            render(c) { return c('router-view') }
-          },
-          children: [
-            {
+            },
+                    {
               path: 'certification',
               name: 'Certification',
               component: Certification
@@ -332,7 +333,12 @@ function configRoutes() {
               component: TrackUpdate
             },
             {
-              path: 'trackhistory',
+              path: 'trackupdate/:id',
+              name: 'TrackUpdate',
+              component: TrackUpdate
+            },
+            {
+              path: 'history/:id',
               name: 'TrackHistory',
               component: TrackHistory
             }

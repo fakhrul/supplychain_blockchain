@@ -61,11 +61,11 @@ export default {
       var self = this;
       if (self.obj.id == "") {
         this.api.createCategory(self.obj).then((response) => {
-          self.$router.push({ path: "/admin/categorylist" });
+          self.$router.push({ path: "/track/categorylist" });
         });
       } else {
         this.api.updateCategory(self.obj).then((response) => {
-          self.$router.push({ path: "/admin/categorylist" });
+          self.$router.push({ path: "/track/categorylist" });
         });
       }
     },

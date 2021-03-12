@@ -127,6 +127,14 @@ def getActivity(id):
     }
     return custom_response(retObj, 200)
 
+@etheruem_api.route('/activityByOrganization/<string:id>', methods=['GET'])
+def getActivityByOrganization(id):
+    retObj = {
+        'data' : Ethereum.get_activity_list_by_organization(id)
+    }
+    return custom_response(retObj, 200)
+
+
 @etheruem_api.route('/activity', methods=['POST'])
 def createActivity():
     req_data = request.get_json()
@@ -175,6 +183,14 @@ def getArea(id):
         'data' : Ethereum.get_area(id)
     }
     return custom_response(retObj, 200)
+
+@etheruem_api.route('/areaByOrganization/<string:id>', methods=['GET'])
+def getAreaByOrganization(id):
+    retObj = {
+        'data' : Ethereum.get_area_list_by_organization(id)
+    }
+    return custom_response(retObj, 200)
+
 
 @etheruem_api.route('/area', methods=['POST'])
 def createArea():
@@ -369,6 +385,14 @@ def getProfileList():
     }
     return custom_response(retObj, 200)
 
+@etheruem_api.route('/profileByOrganization/<string:id>', methods=['GET'])
+def getProfileByOrganization(id):
+    retObj = {
+        'data' : Ethereum.get_profile_list_by_organization(id)
+    }
+    return custom_response(retObj, 200)
+
+
 @etheruem_api.route('/profile/<string:id>', methods=['GET'])
 def getProfile(id):
     retObj = {
@@ -466,24 +490,24 @@ def deleteRole(id):
     return custom_response(retObj, 200)
 
 
-## trackhistory
+## trail
 
-@etheruem_api.route('/trackhistory', methods=['GET'])
-def getTrackHistoryList():
+@etheruem_api.route('/trail', methods=['GET'])
+def getProductTrailList():
     retObj = {
-        'data' : Ethereum.get_trackhistory_list()
+        'data' : Ethereum.get_product_trail_list()
     }
     return custom_response(retObj, 200)
 
-@etheruem_api.route('/trackhistory/<string:id>', methods=['GET'])
-def getTrackHistory(id):
+@etheruem_api.route('/trail/<string:id>', methods=['GET'])
+def getProductTrail(id):
     retObj = {
-        'data' : Ethereum.get_trackhistory(id)
+        'data' : Ethereum.get_product_trail(id)
     }
     return custom_response(retObj, 200)
 
-@etheruem_api.route('/trackhistory', methods=['POST'])
-def createTrackHistory():
+@etheruem_api.route('/trail', methods=['POST'])
+def createTrail():
     req_data = request.get_json()
     product = req_data['product']
     activity = req_data['activity']
@@ -493,37 +517,36 @@ def createTrackHistory():
     remarks = req_data['remarks']
     custom = req_data['customJsonData']
 
-    data = Ethereum.create_trackhistory(product, activity, 
-    profile,  area, gps, remarks, custom)
+    data = Ethereum.create_trail(product, activity, profile, area, gps, remarks, custom)
     retObj = {
         'data' : data
     }
     return custom_response(retObj, 201)    
 
-@etheruem_api.route('/trackhistory/<string:id>', methods=['PUT'])
-def updateTrackHistory(id):
-    req_data = request.get_json()
-    product = req_data['product']
-    activity = req_data['activity']
-    profile = req_data['profile']
-    area = req_data['area']
-    gps = req_data['gps']
-    remarks = req_data['remarks']
-    custom = req_data['customJsonData']
+# @etheruem_api.route('/trail/<string:id>', methods=['PUT'])
+# def updateTrail(id):
+#     req_data = request.get_json()
+#     product = req_data['product']
+#     activity = req_data['activity']
+#     profile = req_data['profile']
+#     area = req_data['area']
+#     gps = req_data['gps']
+#     remarks = req_data['remarks']
+#     custom = req_data['customJsonData']
 
-    data = Ethereum.update_trackhistory(id, product, activity, 
-    profile, area, gps, remarks, custom)
-    retObj = {
-        'data' : data
-    }
-    return custom_response(retObj, 201)    
+#     data = Ethereum.update_trail(id, product, activity, 
+#     profile, area, gps, remarks, custom)
+#     retObj = {
+#         'data' : data
+#     }
+#     return custom_response(retObj, 201)    
 
-@etheruem_api.route('/trackhistory/<string:id>', methods=['DELETE'])
-def deleteTrackHistory(id):
-    retObj = {
-        'data' : Ethereum.delete_trackhistory(id)
-    }
-    return custom_response(retObj, 200)
+# @etheruem_api.route('/trail/<string:id>', methods=['DELETE'])
+# def deleteTrail(id):
+#     retObj = {
+#         'data' : Ethereum.delete_trail(id)
+#     }
+#     return custom_response(retObj, 200)
 
 
 def custom_response(res, status_code):
