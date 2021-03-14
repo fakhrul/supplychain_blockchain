@@ -1,8 +1,10 @@
 # /src/views/ActivityView.py
-from flask import Flask, request, g, Blueprint, json, Response
+from flask import Flask, request, g, Blueprint, json, Response, send_file
 from marshmallow import ValidationError
 from ..shared.Authentication import Auth
 from ..shared.Ethereum import Ethereum
+from ..shared.QrGenerator import QrGenerator
+from io import BytesIO
 
 app = Flask(__name__)
 etheruem_api = Blueprint('etheruem_api', __name__)
@@ -11,6 +13,14 @@ etheruem_api = Blueprint('etheruem_api', __name__)
 @etheruem_api.route('/', methods=['GET'])
 def index():
     return custom_response('etheruem', 200)
+
+@etheruem_api.route('/generateQr/<string:id>')
+def generateQr(id):
+    img = QrGenerator.generate(id)
+    img_io = BytesIO()
+    img.save(img_io, 'PNG')
+    img_io.seek(0)
+    return send_file(img_io, mimetype='image/png')
 
 ## ORGANIZATION TYPE
 
@@ -522,32 +532,6 @@ def createTrail():
         'data' : data
     }
     return custom_response(retObj, 201)    
-
-# @etheruem_api.route('/trail/<string:id>', methods=['PUT'])
-# def updateTrail(id):
-#     req_data = request.get_json()
-#     product = req_data['product']
-#     activity = req_data['activity']
-#     profile = req_data['profile']
-#     area = req_data['area']
-#     gps = req_data['gps']
-#     remarks = req_data['remarks']
-#     custom = req_data['customJsonData']
-
-#     data = Ethereum.update_trail(id, product, activity, 
-#     profile, area, gps, remarks, custom)
-#     retObj = {
-#         'data' : data
-#     }
-#     return custom_response(retObj, 201)    
-
-# @etheruem_api.route('/trail/<string:id>', methods=['DELETE'])
-# def deleteTrail(id):
-#     retObj = {
-#         'data' : Ethereum.delete_trail(id)
-#     }
-#     return custom_response(retObj, 200)
-
 
 def custom_response(res, status_code):
     """

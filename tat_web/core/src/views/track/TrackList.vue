@@ -44,13 +44,30 @@
                 <CCardBody>
                   <CMedia :aside-image-props="{ height: 102 }">
                     <h4>
-                      {{ item.code }}
+                      {{ item.name }}
                     </h4>
-                    <p class="text-muted">Name: {{ item.name }}</p>
-                    <p class="text-muted">
-                      Category: {{ item.categoryName }}
+                    <p class="text-muted">Id : {{ item.id }}</p>
+                    <p class="text-muted">Category: {{ item.categoryName }}</p>
+                    <p>
+                    Qr Img :
+                    <div>
+                      <img :src="getImgUrl(item.id)" />
+                    </div>
                     </p>
-                    <CButton size="sm" color="info" class="" @click="onView(item)">
+                    <p>
+                    Qr Link :
+                    <a :href="getImgUrl(item.id)" target="_blank">{{getImgUrl(item.id)}} }}</a>
+                    </p>
+                    <p>
+                    Qr Info :
+                    <a :href="item.qrUrl" target="_blank">{{ item.qrUrl }}</a>
+                    </p>
+                    <CButton
+                      size="sm"
+                      color="info"
+                      class=""
+                      @click="onView(item)"
+                    >
                       View
                     </CButton>
                     <!-- <CButton
@@ -135,13 +152,22 @@ export default {
       var self = this;
       self.api.getTrailList().then((response) => {
         self.items = response.data;
-        console.log(self.items)
       });
     },
-    onView(item){
+    getImgUrl(id) {
+      return "http://127.0.0.1:5005/api/eth/generateQr/" + id;
+      // var self = this;
+      // var img;
+      // self.api.getQrImage(id).then((response) => {
+      //   img = response;
+      //   console.log(img)
+      // });
+      // return img;
+    },
+    onView(item) {
       var self = this;
       self.$router.push({
-        path: `/track/history/${item.id}`
+        path: `/track/history/${item.id}`,
       });
     },
     onDeleteConfirmation(status, evt, accept) {

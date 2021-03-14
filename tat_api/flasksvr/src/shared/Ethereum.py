@@ -4,6 +4,7 @@ from web3 import Web3
 from web3.middleware import geth_poa_middleware
 from .Encryptor import Encryptor
 from datetime import datetime
+from .QrGenerator import QrGenerator
 
 geth_url = os.getenv('ETHEREUM_ENDPOINT_URI')
 contract_path = os.getenv('ETHEREUM_CONTRACT_PATH')
@@ -706,7 +707,8 @@ class Ethereum():
             'description' : description,
             'certificationList' : certificationList,
             'custom': custom,
-            'isActive': isActive
+            'isActive': isActive,
+            'qrUrl' : QrGenerator.get_url(Web3.toHex(objId))
         }
         return data
 

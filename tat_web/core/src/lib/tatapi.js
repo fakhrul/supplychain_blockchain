@@ -459,7 +459,13 @@ class TatApi {
             });
     }
 
-
+    getQrImage(id) {
+        var url = apiUrl + 'generateQr/';
+        return api.call('get', url +id)
+            .then(({ data }) => {
+                return data
+            });
+    }
 }
 
 export default TatApi;
