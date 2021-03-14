@@ -12,7 +12,7 @@ const LoadingScreen = () => {
 
     return (
 <View style={styles.container}>
-                <Text>Welcome</Text>
+                <Text>Loading</Text>
                 </View>
     );
 };

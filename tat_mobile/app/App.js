@@ -10,8 +10,8 @@ import {Provider as TrackProvider} from './src/context/TrackContext';
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createStackNavigator } from 'react-navigation-stack'
 
-import MainScreen from "./src/screens/MainScreen"
-import MovementScreen from "./src/screens/MovementScreen"
+import HomeScreen from "./src/screens/HomeScreen"
+import ScanQrScreen from "./src/screens/ScanQrScreen"
 import SigninScreen from "./src/screens/SigninScreen"
 import SignupScreen from "./src/screens/SignupScreen"
 import AccountScreen from "./src/screens/AccountScreen"
@@ -26,39 +26,36 @@ import {setNavigator} from './src/helper/navigationRef';
 import {FontAwesome} from '@expo/vector-icons';
 
 const  mainFlow =  createStackNavigator({
-  Main : MainScreen
+  Home : HomeScreen
 });
 
 
 mainFlow.navigationOptions = {
   title: 'Home',
-  
   tabBarIcon: <FontAwesome name="home" size={20}></FontAwesome>
 
 }
 
-const movementFlow = createStackNavigator({
-  Movement : MovementScreen,
+const trackingFlow = createStackNavigator({
+  ScanQr : ScanQrScreen,
   TrackCreate : TrackCreateScreen,
   TrackDetail: TrackDetailScreen
 })
 
-movementFlow.navigationOptions = {
-  title: 'Movement',
+trackingFlow.navigationOptions = {
+  title: 'Tracking',
   tabBarIcon: <FontAwesome name="map" size={20}></FontAwesome>
 
 }
 
-
 const switchNavigator = createSwitchNavigator({
   Loading: LoadingScreen,
   anonymousFlow: createStackNavigator({
-    // Signup: SignupScreen,
     Signin: SigninScreen
   }),
   userFlow: createBottomTabNavigator({
     mainFlow,
-    movementFlow,
+    trackingFlow,
     Account: AccountScreen
   })
 });

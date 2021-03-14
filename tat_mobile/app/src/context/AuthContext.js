@@ -9,7 +9,7 @@ const authReducer = (state, action) => {
       return { ...state, errorMessage: action.payload };
     case "signin":
     case "signup":
-      return { errorMessage: "", token: action.payload };
+      return { errorMessage: "",token: action.token, profileId: action.profileId , profile: action.profile};
     case "signinPatient":
       return { errorMessage: "", token: action.token, profileId: action.profileId , profile: action.profile};
       break;
@@ -23,10 +23,13 @@ const authReducer = (state, action) => {
 };
 
 const tryLocalSignIn = (dispatch) => async () => {
-  const token = await AsyncStorage.getItem("token");
-  if (token) {
-    dispatch({ type: "signin", payload: token });
-    navigate("Main");
+  const tokenValue = await AsyncStorage.getItem("token");
+  const profileIdValue = await AsyncStorage.getItem("profileId");
+  const profileValue =  await AsyncStorage.getItem("profile");
+  const profileObj = JSON.parse(profileValue);
+  if (tokenValue && profileIdValue && profileObj) {
+    dispatch({ type: "signin", token: tokenValue, profileId: profileIdValue, profile: profileObj });
+    navigate("Home");
   } else {
     navigate("anonymousFlow");
   }
@@ -75,6 +78,8 @@ const signin = (dispatch) => {
 const signout = (dispatch) => {
   return async () => {
     await AsyncStorage.removeItem("token");
+    await AsyncStorage.removeItem("profileId");
+    await AsyncStorage.removeItem("profile");
     dispatch({ type: "signout" });
     navigate("anonymousFlow");
   };
@@ -89,9 +94,13 @@ const signinPatient = (dispatch) => {
       });
       if (response.data.status == "success") {
         await AsyncStorage.setItem("token", response.data.token);
-        await AsyncStorage.setItem("profile", response.data.data.id);
+        await AsyncStorage.setItem("profileId", response.data.data.id);
+
+        const jsonValue = JSON.stringify(response.data.data)
+        await AsyncStorage.setItem("profile", jsonValue);
+
         dispatch({ type: "signinPatient", token: response.data.token, profileId: response.data.data.id, profile: response.data.data  });
-        navigate("Main");
+        navigate("Home");
       }
       else
       {
