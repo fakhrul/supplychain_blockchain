@@ -20,8 +20,8 @@ const LoadingScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        borderColor : 'red',
-        borderWidth: 10,
+        // borderColor : 'red',
+        // borderWidth: 10,
         flex: 1,
         justifyContent: 'center',
     }

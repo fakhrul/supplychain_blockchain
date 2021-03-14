@@ -37,7 +37,7 @@ const SigninScreen = ({ navigation }) => {
       <View style={styles.logo}>
         <Image source={require("../../assets/logo.png")}></Image>
       </View>
-      <Text style={styles.title}>Welcome to Tracks & Monitoring App</Text>
+      <Text style={styles.title}>Welcome to Track and Trace App</Text>
       <View style={{ height: 65 }}></View>
       <InputCustom
         placeholder="Email"

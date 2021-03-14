@@ -792,6 +792,20 @@ class Ethereum():
         objId = Web3.toHex(logs[0]['args']['objId'])
         return objId
 
+
+    @staticmethod
+    def get_profile_by_email(email):
+        web3 = Web3(Web3.HTTPProvider(geth_url))
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        contractName = 'ProfileContract'
+        contract = web3.eth.contract(
+            address=contract_address_lib[contractName], abi=abi_lib[contractName])
+        web3.middleware_onion.inject(geth_poa_middleware, layer=0)
+        profileId = contract.functions.emailMap(email).call()
+        profile = Ethereum.get_profile(profileId)
+
+        return profile
+        
     @staticmethod
     def get_profile(id):
         web3 = Web3(Web3.HTTPProvider(geth_url))

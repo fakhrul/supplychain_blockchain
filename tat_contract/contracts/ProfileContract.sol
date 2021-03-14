@@ -15,6 +15,8 @@ contract ProfileContract {
     }
 
     mapping(bytes32 => Profile) public dataMap;
+    mapping(string => bytes32) public emailMap;
+
     bytes32[] public dataList;
 
     event Created(bytes32 objId);
@@ -43,6 +45,7 @@ contract ProfileContract {
         obj.isActive = true;
         obj.customJsonData = _customJsonData;
 
+        emailMap[_email] = newId;
         dataList.push(newId);
 
         emit Created(newId);

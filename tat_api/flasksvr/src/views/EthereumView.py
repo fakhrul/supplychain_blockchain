@@ -14,6 +14,25 @@ etheruem_api = Blueprint('etheruem_api', __name__)
 def index():
     return custom_response('etheruem', 200)
 
+@etheruem_api.route('/signin', methods=['POST'])
+def signin():
+    req_data = request.get_json()
+    email = req_data['email'];
+    password = req_data['password'];
+    profile = Ethereum.get_profile_by_email(email);
+    if profile['password'] == password :
+        retObj = {
+            'status': "success",
+            'data' : profile,
+            'token': Auth.generate_token(email)
+        }
+        return custom_response(retObj, 200)
+
+    retObj = {
+        'status': 'failed',
+    }
+    return custom_response(retObj, 200)
+
 @etheruem_api.route('/generateQr/<string:id>')
 def generateQr(id):
     img = QrGenerator.generate(id)

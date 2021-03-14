@@ -1,23 +1,36 @@
-import React, {useContext} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Text, Button} from 'react-native-elements';
+import React, { useContext } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Text, Button } from 'react-native-elements';
 import Spacer from '../components/Spacer';
-import {Context as AuthContext} from '../context/AuthContext';
-import {SafeAreaView} from 'react-navigation';
-import {FontAwesome} from '@expo/vector-icons';
+import { Context as AuthContext } from '../context/AuthContext';
+import { SafeAreaView } from 'react-navigation';
+import { FontAwesome } from '@expo/vector-icons';
 
-const AccountScreen = ({navigation}) => {
-    const {signout} = useContext(AuthContext);
-
+const AccountScreen = ({ navigation }) => {
+    const { state: {profileId, profile}, signout } = useContext(AuthContext);
     return (
-        <SafeAreaView forceInset={{top: 'always'}}>
-            <Text style={{fontSize:48}}>Account Screen</Text>
+        <SafeAreaView forceInset={{ top: 'always' }}>
+            <Text style={{ fontSize: 48 }}>Account Screen</Text>
             <Spacer>
-            <Button
-                title="SingOut"
-                onPress={signout}
-                
-            />
+                <Text>ID: {profile.id}</Text>
+            </Spacer>
+            <Spacer>
+                <Text>Name: {profile.name}</Text>
+            </Spacer>
+            <Spacer>
+                <Text>Email: {profile.email}</Text>
+            </Spacer>
+            <Spacer>
+                <Text>Phone: {profile.phone}</Text>
+            </Spacer>
+            <Spacer>
+                <Text>Organization: {profile.organization.name}</Text>
+            </Spacer>
+            <Spacer>
+                <Button
+                    title="Sign Out"
+                    onPress={signout}
+                />
             </Spacer>
         </SafeAreaView>
     );

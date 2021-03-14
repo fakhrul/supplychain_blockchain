@@ -11,7 +11,7 @@ const authReducer = (state, action) => {
     case "signup":
       return { errorMessage: "", token: action.payload };
     case "signinPatient":
-      return { errorMessage: "", token: action.payload };
+      return { errorMessage: "", token: action.token, profileId: action.profileId , profile: action.profile};
       break;
     case "signout":
       return { token: null, errorMessage: "" };
@@ -57,7 +57,6 @@ const signin = (dispatch) => {
   return async ({ email, password }) => {
     try {
       const response = await trackerApi.post("/signin", { email, password });
-      console.log(response.data);
       await AsyncStorage.setItem("token", response.data.token);
       // await AsyncStorage.getItem('token');
       dispatch({ type: "signin", payload: response.data.token });
@@ -84,18 +83,25 @@ const signout = (dispatch) => {
 const signinPatient = (dispatch) => {
   return async ({ email, password }) => {
     try {
-      const response = await trackerApi.post("/signinPatient", {
+      const response = await trackerApi.post("/signin", {
         email,
         password,
       });
-      await AsyncStorage.setItem("token", response.data.token);
-
-      await AsyncStorage.setItem("patient", response.data.patient._id);
-
-      dispatch({ type: "signinPatient", payload: response.data.token });
-      navigate("Main");
+      if (response.data.status == "success") {
+        await AsyncStorage.setItem("token", response.data.token);
+        await AsyncStorage.setItem("profile", response.data.data.id);
+        dispatch({ type: "signinPatient", token: response.data.token, profileId: response.data.data.id, profile: response.data.data  });
+        navigate("Main");
+      }
+      else
+      {
+        dispatch({
+          type: "add_error",
+          payload: "Something went wrong with sign in",
+        });
+        }
     } catch (err) {
-        console.log(err);
+      console.log(err);
       dispatch({
         type: "add_error",
         payload: "Something went wrong with sign in",
@@ -115,5 +121,5 @@ const signinPatient = (dispatch) => {
 export const { Provider, Context } = createDataContext(
   authReducer,
   { signin, signup, signout, clearErrorMessage, tryLocalSignIn, signinPatient },
-  { token: null, errorMessage: "", patient: null }
+  { token: null, errorMessage: "", profileId: null, profile: null }
 );
