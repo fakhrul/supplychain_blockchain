@@ -1,85 +1,78 @@
 <template>
   <div class="hello">
-    <h1>{{productId}}</h1>
-   <Timeline
-    :timeline-items="timelineItems"
-    :message-when-no-items="messageWhenNoItems"/>
+    <h1>{{ product.name }} - {{ product.id }}</h1>
+    <Timeline
+      :timeline-items="timelineItems"
+      :message-when-no-items="messageWhenNoItems"
+    />
   </div>
 </template>
 
 <script>
-import Timeline from 'timeline-vuejs'
+import Timeline from "timeline-vuejs";
+import TatApi from "../lib/tatapi";
+
 export default {
-  name: 'Scan',
-     components: {
-      Timeline
-    },
+  name: "Scan",
+  components: {
+    Timeline,
+  },
   props: {
-    msg: String
+    msg: String,
   },
-   data: () => ({
-     productId: "",
-    messageWhenNoItems: 'There are not items',
-    timelineItems: []
-
-  }),
-    mounted() {
+  // data: () => ({
+  //   productId: "",
+  //   product: {},
+  //   productTrail: [],
+  //   messageWhenNoItems: "There are not items",
+  //   timelineItems: [],
+  //   api: new TatApi(),
+  // }),
+  data() {
+    return {
+      api: new TatApi(),
+      product: {},
+      productTrail: [],
+      messageWhenNoItems: "There are not items",
+      timelineItems: [],
+    };
+  },
+  mounted() {
     var self = this;
-    if (self.$route.params.id) {
-      self.productId =self.$route.params.id;
-self.timelineItems  = [
-      {
-        from: new Date(2018, 7,2),
-        showDayAndMonth: true,
-        title: 'Name',
-        color: '#e74c3c',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum architecto dolor, vitae magnam voluptate accusantium assumenda numquam error mollitia, officia facere consequuntur reprehenderit cum voluptates, ea tempore beatae unde.'
-      },
-      {
-        from: new Date(2016, 1,20),
-        showDayAndMonth: true,
-        title: 'Name',
-        color: '#2ecc71',
-                description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum architecto dolor, vitae magnam voluptate accusantium assumenda numquam error mollitia, officia facere consequuntur reprehenderit cum voluptates, ea tempore beatae unde.'
-      },
-      {
-        from: new Date(2016, 6,15),
-        showDayAndMonth: true,
-        color: '#e74c3c',
-        title: 'Name',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum architecto dolor, vitae magnam voluptate accusantium assumenda numquam error mollitia, officia facere consequuntur reprehenderit cum voluptates, ea tempore beatae unde.'
-      },
-      {
-        from: new Date(2012, 0,2),
-        showDayAndMonth: true,
-        color: '#2ecc71',
-                title: 'Name',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum architecto dolor, vitae magnam voluptate accusantium assumenda numquam error mollitia, officia facere consequuntur reprehenderit cum voluptates, ea tempore beatae unde.'
-      }
-    ]    }
+    self.refreshTimeline();
+
   },
+  methods: {
+    refreshTimeline() {
+      var self = this;
+      if (self.$route.params.id) {
+        self.api.getProduct(self.$route.params.id).then((response) => {
+          self.product = response.data;
+          this.api.getProductTrail(self.$route.params.id).then((response) => {
+            self.productTrail = response.data.trailInfoList;
+            for (var i = self.productTrail.length - 1; i >=0 ; i--) {
+              var pointColor = i % 2 == 0 ? "#e74c3c" : "#2ecc71";
 
-}
+              var detailInfo =
+                "<h4>" + self.productTrail[i].organization.name + "</h4>";
+              detailInfo +=
+                "<p>Area: " + self.productTrail[i].area.name + "</p>";
+              detailInfo +=
+                "<p>Activity: " + self.productTrail[i].activity.name + "</p>";
+              detailInfo += "<p>GPS: " + self.productTrail[i].gps + "</p>";
+              var info = {
+                from: new Date(self.productTrail[i].createdDate * 1000),
+                showDayAndMonth: true,
+                title: self.productTrail[i].createdDateInText,
+                color: pointColor,
+                description: detailInfo,
+              };
+              self.timelineItems.push(info);
+            }
+          });
+        });
+      }
+    },
+  },
+};
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

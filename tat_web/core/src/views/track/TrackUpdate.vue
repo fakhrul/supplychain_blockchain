@@ -54,9 +54,10 @@
                 description="GPS"
                 label="GPS"
                 horizontal
-                autocomplete=""
+                autocomplete="asd"
                 v-model="obj.gps"
               />
+              <p></p>
               <CTextarea
                 label="Remarks"
                 placeholder="Remarks"
@@ -87,10 +88,11 @@ export default {
   name: "TrackUpdate",
   data: () => {
     return {
+      location: null,
+      gettingLocation: false,
       organizationList: [],
       profileList: [],
       activityList: [],
-      locationList: [],
       areaList: [],
       api: new TatApi(),
       obj: {
@@ -112,21 +114,42 @@ export default {
         },
         name: "",
         customJsonData: "",
+        gps: ""
       },
     };
   },
   mounted() {
     var self = this;
     self.refreshOrganization();
-    // self.refreshActivity();
-    // self.refreshLocation();
     if (self.$route.params.id) {
       this.api.getProduct(self.$route.params.id).then((response) => {
         self.obj.product = response.data;
+        self.refreshGeoLocation();
       });
     }
   },
   methods: {
+    refreshGeoLocation() {
+      var self = this;
+      if (!("geolocation" in navigator)) {
+        alert("Geolocation is not available.");
+        return;
+      }
+
+      self.gettingLocation = true;
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          self.gettingLocation = false;
+          self.location = pos;
+          self.obj.gps = self.location.coords.latitude + "," +  self.location.coords.longitude;
+          console.log(pos.coords)
+        },
+        (err) => {
+          self.gettingLocation = false;
+          alert(err.message);
+        }
+      );
+    },
     activityChange(event) {},
     areaChange(event) {},
     profileChange(event) {},

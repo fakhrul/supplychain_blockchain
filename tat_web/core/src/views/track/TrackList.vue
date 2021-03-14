@@ -156,13 +156,6 @@ export default {
     },
     getImgUrl(id) {
       return "http://127.0.0.1:5005/api/eth/generateQr/" + id;
-      // var self = this;
-      // var img;
-      // self.api.getQrImage(id).then((response) => {
-      //   img = response;
-      //   console.log(img)
-      // });
-      // return img;
     },
     onView(item) {
       var self = this;

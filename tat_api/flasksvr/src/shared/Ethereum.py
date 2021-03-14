@@ -1066,7 +1066,8 @@ class Ethereum():
             'remarks' : remarks,
             'custom': custom,
             'isActive': isActive,
-            'createdDate': createdDateInText
+            'createdDate': createdDate,
+            'createdDateInText': createdDateInText
         }
         return data
 

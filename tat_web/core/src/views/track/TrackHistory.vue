@@ -6,6 +6,12 @@
         <CCardBody>
           <h4>Name: {{ product.name }}</h4>
           <p class="text-muted">ID: {{ product.id }}</p>
+          <div>
+            <img :src="getImgUrl()" />
+          </div>
+          <p>
+            <a :href="product.qrUrl" target="_blank">{{ product.qrUrl }}</a>
+          </p>
           <CDataTable
             :items="items"
             :fields="fields"
@@ -136,6 +142,11 @@ export default {
     self.refreshTable();
   },
   methods: {
+    getImgUrl() {
+      var self = this;
+      var url = "http://127.0.0.1:5005/api/eth/generateQr/" + self.product.id;
+      return url;
+    },
     toggleDetails(item, index) {
       this.$set(this.items[index], "_toggled", !item._toggled);
       this.collapseDuration = 300;
