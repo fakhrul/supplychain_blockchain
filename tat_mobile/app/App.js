@@ -20,30 +20,40 @@ import LoadingScreen from "./src/screens/LoadingScreen"
 
 import TrackCreateScreen from "./src/screens/TrackCreateScreen"
 import TrackDetailScreen from "./src/screens/TrackDetailScreen"
+import ProductTrailScreen from "./src/screens/ProductTrailScreen";
+
+import UpdateTrackScreen from "./src/screens/UpdateTrackScreen";
+import UpdateQrScreen from "./src/screens/UpdateQrScreen";
+
 
 import { Provider as AuthProvider } from "./src/context/AuthContext"
 import {setNavigator} from './src/helper/navigationRef';
 import {FontAwesome} from '@expo/vector-icons';
 
 const  mainFlow =  createStackNavigator({
-  Home : HomeScreen
+  Home : HomeScreen,
+  ScanQr: ScanQrScreen,
+  ProductTrail : ProductTrailScreen,
 });
-
 
 mainFlow.navigationOptions = {
   title: 'Home',
   tabBarIcon: <FontAwesome name="home" size={20}></FontAwesome>
-
 }
 
 const trackingFlow = createStackNavigator({
   ScanQr : ScanQrScreen,
-  TrackCreate : TrackCreateScreen,
+  ProductTrail : ProductTrailScreen,
   TrackDetail: TrackDetailScreen
 })
 
-trackingFlow.navigationOptions = {
-  title: 'Tracking',
+const updateFlow = createStackNavigator({
+  UpdateTrack : UpdateTrackScreen,
+  UpdateQr : UpdateQrScreen,
+})
+
+updateFlow.navigationOptions = {
+  title: 'Update Trail',
   tabBarIcon: <FontAwesome name="map" size={20}></FontAwesome>
 
 }
@@ -55,7 +65,7 @@ const switchNavigator = createSwitchNavigator({
   }),
   userFlow: createBottomTabNavigator({
     mainFlow,
-    trackingFlow,
+    updateFlow,
     Account: AccountScreen
   })
 });
@@ -73,23 +83,3 @@ export default () => {
     </TrackProvider>
   );
 };
-
-// import React from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
-
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Open up App.js to start working on your app!</Text>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

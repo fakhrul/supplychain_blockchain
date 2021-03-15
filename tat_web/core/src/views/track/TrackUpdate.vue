@@ -114,7 +114,8 @@ export default {
         },
         name: "",
         customJsonData: "",
-        gps: ""
+        gps: "",
+        remarks: "",
       },
     };
   },

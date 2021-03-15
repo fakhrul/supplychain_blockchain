@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-navigation";
 import Header from "../components/Header";
 import url from 'url';
 
-const ScanQrScreen = ({ navigation }) => {
+const UpdateQrScreen = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -46,7 +46,7 @@ const ScanQrScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container} >
-      <Header title="Scan QR" isBackButton navigation={navigation} onPress={() => { alert('More option here') }} ></Header>
+      <Header title="Scan QR" navigation={navigation} onPress={() => { alert('More option here') }} ></Header>
       <View style={styles.barcode}>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
@@ -58,7 +58,7 @@ const ScanQrScreen = ({ navigation }) => {
   );
 }
 
-ScanQrScreen.navigationOptions = () => {
+UpdateQrScreen.navigationOptions = () => {
   return {
       headerShown: false,
   };
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default ScanQrScreen;
+export default UpdateQrScreen;

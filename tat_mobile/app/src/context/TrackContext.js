@@ -7,65 +7,32 @@ const trackReducer = (state, action) => {
   switch (action.type) {
     case "fetch_tracks":
       return action.payload;
-    case "fetch_tracks_by_patient_by_date":
-      return action.tracksByPationByDate;
+      break;
+    case "fetch_organization":
+      return {area: action.area, activity: action.activity};
+      break;
     default:
       return state;
   }
 };
 
-const fetchTracks = (dispatch) => async () => {
-  const patientId = await AsyncStorage.getItem("patient");
-  const response = await trackerApi.get("/trackByPatient/" + patientId);
-  dispatch({ type: "fetch_tracks", payload: response.data });
+const fetchOrganization = (dispatch) => async ({ organizationId }) => {
+  const response = await trackerApi.get("/areaByOrganization/" + organizationId);
+  var area = response.data.data;
+  const responseActivity = await trackerApi.get("/activityByOrganization/" + organizationId);
+  var activity = responseActivity.data.data;
+  dispatch({ type: "fetch_organization", area: area, activity: activity });
 };
 
-// const fetchTracksByPatientIdByDate = (dispatch) => async (patientId, date) => {
-//   const dateUri = encodeURIComponent(date);
-//   log.console("fetchTracksByPatientIdByDate" + dateUri);
-//   // const response = await trackerApi.get("/tracksByPatientIdByDate/" + patientId + "/" + dateUri);
-//   // dispatch({ type: "fetch_tracks_by_patient_by_date", payload: response.data });
-
-// };
-
-const fetchTracksByPatientIdByDate = (dispatch) => async ({ date }) => {
-  const dateUri = encodeURIComponent(date);
-  const patientId = await AsyncStorage.getItem("patient");
-  console.log(dateUri);
-
-  const response = await trackerApi.get(
-    "/tracksByPatientIdByDate/" + patientId + "/" + dateUri
-  );
-  dispatch({ type: "fetch_tracks_by_patient_by_date", tracksByPationByDate: response.data });
-
-  // return async ({ patientId, date }) => {
-  //   try {
-  //     const dateUri = encodeURIComponent(date);
-  //     log.console("fetchTracksByPatientIdByDate" + dateUri);
-  //   } catch (err) {}
-  // };
+const fetchTracks = (dispatch) => async ({ productId }) => {
+  const response = await trackerApi.get("/trail/" + productId);
+  var dataToFilter = response.data.data.trailInfoList.reverse();
+  dispatch({ type: "fetch_tracks", payload: dataToFilter });
 };
 
 const createTrack = (dispatch) => async (name, locations) => {
   await trackerApi.post("/tracks", { name, locations });
 };
-
-// const signup = (dispatch) => {
-//   return async ({ email, password }) => {
-//     try {
-//       const response = await trackerApi.post("/signup", { email, password });
-//       console.log(response.data);
-//       await AsyncStorage.setItem("token", response.data.token);
-//       // await AsyncStorage.getItem('token');
-//       dispatch({ type: "signup", payload: response.data.token });
-
-//       navigate("Main");
-//     } catch (err) {
-//       console.log(err.response.data);
-//       dispatch({ type: "add_error", payload: "Something went wrong" });
-//     }
-//   };
-// };
 
 const saveTrack = (dispatch) => {
   return async ({ location }) => {
@@ -102,6 +69,6 @@ const saveTrack = (dispatch) => {
 
 export const { Provider, Context } = createDataContext(
   trackReducer,
-  { fetchTracks, fetchTracksByPatientIdByDate, createTrack, saveTrack },
-  []
+  { fetchTracks, fetchOrganization, createTrack, saveTrack },
+  { trailList: null, area: [], activity: [] }
 );

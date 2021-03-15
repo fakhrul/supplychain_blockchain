@@ -7,12 +7,12 @@ import { SafeAreaView } from 'react-navigation';
 import { FontAwesome } from '@expo/vector-icons';
 
 const AccountScreen = ({ navigation }) => {
-    const { state: {profileId, profile}, signout } = useContext(AuthContext);
+    const { state: { profileId, profile }, signout } = useContext(AuthContext);
     return (
         <SafeAreaView forceInset={{ top: 'always' }}>
             <Text style={{ fontSize: 48 }}>Account Screen</Text>
             <Spacer>
-                <Text>ID: {profile.id}</Text>
+                <Text>Profile Id: {profile.id}</Text>
             </Spacer>
             <Spacer>
                 <Text>Name: {profile.name}</Text>
@@ -22,6 +22,9 @@ const AccountScreen = ({ navigation }) => {
             </Spacer>
             <Spacer>
                 <Text>Phone: {profile.phone}</Text>
+            </Spacer>
+            <Spacer>
+                <Text>Organization Id: {profile.organization.id}</Text>
             </Spacer>
             <Spacer>
                 <Text>Organization: {profile.organization.name}</Text>
