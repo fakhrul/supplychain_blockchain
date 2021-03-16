@@ -16,16 +16,14 @@ import { InputCustom, ActionButtonCustom } from "../components";
 var moment = require("moment");
 
 const ProductTrailScreen = ({ navigation }) => {
-    const { state, fetchTracks } = useContext(TrackContext);
+    const { state: { isFetching, hasError, message, trailList },  fetchTracks } = useContext(TrackContext);
     const productId = navigation.getParam("productId");
 
     const refreshTracks = () => {
-        var data = fetchTracks({ productId });
-        console.log(state);
+        fetchTracks({ productId });
     };
 
     const renderDetail = (post) => {
-        console.log(post);
         return (
             <View style={styles.feedItem}>
                 <View style={{ flex: 1 }}>
@@ -55,11 +53,20 @@ const ProductTrailScreen = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView  style={styles.container} >
+        <SafeAreaView SafeAreaView style={styles.container} >
             <NavigationEvents onWillFocus={refreshTracks}></NavigationEvents>
+            {isFetching == true
+                ? (<Text>isFetching = true</Text>)
+                : (<Text>isFetching = false</Text>)
+            }
+            {hasError == true
+                ? (<Text>hasError = true</Text>)
+                : (<Text>hasError = false</Text>)
+            }
+            <Text>Message: {message}</Text>
             <Text>Product Id: {productId}</Text>
             <FlatList
-                data={state}
+                data={trailList}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => renderDetail(item)}
             ></FlatList>

@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Alert, Linking, Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { SafeAreaView } from "react-navigation";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import url from 'url';
+import { Context as TrackContext } from "../../context/TrackContext";
 
-const ScanQrScreen = ({ navigation }) => {
+const UpdateQrScreen = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const areaId = navigation.getParam("areaId");
+  const activityId = navigation.getParam("activityId");
+  const { state: { isFetching, hasError, message }, saveTrack } = useContext(TrackContext);
 
   useEffect(() => {
     (async () => {
@@ -16,8 +20,10 @@ const ScanQrScreen = ({ navigation }) => {
     })();
   }, []);
 
-  const displayProductTrail = (productId ) => {
-    navigation.navigate("ProductTrail", { productId: productId });
+  const saveProductTrail = (productId) => {
+    saveTrack({
+      productId, activityId, areaId, gps: "0,0"
+    })
   };
 
   const handleBarCodeScanned = ({ type, data }) => {
@@ -31,8 +37,7 @@ const ScanQrScreen = ({ navigation }) => {
           onPress: () => {
             var path = url.parse(data);
             var productId = path.pathname.substring(1);
-            displayProductTrail(productId);
-            // navigation.navigate("ProductTrail", { productId: productId });
+            saveProductTrail(productId)
           }
         },
         { text: 'No', onPress: () => { } },
@@ -51,7 +56,7 @@ const ScanQrScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container} >
-      <Header title="Scan QR" isBackButton navigation={navigation} onPress={() => { alert('More option here') }} ></Header>
+      <Header isBackButton title="Scan QR" navigation={navigation} onPress={() => { alert('More option here') }} ></Header>
       <View style={styles.barcode}>
         <BarCodeScanner
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
@@ -59,29 +64,42 @@ const ScanQrScreen = ({ navigation }) => {
         />
         {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
       </View>
-      <Button title="BYPASS SCAN"
+      {isFetching == true
+        ? (<Text>isFetching = true</Text>)
+        : (<Text>isFetching = false</Text>)
+      }
+      {hasError == true
+        ? (<Text>hasError = true</Text>)
+        : (<Text>hasError = false</Text>)
+      }
+      <Text>Message: {message}</Text>
+      <Text>Activity: {activityId}</Text>
+      <Text>Area: {areaId}</Text>
+
+      <Button title="0x56ceec9805..."
         onPress={() =>
-          displayProductTrail('0x56ceec9805cac5fa712309bf1b049b1386911c300e5c5b387cefe9cb95610243')
+          saveProductTrail('0x56ceec9805cac5fa712309bf1b049b1386911c300e5c5b387cefe9cb95610243')
         }>
 
       </Button>
-      <Button title="BYPASS SCAN 2"
+      <Button title="0x2a11746e1.."
         onPress={() =>
-          displayProductTrail('0x2a11746e1e87fba5f38b20c067f797e57ea6dbb576760d9f38a40b428280841d')
+          saveProductTrail('0x2a11746e1e87fba5f38b20c067f797e57ea6dbb576760d9f38a40b428280841d')
         }>
 
       </Button>
-      <Button title="BYPASS SCAN 3"
+      <Button title="0x7c701380eb.."
         onPress={() =>
-          displayProductTrail('0x7c701380eb9068262c3cd25f8b8f15c621a69904aaf26e6d56218d813a9a06dc')
+          saveProductTrail('0x7c701380eb9068262c3cd25f8b8f15c621a69904aaf26e6d56218d813a9a06dc')
         }>
 
       </Button>
-    </SafeAreaView >
+
+    </SafeAreaView>
   );
 }
 
-ScanQrScreen.navigationOptions = () => {
+UpdateQrScreen.navigationOptions = () => {
   return {
     headerShown: false,
   };
@@ -99,4 +117,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default ScanQrScreen;
+export default UpdateQrScreen;

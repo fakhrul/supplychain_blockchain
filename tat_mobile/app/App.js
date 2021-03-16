@@ -22,7 +22,7 @@ import TrackCreateScreen from "./src/screens/TrackCreateScreen"
 import TrackDetailScreen from "./src/screens/TrackDetailScreen"
 import ProductTrailScreen from "./src/screens/ProductTrailScreen";
 
-import UpdateTrackScreen from "./src/screens/UpdateTrackScreen";
+import UpdateTrackScreen from "./src/screens/UpdateTrackScreen/";
 import UpdateQrScreen from "./src/screens/UpdateQrScreen";
 
 

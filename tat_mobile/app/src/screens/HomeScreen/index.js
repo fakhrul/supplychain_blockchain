@@ -1,22 +1,21 @@
 import React, { useContext, useEffect } from 'react';
-import { Context as AuthContext } from '../context/AuthContext';
+import { Context as AuthContext } from '../../context/AuthContext';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from "react-navigation";
 import { Ionicons } from "@expo/vector-icons";
-import Header from "../components/Header";
-import { colors } from "../utils";
+import Header from "../../components/Header";
+import { colors } from "../../utils";
 
 const HomeScreen = ({ navigation }) => {
-
+    global.__reanimatedWorkletInit = () => {};
     const addNewStream = () => {
         navigation.navigate("ScanQr");
     };
-
     return (
         <SafeAreaView style={styles.container} >
             <Header title="Home" navigation={navigation} onPress={() => { alert('More option here') }} ></Header>
             <View style={styles.logo}>
-                <Image source={require("../resources/register.png")}></Image>
+                <Image source={require("../../resources/register.png")}></Image>
             </View>
             <View style={{ height: 40 }}></View>
 
@@ -52,6 +51,15 @@ const styles = StyleSheet.create({
         marginTop: 100,
         justifyContent: "center",
         alignItems: "center",
+    },
+    animationContainer: {
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+    },
+    buttonContainer: {
+        paddingTop: 20,
     },
 });
 
