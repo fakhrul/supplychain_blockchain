@@ -14,12 +14,12 @@ const Header = ({ title, navigation, isBackButton, ...more }) => {
         </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Ionicons name="ios-menu" size={32} />
+          {/* <Ionicons name="ios-menu" size={32} /> */}
         </TouchableOpacity>
       )}
       <Text style={styles.headerTitle}>{title}</Text>
       <TouchableOpacity {...more}>
-        <MaterialIcons  name="more-horiz" size={32} />
+        {/* <MaterialIcons  name="more-horiz" size={32} /> */}
       </TouchableOpacity>
     </View>
   );

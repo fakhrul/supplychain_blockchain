@@ -7,6 +7,8 @@ import { Picker } from '@react-native-picker/picker';
 import { Context as TrackContext } from "../../context/TrackContext";
 import { Button, FlatList, ScrollView } from 'react-native';
 import UpdateTrackPlaceHolder from "./components/UpdateTrackPlaceHolder";
+import { ActionButtonCustom } from "../../components";
+import { colors } from "../../utils";
 
 const UpdateTrackScreen = ({ navigation }) => {
     const { state: { isFetching, hasError, area, activity }, fetchOrganization } = useContext(TrackContext);
@@ -15,7 +17,6 @@ const UpdateTrackScreen = ({ navigation }) => {
     const [activityId, setActivityId] = useState("");
 
     const scrollViewRef = useRef();
-    const [test, setTest] = useState();
 
     const refreshOrganization = () => {
         fetchOrganization({ organizationId: profile.organization.id });
@@ -24,30 +25,17 @@ const UpdateTrackScreen = ({ navigation }) => {
     const proceed = () => {
         navigation.navigate("UpdateQr", { areaId: areaId, activityId: activityId });
     };
-    useEffect(() => {
-        if (!isFetching && area != null && area.length > 0) {
-            // setAreaId(area[0].id);
-            // setActivityId(activity[0].id);
-        }
-    });
+
 
     let content = <UpdateTrackPlaceHolder></UpdateTrackPlaceHolder>;
 
     if (!isFetching && !hasError && area != null && area.length > 0) {
         content = (
-            <View>
+            <View style={{ margin: 10 }}>
+                <View style={{ height: 100 }}></View>
+                <Text style={styles.title}>Select Area</Text>
                 <Picker
-                    mode="dropdown"
-                    onValueChange={(itemValue) =>
-                        setTest(itemValue)}
-                    selectedValue={test}>
-                    <Picker.Item label="First Item" value="first" />
-                    <Picker.Item label="asd" value="hi" />
-                    <Picker.Item label="Cancel" value="cancel" />
-                </Picker>
-                <Text>Select Area</Text>
-                <Picker
-                    style={{ width: "100%" }}
+                    style={styles.picker}
                     mode="dropdown"
                     selectedValue={areaId}
                     onValueChange={(itemValue) =>
@@ -61,9 +49,10 @@ const UpdateTrackScreen = ({ navigation }) => {
                         <Picker.Item label="Loading..." value="0" />
                     )}
                 </Picker>
-                <Text>Select Activity</Text>
+                <View style={{ height: 40 }}></View>
+                <Text style={styles.title}>Select Activity</Text>
                 <Picker
-                    style={{ width: "100%" }}
+                    style={styles.picker}
                     mode="dropdown"
                     selectedValue={activityId}
                     onValueChange={(itemValue) =>
@@ -77,7 +66,9 @@ const UpdateTrackScreen = ({ navigation }) => {
                         <Picker.Item label="Loading..." value="0" />
                     )}
                 </Picker>
-                <Button title="PROCEED" onPress={proceed}></Button>
+                <View style={{ height: 100 }}></View>
+
+                <ActionButtonCustom title="Continue" onPress={proceed}></ActionButtonCustom>
             </View>
         );
     }
@@ -85,7 +76,7 @@ const UpdateTrackScreen = ({ navigation }) => {
         <SafeAreaView style={styles.container} >
             <NavigationEvents onWillFocus={refreshOrganization}></NavigationEvents>
 
-            <Header title="Update Trail" navigation={navigation} onPress={() => { alert('More option here') }} ></Header>
+            <Header title="Add Trail" navigation={navigation} onPress={() => { alert('More option here') }} ></Header>
             <ScrollView
                 ref={scrollViewRef}
                 showsVerticalScrollIndicator={false}
@@ -93,18 +84,6 @@ const UpdateTrackScreen = ({ navigation }) => {
             >
                 {content}
             </ScrollView>
-
-
-            {/* <FlatList
-                data={area}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => renderDetail(item)}
-            ></FlatList>
-            <FlatList
-                data={activity}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => renderDetail(item)}
-            ></FlatList> */}
         </SafeAreaView>
     );
 };
@@ -115,20 +94,23 @@ UpdateTrackScreen.navigationOptions = () => {
     };
 };
 const styles = StyleSheet.create({
-    feed: {
-        marginHorizontal: 16,
+    container: {
+        backgroundColor: "white",
+        flex: 1,
     },
-    feedItem: {
-        backgroundColor: "#FFF",
-        borderRadius: 5,
-        padding: 8,
-        flexDirection: "row",
-        marginVertical: 8,
-    },
-    name: {
+    title: {
         fontSize: 15,
+        fontWeight: "bold",
+        marginLeft: 5,
+        color: colors.text.default
+    },
+    picker: {
+        borderWidth: 1,
+        borderColor: colors.lightGray,
+        width: "100%",
+        fontSize: 20,
         fontWeight: "500",
-        color: "#454D65",
+        color: colors.text.default,
     },
 });
 

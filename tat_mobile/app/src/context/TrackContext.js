@@ -14,9 +14,9 @@ const trackReducer = (state, action) => {
     case "fetch_tracks":
       return { isFetching: true, hasError: false };
     case "fetch_tracks_success":
-      return { isFetching: false, hasError: false, trailList: action.payload };
+      return { isFetching: false, hasError: false, trailList: action.trailList, product: action.product };
     case "fetch_tracks_failed":
-      return { isFetching: false, hasError: true, message: action.message, trailList: action.payload };
+      return { isFetching: false, hasError: true, message: action.message };
     case "fetch_organization":
       return { ...state, isFetching: true, hasError: false };
     case "fetch_organization_success":
@@ -41,52 +41,20 @@ const fetchOrganization = (dispatch) => async ({ organizationId }) => {
   }
 };
 
-
-
 const fetchTracks = (dispatch) => async ({ productId }) => {
   dispatch({ type: "fetch_tracks" });
   try {
+    const responseProduct = await trackerApi.get("/product/" + productId);
+    var product = responseProduct.data.data;
+
     const response = await trackerApi.get("/trail/" + productId);
-    var dataToFilter = response.data.data.trailInfoList.reverse();
-    dispatch({ type: "fetch_tracks_success", payload: dataToFilter });
+    var trailList = response.data.data.trailInfoList.reverse();
+
+    dispatch({ type: "fetch_tracks_success", trailList: trailList, product: product });
   } catch (err) {
     dispatch({ type: "fetch_tracks_failed", message: err });
   }
 };
-
-const createTrack = (dispatch) => async (name, locations) => {
-  await trackerApi.post("/tracks", { name, locations });
-};
-
-// const saveTrack = (dispatch) => {
-//   return async ({ location }) => {
-//     try {
-//       const patientId = await AsyncStorage.getItem("patient");
-//       const userId = patientId;
-//       const currentTime = Date.now();
-//       const track = {
-//         name: "App Client",
-//         patientId: patientId,
-//         userId: userId,
-//         timestamp: currentTime,
-//         date: moment(currentTime).format("DD/MM/YYYY"),
-//         time: moment(currentTime).format("HH:mm:ss"),
-//         latitude: location.latitude,
-//         longitude: location.longitude,
-//         altitude: location.altitude,
-//         accuracy: location.accuracy,
-//         heading: location.heading,
-//         speed: location.speed,
-//       };
-//         console.log(track);
-
-//       await trackerApi.post("/track", track);
-//     } catch (err) {
-//       console.log(err.message);
-//     }
-//   };
-// };
-
 const saveTrack = (dispatch) => {
   return async ({ productId, activityId, areaId, gps }) => {
     dispatch({ type: "save_tracks" });
@@ -125,6 +93,6 @@ const saveTrack = (dispatch) => {
 
 export const { Provider, Context } = createDataContext(
   trackReducer,
-  { fetchTracks, fetchOrganization, createTrack, saveTrack },
-  { isFetching: false, hasError: false, message: "", trailList: null, area: [], activity: [] }
+  { fetchTracks, fetchOrganization, saveTrack },
+  { isFetching: false, hasError: false, message: "",product:null, trailList: null, area: [], activity: [] }
 );

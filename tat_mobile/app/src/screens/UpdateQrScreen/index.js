@@ -5,10 +5,13 @@ import { SafeAreaView } from "react-navigation";
 import Header from "../../components/Header";
 import url from 'url';
 import { Context as TrackContext } from "../../context/TrackContext";
+import { ActionButtonCustom } from "../../components";
 
 const UpdateQrScreen = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const [scannedMsg, setScannedMsg] = useState("");
+
   const areaId = navigation.getParam("areaId");
   const activityId = navigation.getParam("activityId");
   const { state: { isFetching, hasError, message }, saveTrack } = useContext(TrackContext);
@@ -28,22 +31,35 @@ const UpdateQrScreen = ({ navigation }) => {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    Alert.alert(
-      'Open this URL?',
-      data,
-      [
-        {
-          text: 'Yes',
-          onPress: () => {
-            var path = url.parse(data);
-            var productId = path.pathname.substring(1);
-            saveProductTrail(productId)
-          }
-        },
-        { text: 'No', onPress: () => { } },
-      ],
-      { cancellable: false }
-    );
+    try {
+      var path = url.parse(data);
+      var productId = path.pathname.substring(1);
+      if (productId.substring(0, 2) == "0x") {
+        saveProductTrail(productId);
+      }
+      else {
+        setScannedMsg(data);
+      }
+    }
+    catch (err) {
+    }
+
+    // Alert.alert(
+    //   'Open this URL?',
+    //   data,
+    //   [
+    //     {
+    //       text: 'Yes',
+    //       onPress: () => {
+    //         var path = url.parse(data);
+    //         var productId = path.pathname.substring(1);
+    //         saveProductTrail(productId)
+    //       }
+    //     },
+    //     { text: 'No', onPress: () => { } },
+    //   ],
+    //   { cancellable: false }
+    // );
 
   };
 
@@ -62,38 +78,14 @@ const UpdateQrScreen = ({ navigation }) => {
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
         />
-        {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+        {scanned && <ActionButtonCustom title={'Tap to Scan Again'} onPress={() => {
+          setScanned(false);
+          setScannedMsg("");
+        }} />}
       </View>
-      {isFetching == true
-        ? (<Text>isFetching = true</Text>)
-        : (<Text>isFetching = false</Text>)
-      }
-      {hasError == true
-        ? (<Text>hasError = true</Text>)
-        : (<Text>hasError = false</Text>)
-      }
-      <Text>Message: {message}</Text>
-      <Text>Activity: {activityId}</Text>
-      <Text>Area: {areaId}</Text>
-
-      <Button title="0x56ceec9805..."
-        onPress={() =>
-          saveProductTrail('0x56ceec9805cac5fa712309bf1b049b1386911c300e5c5b387cefe9cb95610243')
-        }>
-
-      </Button>
-      <Button title="0x2a11746e1.."
-        onPress={() =>
-          saveProductTrail('0x2a11746e1e87fba5f38b20c067f797e57ea6dbb576760d9f38a40b428280841d')
-        }>
-
-      </Button>
-      <Button title="0x7c701380eb.."
-        onPress={() =>
-          saveProductTrail('0x7c701380eb9068262c3cd25f8b8f15c621a69904aaf26e6d56218d813a9a06dc')
-        }>
-
-      </Button>
+      {scannedMsg != "" ? (
+        <Text style={{ alignSelf: "center", marginBottom: 10 }}>Invalid data: {scannedMsg}</Text>
+      ) : (null)}
 
     </SafeAreaView>
   );

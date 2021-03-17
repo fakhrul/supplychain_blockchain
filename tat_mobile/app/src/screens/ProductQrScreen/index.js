@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Linking, Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { SafeAreaView } from "react-navigation";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import url from 'url';
+import { ActionButtonCustom } from "../../components";
 
-const ScanQrScreen = ({ navigation }) => {
+const ProductQrScreen = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const [scannedMsg, setScannedMsg] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -16,29 +18,25 @@ const ScanQrScreen = ({ navigation }) => {
     })();
   }, []);
 
-  const displayProductTrail = (productId ) => {
+  const navigateToProductTrail = (productId) => {
     navigation.navigate("ProductTrail", { productId: productId });
   };
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    Alert.alert(
-      'Open this URL?',
-      data,
-      [
-        {
-          text: 'Yes',
-          onPress: () => {
-            var path = url.parse(data);
-            var productId = path.pathname.substring(1);
-            displayProductTrail(productId);
-            // navigation.navigate("ProductTrail", { productId: productId });
-          }
-        },
-        { text: 'No', onPress: () => { } },
-      ],
-      { cancellable: false }
-    );
+
+    try {
+      var path = url.parse(data);
+      var productId = path.pathname.substring(1);
+      if (productId.substring(0, 2) == "0x") {
+        navigateToProductTrail(productId);
+      }
+      else {
+        setScannedMsg(data);
+      }
+    }
+    catch (err) {
+    }
 
   };
 
@@ -57,31 +55,19 @@ const ScanQrScreen = ({ navigation }) => {
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
         />
-        {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+        {scanned && <ActionButtonCustom title={'Tap to Scan Again'} onPress={() => {
+          setScanned(false);
+          setScannedMsg("");
+        }} />}
       </View>
-      <Button title="BYPASS SCAN"
-        onPress={() =>
-          displayProductTrail('0x56ceec9805cac5fa712309bf1b049b1386911c300e5c5b387cefe9cb95610243')
-        }>
-
-      </Button>
-      <Button title="BYPASS SCAN 2"
-        onPress={() =>
-          displayProductTrail('0x2a11746e1e87fba5f38b20c067f797e57ea6dbb576760d9f38a40b428280841d')
-        }>
-
-      </Button>
-      <Button title="BYPASS SCAN 3"
-        onPress={() =>
-          displayProductTrail('0x7c701380eb9068262c3cd25f8b8f15c621a69904aaf26e6d56218d813a9a06dc')
-        }>
-
-      </Button>
+      {scannedMsg != "" ? (
+        <Text style={{ alignSelf: "center", marginBottom: 10 }}>Invalid data: {scannedMsg}</Text>
+      ) : (null)}
     </SafeAreaView >
   );
 }
 
-ScanQrScreen.navigationOptions = () => {
+ProductQrScreen.navigationOptions = () => {
   return {
     headerShown: false,
   };
@@ -99,4 +85,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default ScanQrScreen;
+export default ProductQrScreen;

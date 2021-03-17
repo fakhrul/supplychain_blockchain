@@ -1,25 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 import { Context as AuthContext } from "../context/AuthContext";
-import AuthForm from "../components/AuthForm";
-import NavLink from "../components/NavLink";
 import { NavigationEvents, SafeAreaView } from "react-navigation";
 import { InputCustom, ActionButtonCustom } from "../components";
-import Svg, { Circle, Rect } from "react-native-svg";
+import { colors } from "../utils";
 
 const SigninScreen = ({ navigation }) => {
-  const { state, signinPatient, clearErrorMessage } = useContext(AuthContext);
+  const { state: { errorMessage }, signinPatient, clearErrorMessage } = useContext(AuthContext);
   const [form, setForm] = new useState({
-    email: "fakhrulazran@gmail.com",
+    email: "fakhrulazran@gmail.com2",
     password: "qwe123",
   });
 
-  // useEffect(() =>{
-
-  // }, []);
-
   const sendData = () => {
-    console.log({form});
     signinPatient({
       email: form.email,
       password: form.password
@@ -32,13 +25,20 @@ const SigninScreen = ({ navigation }) => {
       [input]: value,
     });
   };
+
+  // useEffect(() => {
+  //   clearErrorMessage();
+  // });
+
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.logo}>
         <Image source={require("../../assets/logo.png")}></Image>
       </View>
-      <Text style={styles.title}>Welcome to Track and Trace App</Text>
-      <View style={{ height: 65 }}></View>
+      <Text style={styles.title}>Track and Trace</Text>
+      <Text style={styles.subTitle}>(A Blockchain Based App)</Text>
+      <View style={{ height: 40 }}></View>
       <InputCustom
         placeholder="Email"
         value={form.email}
@@ -48,26 +48,16 @@ const SigninScreen = ({ navigation }) => {
       <InputCustom
         placeholder="Password"
         value={form.password}
-        onChangeText={(value) => onInputChanged(value,'password')}
+        onChangeText={(value) => onInputChanged(value, 'password')}
         secureTextEntry={true}
       ></InputCustom>
-      <View style={{ height: 30 }}></View>
+      {errorMessage != "" ? (
+        <Text>{errorMessage}</Text>
+      ) : (null)
+      }
+      <View style={{ height: 50 }}></View>
       <ActionButtonCustom title="Login" onPress={sendData}></ActionButtonCustom>
-    </SafeAreaView>
-    // <View style={styles.container}>
-    //   <NavigationEvents onWillBlur={clearErrorMessage} />
-    //   <View style={{backgroundColor:"blue", marginVertical:200}}></View>
-    //   <AuthForm
-    //     headerText="Sign In"
-    //     errorMessage={state.errorMessage}
-    //     onSubmit={signinPatient}
-    //     submitButtonText="Sign In"
-    //   />
-    //   <NavLink
-    //     text="Don't have an account? Sign Up instead!"
-    //     routeName="Signup"
-    //   ></NavLink>
-    // </View>
+    </SafeAreaView >
   );
 };
 
@@ -86,8 +76,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     backgroundColor: "white",
     marginTop: 10,
     justifyContent: "center",
@@ -96,7 +86,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#A5B1C2",
+    color: colors.text.default,
+    maxWidth: 200,
+    backgroundColor: "white",
+    marginTop: 10,
+    alignContent: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  subTitle: {
+    fontSize: 14,
+    color: colors.text.default,
     maxWidth: 200,
     backgroundColor: "white",
     marginTop: 10,

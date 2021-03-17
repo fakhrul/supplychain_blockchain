@@ -106,7 +106,7 @@ import TatApi from "../../lib/tatapi";
 const items = [];
 
 const fields = [
-  { key: "createdDate", _style: "min-width:50px" },
+  { key: "createdDateInText", _style: "min-width:50px" },
   { key: "organization_name", _style: "min-width:50px" },
   { key: "area_name", _style: "min-width:50px" },
   { key: "activity_name", _style: "min-width:50px" },

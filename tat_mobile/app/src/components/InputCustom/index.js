@@ -1,15 +1,13 @@
 import React from "react";
 import { StyleSheet, TextInput, View, Text } from "react-native";
-import { colors } from "../utils";
+import { colors, size } from "../../utils";
 
-const InputCustom = ({placeholder, ...rest}) => {
+const InputCustom = ({ placeholder, ...rest }) => {
   return (
     <View style={{ maxWidth: 300 }}>
-      <TextInput style={styles.input} placeholder={placeholder} 
-      placeholderTextColor={colors.default} 
-      autoCorrect = {false}
-      autoCapitalize="none"
-      {...rest}
+      <TextInput style={styles.input} placeholder={placeholder}
+        placeholderTextColor={colors.default}
+        {...rest}
       ></TextInput>
     </View>
   );
@@ -21,14 +19,12 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: colors.default,
-    borderRadius: 25,
+    borderColor: colors.lightGray,
+    borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 18,
     fontSize: 14,
-    width: 300,
-    justifyContent:"center",
-    textAlign:"center"
+    width: size.input,
   },
 });
 
